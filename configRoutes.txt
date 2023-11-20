@@ -1,0 +1,20 @@
+Bookings:
+/bookings --> lista de reservas
+/bookings/:id --> detalles de una reserva específica
+/bookings/create --> crear una nueva reserva
+/bookings/edit/:id --> editar una reserva existente
+/bookings/delete/:id --> eliminar una reserva
+
+Rooms:
+/rooms --> lista de habitaciones
+/rooms/:id --> detalles de una habitación específica
+/rooms/create --> crear una nueva habitación
+/rooms/edit/:id --> editar una habitación existente
+/rooms/delete/:id --> eliminar una habitación
+
+Users:
+/users --> lista de usuarios
+/users/:id --> detalles de un usuario específico
+/users/create --> crear un nuevo usuario
+/users/edit/:id --> editar un usuario existente
+/users/delete/:id --> eliminar un usuario
