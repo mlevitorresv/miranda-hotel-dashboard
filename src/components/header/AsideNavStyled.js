@@ -8,7 +8,7 @@ export const AsideNavStyled = styled.nav`
     height: auto;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    background-color: white;
 
     img{
         margin-left: 1.5em;

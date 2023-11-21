@@ -5,6 +5,8 @@ import { FiHeart } from "react-icons/fi";
 import { MdOutlineMail } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineChat } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa6";
+
 
 
 
@@ -16,6 +18,10 @@ const sharedIconStyle = `
 `
 
 export const DashboardStyledIcon = styled(HiOutlineMenuAlt2)`
+    ${sharedIconStyle}
+`
+
+export const ArrowStyledIcon = styled(FaArrowLeft) `
     ${sharedIconStyle}
 `
 
