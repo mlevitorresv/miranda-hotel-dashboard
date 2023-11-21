@@ -9,7 +9,7 @@ export const LoginPage = () => {
     <>
     <div className='loginPage'>
         <form className='loginForm'>
-            <img src="/src/assets/logo.png" alt="Hotel Miranda's logo" className='loginForm__image'/>
+            <img src="/public/logo.png" alt="Hotel Miranda's logo" className='loginForm__image'/>
             <InputStyled type="email" name="emailInput" id="emailInput" placeholder='example@example.com' className='loginForm__input'/>
             <InputStyled type="password" name="passInput" id="passInput" placeholder='password' className='loginForm__input'/>
             <ButtonStyled type="submit" className='loginForm__button'>SIGN IN</ButtonStyled>

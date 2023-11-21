@@ -2,6 +2,7 @@ import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
 import { TableStyled } from '../components/TableStyled'
+import { SearchBarStyled } from '../components/SearchBarStyled'
 
 export const GuestList = () => {
   return (
@@ -12,6 +13,8 @@ export const GuestList = () => {
         <ListElementStyled>Booked</ListElementStyled>
         <ListElementStyled>Refund</ListElementStyled>
       </ListStyled>
+
+      <SearchBarStyled />
 
       <TableStyled>
         <tr>

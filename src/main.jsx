@@ -9,6 +9,8 @@ import { LoginPage } from './pages/LoginPage.jsx'
 import { GuestDetails } from './pages/GuestDetails.jsx'
 import { RoomList } from './pages/RoomList.jsx'
 import { ConciergeList } from './pages/ConciergeList.jsx'
+import { Contact } from './pages/Contact.jsx'
+import { AsideNav } from './components/header/AsideNav.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,28 +18,34 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
           {/* LOGIN */}
           <Route path='/login' element={<LoginPage />} />
-
+          
+          {/* prueba */}
+          <Route path='/prueba' element={<AsideNav />} />
           {/* <Header /> */}
-          {/* PRINCIPAL */}
-          <Route path='/' element={<Dashboard />} />
-          {/* BOOKINGS */}
-          <Route path='/bookings' element={<GuestList />} />
-          <Route path='/bookings/:id' element={<GuestDetails />} />
-          <Route path='/bookings/create' element={<GuestList />} />
-          <Route path='/bookings/edit/:id' element={<GuestList />} />
-          <Route path='/bookings/delete/:id' element={<GuestList />} />
-          {/* ROOMS */}
-          <Route path='/rooms' element={<RoomList />} />
-          <Route path='/rooms/:id' element={<RoomList />} />
-          <Route path='/rooms/create' element={<RoomList />} />
-          <Route path='/rooms/edit/:id' element={<RoomList />} />
-          <Route path='/rooms/delete/:id' element={<RoomList />} />
-          {/* USERS */}
-          <Route path='/users' element={<ConciergeList />} />
-          <Route path='/users/:id' element={<ConciergeList />} />
-          <Route path='/users/create' element={<ConciergeList />} />
-          <Route path='/users/edit/:id' element={<ConciergeList />} />
-          <Route path='/users/delete/:id' element={<ConciergeList />} />
+          <Route element={<Header />}>
+            {/* PRINCIPAL */}
+            <Route path='/' element={<Dashboard />} />
+            {/* BOOKINGS */}
+            <Route path='/bookings' element={<GuestList />} />
+            <Route path='/bookings/:id' element={<GuestDetails />} />
+            <Route path='/bookings/create' element={<GuestList />} />
+            <Route path='/bookings/edit/:id' element={<GuestList />} />
+            <Route path='/bookings/delete/:id' element={<GuestList />} />
+            {/* ROOMS */}
+            <Route path='/rooms' element={<RoomList />} />
+            <Route path='/rooms/:id' element={<RoomList />} />
+            <Route path='/rooms/create' element={<RoomList />} />
+            <Route path='/rooms/edit/:id' element={<RoomList />} />
+            <Route path='/rooms/delete/:id' element={<RoomList />} />
+            {/* USERS */}
+            <Route path='/users' element={<ConciergeList />} />
+            <Route path='/users/:id' element={<ConciergeList />} />
+            <Route path='/users/create' element={<ConciergeList />} />
+            <Route path='/users/edit/:id' element={<ConciergeList />} />
+            <Route path='/users/delete/:id' element={<ConciergeList />} />
+            {/* CONTACT */}
+            <Route path='/contact' element={<Contact />} />
+          </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
