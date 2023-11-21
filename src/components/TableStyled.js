@@ -11,8 +11,15 @@ export const TableStyled = styled.table`
 
     th{
         font-family: 'Poppins';
-        font-size: 16px;
+        font-size: 1em;
         font-weight: 600;
+        color: #393939;
+    }
+
+    td{
+        text-align: center;
+        font-family: 'Poppins';
+        font-size: 1em;
         color: #393939;
     }
 `

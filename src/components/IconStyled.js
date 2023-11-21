@@ -15,6 +15,7 @@ const sharedIconStyle = `
     height: 1.5em;
     color: #135846;
     margin: 0 1em;
+    cursor: pointer;
 `
 
 export const DashboardStyledIcon = styled(HiOutlineMenuAlt2)`

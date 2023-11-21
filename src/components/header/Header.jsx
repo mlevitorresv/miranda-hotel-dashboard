@@ -18,7 +18,7 @@ export const Header = () => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  const showMenu = () => {
+  const handlerMenu = () => {
     const dashboardIcon = document.getElementById('dashboardIcon');
     const arrowIcon = document.getElementById('arrowIcon');
     const asideNav = document.getElementById('asideNav');
@@ -37,7 +37,7 @@ export const Header = () => {
   };
 
   useEffect(()=>{
-    showMenu();
+    handlerMenu();
   }, []);
 
 
@@ -46,8 +46,8 @@ export const Header = () => {
       {!isOpenMenu && <AsideNav id='asideNav' />}
       <HeaderStyled>
         <div>
-          <DashboardStyledIcon id='dashboardIcon' onClick={showMenu}/>
-          <ArrowStyledIcon id='arrowIcon' onClick={showMenu}/>
+          <DashboardStyledIcon id='dashboardIcon' onClick={handlerMenu}/>
+          <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>
           <H1Styled>Dashboard</H1Styled>
         </div>
 
