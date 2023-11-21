@@ -2,7 +2,6 @@ import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
 import { TableStyled } from '../components/TableStyled'
-import { DateRangePicker } from '../components/dateRange/DateRangePicker'
 
 export const GuestList = () => {
   return (
@@ -13,7 +12,6 @@ export const GuestList = () => {
         <ListElementStyled>Booked</ListElementStyled>
         <ListElementStyled>Refund</ListElementStyled>
       </ListStyled>
-      <DateRangePicker></DateRangePicker>
 
       <TableStyled>
         <tr>
