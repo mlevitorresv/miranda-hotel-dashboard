@@ -13,6 +13,7 @@ export const NavLinkStyled = styled(NavLink)`
   font-size: 1.1em;
   font-weight: 600;
   text-decoration: none;
+  font-family: 'Poppins';
   
   &.active {
     color: red;

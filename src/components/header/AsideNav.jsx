@@ -1,11 +1,11 @@
 import React from 'react'
 import { AsideNavStyled } from './AsideNavStyled'
 import { NavLinkStyled } from './NavLinkStyled'
-import { MdOutlineDashboard } from 'react-icons/md';
-import { TfiKey } from 'react-icons/tfi';
+import { LuLayoutDashboard } from "react-icons/lu";
+import { SlKey } from "react-icons/sl";
 import { LuCalendarCheck2 } from 'react-icons/lu';
-import { FaUsers } from 'react-icons/fa';
-import { BsTelephoneInbound } from 'react-icons/bs';
+import { FiUsers } from "react-icons/fi";
+import { FaPhoneAlt } from "react-icons/fa";
 import { DivStyled } from '../DivStyled.js'
 import { ButtonStyled } from '../ButtonStyled.js';
 
@@ -15,11 +15,11 @@ export const AsideNav = () => {
         <img src="../../../public/logo.png" alt="hotel miranda's logo" />
         <div className='icons'>
             <NavLinkStyled to="/">
-                <MdOutlineDashboard />
+                <LuLayoutDashboard />
                 Dashboard
             </NavLinkStyled>
             <NavLinkStyled to="/rooms">
-                <TfiKey />
+                <SlKey />
                 Rooms
             </NavLinkStyled>
             <NavLinkStyled to="/bookings">
@@ -27,11 +27,11 @@ export const AsideNav = () => {
                 Bookings
             </NavLinkStyled>
             <NavLinkStyled to="/users">
-                <FaUsers />
+                <FiUsers />
                 Users
             </NavLinkStyled>
             <NavLinkStyled to="/contact">
-                <BsTelephoneInbound />
+                <FaPhoneAlt />
                 Contact
             </NavLinkStyled>
         </div>
