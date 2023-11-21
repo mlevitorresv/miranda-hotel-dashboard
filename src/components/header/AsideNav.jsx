@@ -41,6 +41,9 @@ export const AsideNav = () => {
             <p className='email'>levitorres66@gmail.com</p>
             <ButtonStyled>Edit</ButtonStyled>
         </DivStyled>
+        <p className='desc'>Travl Hotel Admin Dashboard</p>
+        <p className='green'>&copy; 2020 All Rights Reserved</p>
+        <p className='green'>Made with ♥ by Manuel Leví</p>
     </AsideNavStyled>
   )
 }
