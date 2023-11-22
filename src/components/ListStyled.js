@@ -4,5 +4,6 @@ import styled from "styled-components";
 export const ListStyled = styled.ul `
     list-style: none;
     display: inline;
-    margin-left: 5%
+    padding-inline-start: 0;
+    cursor: pointer;
 `

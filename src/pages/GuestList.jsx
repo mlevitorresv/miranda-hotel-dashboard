@@ -1,31 +1,43 @@
 import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
-import { TableStyled } from '../components/TableStyled'
+import { TableGuestStyled } from '../components/TableGuestStyled'
 import { SearchBarStyled } from '../components/SearchBarStyled'
 import { TheadStyled } from '../components/TheadStyled'
 import { GuestImage } from '../components/guest/GuestImage.jsx'
 import { TrStyled } from '../components/TrStyled.js'
 import { ButtonStyled } from '../components/ButtonStyled.js'
-import { GuestDiv } from '../components/guest/GuestOrderDate.jsx'
+import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { GuestCheck } from '../components/guest/GuestCheck.jsx'
 import { HiDotsVertical } from "react-icons/hi";
+import { MenuStyled } from '../components/MenuStyled.js'
+import { SelectStyled } from '../components/SelectStyled.js'
 
 
 
 export const GuestList = () => {
   return (
     <>
-      <ListStyled>
-        <ListElementStyled color='#135846'>All Guest</ListElementStyled>
-        <ListElementStyled>Pending</ListElementStyled>
-        <ListElementStyled>Booked</ListElementStyled>
-        <ListElementStyled>Refund</ListElementStyled>
-      </ListStyled>
+      <MenuStyled>
+        <ListStyled>
+          <ListElementStyled color='#135846'>All Bookings</ListElementStyled>
+          <ListElementStyled>Checking in</ListElementStyled>
+          <ListElementStyled>Checking out</ListElementStyled>
+          <ListElementStyled>In progress</ListElementStyled>
+        </ListStyled>
 
-      <SearchBarStyled />
+        <div>
+          <SearchBarStyled />
+          <SelectStyled>
+            <option value="date" selected>Order Date</option>
+            <option value="guest">Guest</option>
+            <option value="checkIn">Check in</option>
+            <option value="checkOut">Check out</option>
+          </SelectStyled>
+        </div>
+      </MenuStyled>
 
-      <TableStyled>
+      <TableGuestStyled>
         <TheadStyled>
           <tr>
               <th>Guest</th>
@@ -41,7 +53,7 @@ export const GuestList = () => {
         <tbody>
           <TrStyled>
               <td>
-                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} number={'#000123456'} />
+                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
               </td>
               <td>
                 <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
@@ -69,7 +81,7 @@ export const GuestList = () => {
           </TrStyled>
           <TrStyled>
               <td>
-              <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} number={'#000123456'} />
+              <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
               </td>
               <td>
                 <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
@@ -97,7 +109,7 @@ export const GuestList = () => {
           </TrStyled>
           <TrStyled>
               <td>
-                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} number={'#000123456'} />
+                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
               </td>
               <td>
                 <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
@@ -125,7 +137,7 @@ export const GuestList = () => {
           </TrStyled>
           <TrStyled>
               <td>
-                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} number={'#000123456'} />
+                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
               </td>
               <td>
                 <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
@@ -152,7 +164,7 @@ export const GuestList = () => {
               </td>
           </TrStyled>
         </tbody>
-      </TableStyled>
+      </TableGuestStyled>
     </>
   )
 }

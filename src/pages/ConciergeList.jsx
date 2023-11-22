@@ -1,37 +1,43 @@
 import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
-import { TableStyled } from '../components/TableStyled'
+import { TableUserStyled } from '../components/TableUserStyled.js'
 import { SearchBarStyled } from '../components/SearchBarStyled'
 import { TheadStyled } from '../components/TheadStyled'
 import { GuestImage } from '../components/guest/GuestImage.jsx'
 import { TrStyled } from '../components/TrStyled.js'
-import { ButtonStyled } from '../components/ButtonStyled.js'
-import { GuestDiv } from '../components/guest/GuestOrderDate.jsx'
-import { GuestCheck } from '../components/guest/GuestCheck.jsx'
+import { GuestDiv } from '../components/guest/GuestDiv.jsx'
+import { ConciergeContact } from '../components/concierge/ConciergeContact.jsx'
 import { HiDotsVertical } from "react-icons/hi";
+import { MenuStyled } from '../components/MenuStyled.js'
+import { SelectStyled } from '../components/SelectStyled.js'
 
 export const ConciergeList = () => {
   return (
     <>
-      <ListStyled>
-        <ListElementStyled color='#135846'>All Guest</ListElementStyled>
-        <ListElementStyled>Pending</ListElementStyled>
-        <ListElementStyled>Booked</ListElementStyled>
-        <ListElementStyled>Refund</ListElementStyled>
-      </ListStyled>
+      <MenuStyled>
+        <ListStyled>
+          <ListElementStyled color='#135846'>All employee</ListElementStyled>
+          <ListElementStyled>Active employee</ListElementStyled>
+          <ListElementStyled>Inactive employee</ListElementStyled>
+        </ListStyled>
 
-      <SearchBarStyled />
+        <div>
+          <SearchBarStyled />
+          <SelectStyled>
+            <option value="date" selected>Joined Date</option>
+            <option value="name">name</option>
+          </SelectStyled>
+        </div>
+      </MenuStyled>
 
-      <TableStyled>
+      <TableUserStyled>
         <TheadStyled>
           <tr>
-              <th>Guest</th>
-              <th>Order Date</th>
-              <th>Check In</th>
-              <th>Check Out</th>
-              <th>Special Request</th>
-              <th>Room Type</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Job Desk</th>
+              <th>Contact</th>
               <th>Status</th>
           </tr>
         </TheadStyled>
@@ -39,118 +45,92 @@ export const ConciergeList = () => {
         <tbody>
           <TrStyled>
               <td>
-                <GuestImage />
+              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
               </td>
               <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
+                <GuestDiv data={'levitorres66@gmail.com'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
+                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
+                <ConciergeContact data={'012 334 5512'} />
               </td>
               <td>
-                <ButtonStyled>View Notes</ButtonStyled>
+                <GuestDiv data={'INACTIVE'} color={'#E23428'} />
               </td>
               <td>
-                <p>Deluxe A - 03</p>
-              </td>
-              <td>
-                <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
-                </div>
-              </td>
-              <td>
-              <GuestDiv data={<HiDotsVertical />} />
+                <GuestDiv data={<HiDotsVertical />} />
               </td>
           </TrStyled>
           <TrStyled>
               <td>
-                <GuestImage />
+              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
               </td>
               <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
+                <GuestDiv data={'levitorres66@gmail.com'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
+                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
+                <ConciergeContact data={'012 334 5512'} />
               </td>
               <td>
                 <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
+                  <GuestDiv data={'ACTIVE'} color={'#5AD07A'} />
                 </div>
               </td>
               <td>
-              <GuestDiv data={<HiDotsVertical />} />
+                <GuestDiv data={<HiDotsVertical />} />
               </td>
           </TrStyled>
           <TrStyled>
               <td>
-                <GuestImage />
+              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
               </td>
               <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
+                <GuestDiv data={'levitorres66@gmail.com'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
+                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
+                <ConciergeContact data={'012 334 5512'} />
               </td>
               <td>
                 <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
+                  <GuestDiv data={'INACTIVE'} color={'#E23428'} />
                 </div>
               </td>
               <td>
-              <GuestDiv data={<HiDotsVertical />} />
+                <GuestDiv data={<HiDotsVertical />} />
               </td>
           </TrStyled>
           <TrStyled>
               <td>
-                <GuestImage />
+              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
               </td>
               <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
+                <GuestDiv data={'levitorres66@gmail.com'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
+                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
               </td>
               <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
+                <ConciergeContact data={'012 334 5512'} />
               </td>
               <td>
                 <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
+                  <GuestDiv data={'ACTIVE'} color={'#5AD07A'} />
                 </div>
               </td>
               <td>
-              <GuestDiv data={<HiDotsVertical />} />
+                <GuestDiv data={<HiDotsVertical />} />
               </td>
           </TrStyled>
         </tbody>
-      </TableStyled>
+      </TableUserStyled>
     </>
   )
 }
