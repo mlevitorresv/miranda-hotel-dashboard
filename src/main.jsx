@@ -9,6 +9,7 @@ import { GuestDetails } from './pages/GuestDetails.jsx'
 import { RoomList } from './pages/RoomList.jsx'
 import { ConciergeList } from './pages/ConciergeList.jsx'
 import { Contact } from './pages/Contact.jsx'
+import { Header } from './components/header/Header.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,13 +19,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/login' element={<LoginPage />} />
 
           {/* <Header /> */}
-          {/* <Route element={<Header />}> */}
+          <Route element={<Header />}>
 
             {/* PRINCIPAL */}
             <Route path='/' element={<Dashboard />} />
 
             {/* BOOKINGS */}
-            <Route path='/bookings' element={<GuestList />} />
+            <Route path='/bookings' element={<GuestList />} />            
             <Route path='/bookings/:id' element={<GuestDetails />} />
             <Route path='/bookings/create' element={<GuestList />} />
             <Route path='/bookings/edit/:id' element={<GuestList />} />
@@ -47,7 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             {/* CONTACT */}
             <Route path='/contact' element={<Contact />} />
 
-          {/* </Route> */}
+          </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

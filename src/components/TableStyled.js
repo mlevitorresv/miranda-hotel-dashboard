@@ -6,20 +6,9 @@ export const TableStyled = styled.table`
     background-color: white;
     border: none;
     border-radius: 12px;
-    width: 90%;
-    margin: 5%;
-
-    th{
-        font-family: 'Poppins';
-        font-size: 1em;
-        font-weight: 600;
-        color: #393939;
-    }
-
-    td{
-        text-align: center;
-        font-family: 'Poppins';
-        font-size: 1em;
-        color: #393939;
-    }
+    width: 80%;
+    margin: 5% 10%;
+    padding: 1em;
+    font-family: 'Poppins';
+    text-align: left;
 `

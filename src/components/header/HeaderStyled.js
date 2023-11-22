@@ -8,4 +8,5 @@ export const HeaderStyled = styled.header`
     display: flex;
     justify-content: space-between;
     padding: 1em 0em;
+    margin-bottom: 5em;
 `

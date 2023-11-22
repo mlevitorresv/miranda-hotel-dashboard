@@ -5,10 +5,10 @@ import styled from "styled-components"
 export const ButtonStyled = styled.button`
     width: auto;
     font: normal normal 600 14px/21px Poppins;
-    color: #135846;
+    color: ${props => props.color ? props.color : '#135846'};
     margin: 1em auto 0;
     padding: 1em 5em;
-    background: #EBF1EF;
+    background: ${props => props.bg ? props.bg : '#EBF1EF'};
     border: none;
     border-radius: 8px;
     cursor: pointer;

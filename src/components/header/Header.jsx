@@ -12,6 +12,7 @@ import {
     ArrowStyledIcon
 } from '../IconStyled'
 import { AsideNav } from './AsideNav'
+import { Outlet } from "react-router-dom"
 
 
 export const Header = () => {
@@ -50,20 +51,12 @@ export const Header = () => {
           <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>
           <H1Styled>Dashboard</H1Styled>
         </div>
-
         <div>
-          <SearchBarStyled />
           <HeartStyledIcon />
-          <MailStyledIcon />
           <NotificationStyledIcon />
-          <ChatStyledIcon />
-          <img src="" alt="" />
-          <SelectStyled>
-              <option value="EN">EN</option>
-              <option value="ES">ES</option>
-          </SelectStyled>
         </div>
       </HeaderStyled>
+      <Outlet />
     </>
   )
 }
