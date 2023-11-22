@@ -41,4 +41,3 @@ export const NotificationStyledIcon = styled(IoMdNotificationsOutline)`
 export const ChatStyledIcon = styled(MdOutlineChat)`
     ${sharedIconStyle}
 `
-
