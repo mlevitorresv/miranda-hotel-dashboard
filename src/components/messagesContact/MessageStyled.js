@@ -25,10 +25,12 @@ export const MessageStyled = styled.div`
     .check{
         color: #5AD07A;
         width: 2em;
+        cursor: pointer;
     }
 
     .remove{
         color: #E23428;
         width: 2em;
+        cursor: pointer;
     }
 `

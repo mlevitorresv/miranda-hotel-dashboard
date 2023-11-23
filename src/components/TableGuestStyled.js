@@ -11,4 +11,23 @@ export const TableGuestStyled = styled.table`
     padding: 1em;
     font-family: 'Poppins';
     text-align: left;
+
+    &.user{
+        border-collapse: separate;
+        border-spacing: 5.5em 0;
+    }
+
+    &.room{
+        border-collapse: separate;
+        border-spacing: 3em 0;
+    }
+
+    &.rev{
+        border-collapse: separate;
+        border-spacing: 3em 0;
+
+        && .comment{
+            width: 18em;
+        }
+    }
 `

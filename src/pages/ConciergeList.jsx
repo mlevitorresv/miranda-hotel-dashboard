@@ -1,7 +1,6 @@
 import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
-import { TableUserStyled } from '../components/TableUserStyled.js'
 import { SearchBarStyled } from '../components/SearchBarStyled'
 import { TheadStyled } from '../components/TheadStyled'
 import { GuestImage } from '../components/guest/GuestImage.jsx'
@@ -11,6 +10,7 @@ import { ConciergeContact } from '../components/concierge/ConciergeContact.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/SelectStyled.js'
+import { TableGuestStyled } from '../components/TableGuestStyled.js'
 
 export const ConciergeList = () => {
   return (
@@ -31,7 +31,7 @@ export const ConciergeList = () => {
         </div>
       </MenuStyled>
 
-      <TableUserStyled>
+      <TableGuestStyled className='user'>
         <TheadStyled>
           <tr>
               <th>Name</th>
@@ -51,7 +51,7 @@ export const ConciergeList = () => {
                 <GuestDiv data={'levitorres66@gmail.com'} />
               </td>
               <td>
-                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
+                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.Answering guest inquiries, directing phone calls, coordinating travel plans, and moreAnswering guest inquiries, directing phone calls, coordinating travel plans, and moreAnswering guest inquiries, directing phone calls, coordinating travel plans, and more'} />
               </td>
               <td>
                 <ConciergeContact data={'012 334 5512'} />
@@ -130,7 +130,7 @@ export const ConciergeList = () => {
               </td>
           </TrStyled>
         </tbody>
-      </TableUserStyled>
+      </TableGuestStyled>
     </>
   )
 }

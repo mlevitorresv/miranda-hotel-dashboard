@@ -7,8 +7,8 @@ export const MessageDivStyled = styled.div`
     box-shadow: ${props => props.bg ? 'none' : '0px 4px 4px #00000005'};
     width: 80%;
     margin: auto 10%;
-    box-shadow: 0px 4px 4px #00000005;
-    border-radius: 20px;
+    border-radius: 20px;    
+    margin-bottom: 5em;
 
 
     &__title{

@@ -7,11 +7,11 @@ import { TrStyled } from '../components/TrStyled.js'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { MenuStyled } from '../components/MenuStyled.js'
 import { HiDotsVertical } from "react-icons/hi";
-import { TableRoomStyled } from '../components/TableRoomStyled.js'
 import { GuestImageRoom } from '../components/GuestImageRoom.jsx'
 import { RoomRate } from '../components/RoomRate.jsx'
 import { RoomStatus } from '../components/RoomStatus.jsx'
 import { SelectStyled } from '../components/SelectStyled.js'
+import { TableGuestStyled } from '../components/TableGuestStyled.js'
 
 export const RoomList = () => {
   return (
@@ -36,7 +36,7 @@ export const RoomList = () => {
       </MenuStyled>
 
 
-      <TableRoomStyled>
+      <TableGuestStyled className='room'>
         <TheadStyled>
           <tr>
               <th>Room Name</th>
@@ -57,7 +57,7 @@ export const RoomList = () => {
                 <GuestDiv data={'Double Bed'} />
               </td>
               <td>
-                <GuestDiv data={'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi'} />
+                <GuestDiv data={'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, WifiAC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, WifiAC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, WifiAC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi'} />
               </td>
               <td>
                 <RoomRate price={'145'} />
@@ -142,7 +142,7 @@ export const RoomList = () => {
               </td>
           </TrStyled>
         </tbody>
-      </TableRoomStyled>
+      </TableGuestStyled>
     </>
   )
 }
