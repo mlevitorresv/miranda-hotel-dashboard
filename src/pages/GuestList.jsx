@@ -12,6 +12,7 @@ import { GuestCheck } from '../components/guest/GuestCheck.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/SelectStyled.js'
+import bookings from '../../data/bookings.json'
 
 
 
@@ -51,34 +52,38 @@ export const GuestList = () => {
         </TheadStyled>
 
         <tbody>
-          <TrStyled>
-              <td>
-                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
-              </td>
-              <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
-              </td>
-              <td>
-                <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
-                </div>
-              </td>
-              <td>
-              <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
+          {bookings.map(guest =>(
+            <TrStyled>
+                <td>
+                  <GuestImage img={guest.photo} name={guest.name} id={guest.id} />
+                </td>
+                <td>
+                  <GuestDiv data={guest.orderDate} />
+                </td>
+                <td>
+                  <GuestCheck date={guest.checkInDate} hour={guest.checkInTime} />
+                </td>
+                <td>
+                  <GuestCheck date={guest.checkOut} hour={guest.checkOutTime} />
+                </td>
+                <td>
+                  <ButtonStyled>View Notes</ButtonStyled>
+                </td>
+                <td>
+                  <p>{guest.room}</p>
+                </td>
+                <td>
+                  <div>
+                    <ButtonStyled color={'red'} bg={'#FFEDEC'}>{guest.status}</ButtonStyled>
+                  </div>
+                </td>
+                <td>
+                <GuestDiv data={<HiDotsVertical />} />
+                </td>
+            </TrStyled>
+
+          ))}
+          
           <TrStyled>
               <td>
               <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
