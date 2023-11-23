@@ -41,8 +41,8 @@ export const Header = () => {
 
   return (
     <>    
-      {!isOpenMenu && <AsideNav id='asideNav' />}
       <HeaderStyled id='header'>
+        {!isOpenMenu && <AsideNav id='asideNav' />}
         <div>
           <DashboardStyledIcon id='dashboardIcon' onClick={handlerMenu}/>
           <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>

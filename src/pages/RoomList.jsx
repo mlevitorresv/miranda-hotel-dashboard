@@ -1,19 +1,21 @@
 import React from 'react'
-import { ListStyled } from '../components/ListStyled'
-import { ListElementStyled } from '../components/ListElementStyled'
-import { SearchBarStyled } from '../components/SearchBarStyled'
-import { TheadStyled } from '../components/TheadStyled'
-import { TrStyled } from '../components/TrStyled.js'
-import { GuestDiv } from '../components/guest/GuestDiv.jsx'
-import { MenuStyled } from '../components/MenuStyled.js'
+import { ListStyled } from '../components/ListStyled';
+import { ListElementStyled } from '../components/ListElementStyled';
+import { SearchBarStyled } from '../components/SearchBarStyled';
+import { TheadStyled } from '../components/TheadStyled';
+import { TrStyled } from '../components/TrStyled.js';
+import { GuestDiv } from '../components/guest/GuestDiv.jsx';
+import { MenuStyled } from '../components/MenuStyled.js';
 import { HiDotsVertical } from "react-icons/hi";
-import { GuestImageRoom } from '../components/GuestImageRoom.jsx'
-import { RoomRate } from '../components/RoomRate.jsx'
-import { RoomStatus } from '../components/RoomStatus.jsx'
-import { SelectStyled } from '../components/SelectStyled.js'
-import { TableGuestStyled } from '../components/TableGuestStyled.js'
+import { GuestImageRoom } from '../components/GuestImageRoom.jsx';
+import { RoomRate } from '../components/RoomRate.jsx';
+import { RoomStatus } from '../components/RoomStatus.jsx';
+import { SelectStyled } from '../components/SelectStyled.js';
+import { TableGuestStyled } from '../components/TableGuestStyled.js';
+import Rooms from '../../data/rooms.json';
 
 export const RoomList = () => {
+  console.log(Rooms);
   return (
     <>
       <MenuStyled>
@@ -49,98 +51,31 @@ export const RoomList = () => {
         </TheadStyled>
 
         <tbody>
-          <TrStyled align={'bottom'}>
-              <td>
-              <GuestImageRoom img={'../../public/room.jpg'} id={'#000123456'} data={'Deluxe A-91234'}/>
-              </td>
-              <td>
-                <GuestDiv data={'Double Bed'} />
-              </td>
-              <td>
-                <GuestDiv data={'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, WifiAC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, WifiAC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, WifiAC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi'} />
-              </td>
-              <td>
-                <RoomRate price={'145'} />
-              </td>
-              <td>
-                <RoomRate price={'130'} />
-              </td>
-              <td>
-                <RoomStatus status='Available'/>               
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
+        {Rooms.map(room => (
+          <TrStyled align={'bottom'} key={room.id}>
+            <td>
+              <GuestImageRoom img={room.photo} id={room.id} data={room.type}/>
+            </td>
+            <td>
+              <GuestDiv data={room.bed} />
+            </td>
+            <td>
+              <GuestDiv data={room.amenities} />
+            </td>
+            <td>
+              <RoomRate price={room.price} />
+            </td>
+            <td>
+              <RoomRate price={room.price - (room.discount * 100)} />
+            </td>
+            <td>
+              <RoomStatus status={!room.status ? 'Booked' : 'Available'}/>               
+            </td>
+            <td>
+              <GuestDiv data={<HiDotsVertical />} />
+            </td>
           </TrStyled>
-          <TrStyled align={'bottom'}>
-              <td>
-              <GuestImageRoom img={'../../public/room.jpg'} id={'#000123456'} data={'Deluxe A-91234'}/>
-              </td>
-              <td>
-                <GuestDiv data={'Double Bed'} />
-              </td>
-              <td>
-                <GuestDiv data={'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi'} />
-              </td>
-              <td>
-                <RoomRate price={'145'} />
-              </td>
-              <td>
-                <RoomRate price={'130'} />
-              </td>
-              <td>
-                <RoomStatus status='Available'/>               
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled align={'bottom'}>
-              <td>
-              <GuestImageRoom img={'../../public/room.jpg'} id={'#000123456'} data={'Deluxe A-91234'}/>
-              </td>
-              <td>
-                <GuestDiv data={'Double Bed'} />
-              </td>
-              <td>
-                <GuestDiv data={'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi'} />
-              </td>
-              <td>
-                <RoomRate price={'145'} />
-              </td>
-              <td>
-                <RoomRate price={'130'} />
-              </td>
-              <td>
-                <RoomStatus status='Available'/>               
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled align={'bottom'}>
-              <td>
-              <GuestImageRoom img={'../../public/room.jpg'} id={'#000123456'} data={'Deluxe A-91234'}/>
-              </td>
-              <td>
-                <GuestDiv data={'Double Bed'} />
-              </td>
-              <td>
-                <GuestDiv data={'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi'} />
-              </td>
-              <td>
-                <RoomRate price={'145'} />
-              </td>
-              <td>
-                <RoomRate price={'130'} />
-              </td>
-              <td>
-                <RoomStatus status='Booked'/>               
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
+        ))}
         </tbody>
       </TableGuestStyled>
     </>
