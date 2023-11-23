@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { HeaderStyled } from './headerStyled'
-import { SearchBarStyled } from '../SearchBarStyled'
 import { H1Styled } from '../H1Styled'
-import { SelectStyled } from '../SelectStyled'
 import { 
     DashboardStyledIcon, 
     HeartStyledIcon, 
-    MailStyledIcon, 
     NotificationStyledIcon,
-    ChatStyledIcon,
     ArrowStyledIcon
 } from '../IconStyled'
 import { AsideNav } from './AsideNav'
@@ -23,6 +19,7 @@ export const Header = () => {
     const dashboardIcon = document.getElementById('dashboardIcon');
     const arrowIcon = document.getElementById('arrowIcon');
     const asideNav = document.getElementById('asideNav');
+    const header = document.getElementById('header');
 
     if (!isOpenMenu) {
       if (dashboardIcon) dashboardIcon.style.display = 'inline';
@@ -45,7 +42,7 @@ export const Header = () => {
   return (
     <>    
       {!isOpenMenu && <AsideNav id='asideNav' />}
-      <HeaderStyled>
+      <HeaderStyled id='header'>
         <div>
           <DashboardStyledIcon id='dashboardIcon' onClick={handlerMenu}/>
           <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>
