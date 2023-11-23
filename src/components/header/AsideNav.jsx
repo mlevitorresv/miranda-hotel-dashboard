@@ -12,7 +12,7 @@ import { ButtonStyled } from '../ButtonStyled.js';
 export const AsideNav = () => {
   return (
     <AsideNavStyled>
-        <img src="../../../public/logo.png" alt="hotel miranda's logo" />
+        <img src="../../../public/logoDashboard.png" alt="hotel miranda's logo" />
         <div className='icons'>
             <NavLinkStyled to="/">
                 <LuLayoutDashboard />

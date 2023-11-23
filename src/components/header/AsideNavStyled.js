@@ -10,11 +10,6 @@ export const AsideNavStyled = styled.nav`
     flex-direction: column;
     background-color: white;
 
-    img{
-        margin-left: 1.5em;
-        width: 50px;
-        height: 50px;
-    }
 
     .icons{
         display: flex;
