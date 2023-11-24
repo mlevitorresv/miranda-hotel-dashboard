@@ -11,6 +11,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/SelectStyled.js'
 import { TableGuestStyled } from '../components/TableGuestStyled.js'
+import users from '../../data/users.json'
 
 export const ConciergeList = () => {
   return (
@@ -43,6 +44,29 @@ export const ConciergeList = () => {
         </TheadStyled>
 
         <tbody>
+          {users.map(user => (
+            <TrStyled>
+            <td>
+            <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date}/>
+            </td>
+            <td>
+              <GuestDiv data={user.email} />
+            </td>
+            <td>
+              <GuestDiv data={user.description} />
+            </td>
+            <td>
+              <ConciergeContact data={user.phone} />
+            </td>
+            <td>
+              <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
+            </td>
+            <td>
+              <GuestDiv data={<HiDotsVertical />} />
+            </td>
+        </TrStyled>
+          ))}
+
           <TrStyled>
               <td>
               <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>

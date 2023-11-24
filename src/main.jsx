@@ -8,7 +8,6 @@ import { LoginPage } from './pages/LoginPage.jsx'
 import { GuestDetails } from './pages/GuestDetails.jsx'
 import { RoomList } from './pages/RoomList.jsx'
 import { ConciergeList } from './pages/ConciergeList.jsx'
-import { Contact } from './pages/Contact.jsx'
 import { Reviews } from './pages/Reviews.jsx'
 import { Header } from './components/header/Header.jsx'
 
@@ -24,7 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
             {/* PRINCIPAL */}
             <Route path='/' element={<Dashboard />} />
-            <Route path='/reviews' element={<Reviews/>} />
 
             {/* BOOKINGS */}
             <Route path='/bookings' element={<GuestList />} />            
@@ -48,7 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/users/delete/:id' element={<ConciergeList />} />
 
             {/* CONTACT */}
-            <Route path='/contact' element={<Contact />} />
+            <Route path='/contact' element={<Reviews/>} />
 
           </Route>
       </Routes>

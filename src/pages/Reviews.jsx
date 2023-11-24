@@ -10,6 +10,7 @@ import { ButtonStyled } from '../components/ButtonStyled.js'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/SelectStyled.js'
+import comments from '../../data/comment.json'
 
 export const Reviews = () => {
   return (
@@ -42,7 +43,27 @@ export const Reviews = () => {
         </TheadStyled>
 
         <tbody>
-          <TrStyled>
+          {comments.map(comment => (
+            <TrStyled>
+                <td>
+                  <GuestDiv data={'#' + comment.id} />
+                </td>
+                <td>
+                  <GuestDiv data={comment.date + ' ' + comment.dateTime} />
+                </td>
+                <td>
+                  <GuestDiv data={comment.name} />
+                </td>
+                <td >
+                  <GuestDiv className='comment' data={comment.comment} />
+                </td>
+                <td>
+                <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>
+                </td>
+            </TrStyled>
+          ))}
+
+          {/* <TrStyled>
               <td>
                 <GuestDiv data={'#000123456'} />
               </td>
@@ -58,7 +79,7 @@ export const Reviews = () => {
               <td>
               <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>
               </td>
-          </TrStyled>
+          </TrStyled> */}
         </tbody>
       </TableGuestStyled>
     </div>
