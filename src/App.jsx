@@ -8,6 +8,7 @@ import { ConciergeList } from './pages/ConciergeList.jsx'
 import { Reviews } from './pages/Reviews.jsx'
 import { Layout } from './components/layout/Layout.jsx'
 import { useEffect, useState } from 'react'
+import { CreateUserPage } from './pages/CreateUserPage.jsx'
 
 function App() {
     const [data, setData] = useState('');
@@ -49,7 +50,7 @@ function App() {
                             {/* USERS */}
                             <Route path='/users' element={<ConciergeList />} />
                             <Route path='/users/:id' element={<ConciergeList />} />
-                            <Route path='/users/create' element={<ConciergeList />} />
+                            <Route path='/users/create' element={<CreateUserPage />} />
                             <Route path='/users/edit/:id' element={<ConciergeList />} />
 
                             {/* CONTACT */}

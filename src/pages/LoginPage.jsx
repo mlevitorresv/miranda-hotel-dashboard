@@ -1,8 +1,8 @@
 import { InputStyled } from '../components/InputStyled'
 import { ButtonStyled } from '../components/ButtonStyled'
 import { Link, useNavigate } from "react-router-dom";
-import { LoginFormStyled } from '../components/login/LoginFormStyled';
-import { LoginPageStyled } from '../components/login/LoginPageStyled';
+import { FormStyled } from '../components/form/FormStyled';
+import { FormPageStyled } from '../components/form/FormPageStyled';
 import { useState } from 'react';
 
 
@@ -34,14 +34,14 @@ export const LoginPage = () => {
 
   return (
     <>
-    <LoginPageStyled>
-        <LoginFormStyled onSubmit={handleLogin}>
-            <Link to='/' className='loginForm__image'><img src="/public/logo.png" alt="Hotel Miranda's logo" /></Link>
-            <InputStyled type="email" name="emailInput" id="emailInput" placeholder='example@example.com' onChange={handleChangeEmail}/>
-            <InputStyled type="password" name="passInput" id="passInput" placeholder='password'  onChange={handleChangePass}/>
-            <ButtonStyled type='submit'>SIGN IN</ButtonStyled>
-        </LoginFormStyled> 
-    </LoginPageStyled>
+      <FormPageStyled>
+          <FormStyled onSubmit={handleLogin}>
+              <Link to='/' className='loginForm__image'><img src="/public/logo.png" alt="Hotel Miranda's logo" /></Link>
+              <InputStyled type="email" name="emailInput" id="emailInput" placeholder='example@example.com' onChange={handleChangeEmail}/>
+              <InputStyled type="password" name="passInput" id="passInput" placeholder='password'  onChange={handleChangePass}/>
+              <ButtonStyled type='submit'>SIGN IN</ButtonStyled>
+          </FormStyled> 
+      </FormPageStyled>
     </>
   )
 }

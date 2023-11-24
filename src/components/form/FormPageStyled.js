@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const LoginPageStyled = styled.div`
+export const FormPageStyled = styled.div`
     height: 100vh;
     background-color: white;
 `
