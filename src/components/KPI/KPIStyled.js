@@ -9,7 +9,7 @@ export const KPIStyled = styled.div`
     display: flex;
     align-items: center;
     height: 4em;
-    width: 20em;
+    width: 15em;
     padding: 1em;
     font-family: 'Poppins';
 
