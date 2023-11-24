@@ -14,7 +14,7 @@ export const TableGuestStyled = styled.table`
 
     &.user{
         border-collapse: separate;
-        border-spacing: 5.5em 0;
+        border-spacing: 2em 0;
     }
 
     &.room{

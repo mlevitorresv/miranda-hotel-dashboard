@@ -11,7 +11,7 @@ import { AsideNav } from './AsideNav'
 import { Outlet } from "react-router-dom"
 
 
-export const Header = () => {
+export const Header = (props) => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -46,14 +46,13 @@ export const Header = () => {
         <div>
           <DashboardStyledIcon id='dashboardIcon' onClick={handlerMenu}/>
           <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>
-          <H1Styled>Dashboard</H1Styled>
+          <H1Styled>{props.title}</H1Styled>
         </div>
         <div>
           <HeartStyledIcon />
           <NotificationStyledIcon />
         </div>
       </HeaderStyled>
-      <Outlet />
     </>
   )
 }

@@ -1,16 +1,16 @@
 import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
-import { SearchBarStyled } from '../components/SearchBarStyled'
-import { TheadStyled } from '../components/TheadStyled'
+import { SearchBarStyled } from '../components/table/SearchBarStyled.js'
+import { TheadStyled } from '../components/table/TheadStyled.js'
 import { GuestImage } from '../components/guest/GuestImage.jsx'
-import { TrStyled } from '../components/TrStyled.js'
+import { TrStyled } from '../components/table/TrStyled.js'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { ConciergeContact } from '../components/concierge/ConciergeContact.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
-import { SelectStyled } from '../components/SelectStyled.js'
-import { TableGuestStyled } from '../components/TableGuestStyled.js'
+import { SelectStyled } from '../components/table/SelectStyled.js'
+import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
 import users from '../../data/users.json'
 
 export const ConciergeList = () => {

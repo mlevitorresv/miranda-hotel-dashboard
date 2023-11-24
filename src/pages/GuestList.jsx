@@ -1,17 +1,17 @@
 import React from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
-import { TableGuestStyled } from '../components/TableGuestStyled'
-import { SearchBarStyled } from '../components/SearchBarStyled'
-import { TheadStyled } from '../components/TheadStyled'
+import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
+import { SearchBarStyled } from '../components/table/SearchBarStyled.js'
+import { TheadStyled } from '../components/table/TheadStyled.js'
 import { GuestImage } from '../components/guest/GuestImage.jsx'
-import { TrStyled } from '../components/TrStyled.js'
+import { TrStyled } from '../components/table/TrStyled.js'
 import { ButtonStyled } from '../components/ButtonStyled.js'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { GuestCheck } from '../components/guest/GuestCheck.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
-import { SelectStyled } from '../components/SelectStyled.js'
+import { SelectStyled } from '../components/table/SelectStyled.js'
 import bookings from '../../data/bookings.json'
 
 
