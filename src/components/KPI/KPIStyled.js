@@ -18,29 +18,5 @@ export const KPIStyled = styled.div`
             color: white;
             background-color: #E23428;
         }
-    }
-
-    .iconContainer{
-        background-color: #FFEDEC;
-        padding: 1.1em;
-        border-radius: 5px;
-        margin-right: 1em;
-        color: #E23428;
-    }
-
-    .dataContainer{
-        &__number{
-            color: #393939;
-            font-weight: 600;
-            font-size: 1.9em;
-            margin: 0;
-        }
-
-        &__text{
-            color: #787878;
-            font-weight: 300;
-            font-size: .9em;
-            margin: 0;
-        }
-    }
+    }    
 `

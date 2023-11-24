@@ -8,5 +8,4 @@ export const LayoutStyled = styled.main`
     width:80%;
     min-height:86vh;
     background-color: #F8F8F8;
-
 `
