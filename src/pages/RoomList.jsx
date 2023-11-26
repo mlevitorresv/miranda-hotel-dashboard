@@ -44,7 +44,7 @@ export const RoomList = () => {
               <th>Room Name</th>
               <th>Bed Type</th>
               <th>Facilities</th>
-              <th>Rate</th>
+              <th>Price</th>
               <th>Offer Price</th>
               <th>Status</th>
           </tr>
@@ -66,7 +66,7 @@ export const RoomList = () => {
               <RoomRate price={room.price} />
             </td>
             <td>
-              <RoomRate price={room.price - (room.discount * 100)} />
+              <RoomRate price={room.price * (room.discount / 100)} />
             </td>
             <td>
               <RoomStatus status={!room.status ? 'Booked' : 'Available'}/>               

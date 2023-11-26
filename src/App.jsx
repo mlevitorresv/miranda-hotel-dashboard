@@ -9,6 +9,10 @@ import { Reviews } from './pages/Reviews.jsx'
 import { Layout } from './components/layout/Layout.jsx'
 import { useEffect, useState } from 'react'
 import { CreateUserPage } from './pages/CreateUserPage.jsx'
+import { EditUserPage } from './pages/EditUserPage.jsx'
+import { CreateRoomPage } from './pages/CreateRoomPage.jsx'
+import { EditRoomPage } from './pages/EditRoomPage.jsx'
+
 
 function App() {
     const [data, setData] = useState('');
@@ -44,14 +48,14 @@ function App() {
                             {/* ROOMS */}
                             <Route path='/rooms' element={<RoomList />} />
                             <Route path='/rooms/:id' element={<RoomList />} />
-                            <Route path='/rooms/create' element={<RoomList />} />
-                            <Route path='/rooms/edit/:id' element={<RoomList />} />
+                            <Route path='/rooms/create' element={<CreateRoomPage />} />
+                            <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
 
                             {/* USERS */}
                             <Route path='/users' element={<ConciergeList />} />
                             <Route path='/users/:id' element={<ConciergeList />} />
                             <Route path='/users/create' element={<CreateUserPage />} />
-                            <Route path='/users/edit/:id' element={<ConciergeList />} />
+                            <Route path='/users/edit/:id' element={<EditUserPage />} />
 
                             {/* CONTACT */}
                             <Route path='/contact' element={<Reviews/>} />

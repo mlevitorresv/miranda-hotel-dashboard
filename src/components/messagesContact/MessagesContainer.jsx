@@ -15,10 +15,6 @@ export const MessagesContainer = (props) => {
       {comments.map(comment => (
         <SwiperSlide> <Message img={comment.photo} name={comment.name} join={comment.date} comment={comment.comment} /> </SwiperSlide>
       ))}
-        {/* <SwiperSlide> <Message img={'/public/levi.jpeg'} name={'Leví'} join={'4am ago'} comment={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'} /> </SwiperSlide>
-        <SwiperSlide> <Message img={'/public/levi.jpeg'} name={'Leví'} join={'4am ago'} comment={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'} /> </SwiperSlide>
-        <SwiperSlide> <Message img={'/public/levi.jpeg'} name={'Leví'} join={'4am ago'} comment={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'} /> </SwiperSlide>
-        <SwiperSlide> <Message img={'/public/levi.jpeg'} name={'Leví'} join={'4am ago'} comment={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'} /> </SwiperSlide> */}
     </Swiper>
   );
 }

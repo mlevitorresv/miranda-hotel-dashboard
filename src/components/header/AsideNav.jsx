@@ -14,7 +14,7 @@ export const AsideNav = () => {
     <AsideNavStyled>
         <img src="../../../public/logoDashboard.png" alt="hotel miranda's logo" />
         <div className='icons'>
-            <NavLinkStyled to="/">
+            <NavLinkStyled to="/home">
                 <LuLayoutDashboard />
                 Dashboard
             </NavLinkStyled>

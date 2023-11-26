@@ -7,4 +7,5 @@ export const InputStyled = styled.input`
     border-radius: 12px;
     padding: 1em 1em;
     margin: 1em auto;
+    display: inline;
 `

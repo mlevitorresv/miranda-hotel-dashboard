@@ -12,6 +12,7 @@ import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
 import users from '../../data/users.json'
+import { Link } from 'react-router-dom'
 
 export const ConciergeList = () => {
   return (
@@ -45,26 +46,28 @@ export const ConciergeList = () => {
 
         <tbody>
           {users.map(user => (
-            <TrStyled>
-            <td>
-            <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date}/>
-            </td>
-            <td>
-              <GuestDiv data={user.email} />
-            </td>
-            <td>
-              <GuestDiv data={user.description} />
-            </td>
-            <td>
-              <ConciergeContact data={user.phone} />
-            </td>
-            <td>
-              <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
-            </td>
-            <td>
-              <GuestDiv data={<HiDotsVertical />} />
-            </td>
-        </TrStyled>
+            // <Link to={'/users/edit'}>
+              <TrStyled>
+                <td>
+                <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date}/>
+                </td>
+                <td>
+                  <GuestDiv data={user.email} />
+                </td>
+                <td>
+                  <GuestDiv data={user.description} />
+                </td>
+                <td>
+                  <ConciergeContact data={user.phone} />
+                </td>
+                <td>
+                  <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
+                </td>
+                <td>
+                  <GuestDiv data={<HiDotsVertical />} />
+                </td>
+            </TrStyled>
+          // </Link>
           ))}
 
           <TrStyled>

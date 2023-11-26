@@ -2,6 +2,7 @@ import React from 'react';
 import { DivKPI } from '../components/KPI/DivKPI';
 import { MessagesContainer } from '../components/messagesContact/MessagesContainer';
 import { MessageDivStyled } from '../components/MessagesDivStyled';
+import { PopUpContainerStyled } from '../components/popUp/PopUpContainerStyled';
 
 export const Dashboard =() => {
   return (
