@@ -12,7 +12,7 @@ import { GuestCheck } from '../components/guest/GuestCheck.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
-import bookings from '../../data/bookings.json'
+import bookings from '../data/bookings.json'
 
 
 

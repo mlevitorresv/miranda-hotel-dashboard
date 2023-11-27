@@ -11,7 +11,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
-import users from '../../data/users.json'
+import users from '../data/users.json'
 import { Link } from 'react-router-dom'
 
 export const ConciergeList = () => {

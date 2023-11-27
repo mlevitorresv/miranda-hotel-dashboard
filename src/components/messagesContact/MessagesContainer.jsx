@@ -2,7 +2,7 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Message } from './Message'
 import 'swiper/css'
-import comments from '../../../data/comment.json'
+import comments from '../../data/comment.json'
 
 export const MessagesContainer = (props) => {
   return (

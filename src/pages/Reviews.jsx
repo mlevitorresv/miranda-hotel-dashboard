@@ -10,7 +10,7 @@ import { ButtonStyled } from '../components/ButtonStyled.js'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
-import comments from '../../data/comment.json'
+import comments from '../data/comment.json'
 
 export const Reviews = () => {
   return (

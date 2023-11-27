@@ -12,6 +12,8 @@ import { CreateUserPage } from './pages/CreateUserPage.jsx'
 import { EditUserPage } from './pages/EditUserPage.jsx'
 import { CreateRoomPage } from './pages/CreateRoomPage.jsx'
 import { EditRoomPage } from './pages/EditRoomPage.jsx'
+import { store } from './app/store.js'
+import { Provider } from 'react-redux'
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
     return (
       <>
         <BrowserRouter>    
+          <Provider store={store}>
             <Routes>
                 {/* LOGIN */}
                 <Route path='/' element={<LoginPage />} />
@@ -63,6 +66,7 @@ function App() {
                     </>
                 ) : null} 
             </Routes>
+          </Provider>
     </BrowserRouter>
       </>
     );
