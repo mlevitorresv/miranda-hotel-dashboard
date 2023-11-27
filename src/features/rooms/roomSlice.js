@@ -3,7 +3,7 @@ import { getRoomListFromAPIThunk } from "./roomThunk";
 
 
 export const roomSlice = createSlice({
-    name: "RoomSlice",
+    name: "room",
     initialState: {
         data: [],
         status: "idle",

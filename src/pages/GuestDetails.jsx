@@ -6,7 +6,6 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { PiChatCircleTextFill } from "react-icons/pi";
 import { HiDotsVertical } from "react-icons/hi";
 import { GuestDiv } from '../components/guest/GuestDiv'
-import { DetailsGuestGridStyled } from '../components/guest/details/DetailsGuestGridStyled';
 
 
 export const GuestDetails = () => {

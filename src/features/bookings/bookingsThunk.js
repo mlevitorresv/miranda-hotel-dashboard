@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import users from '../../data/users.json'
+import bookings from '../../data/bookings.json'
 
 
-export const getUserListFromAPIThunk = createAsyncThunk("user/getUserFromApi", async () => {
+export const getBookingListFromAPIThunk = createAsyncThunk("booking/getBookingFromApi", async () => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(users);
+            resolve(bookings);
         }, 2000);
     });
 })

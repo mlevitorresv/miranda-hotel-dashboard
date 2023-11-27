@@ -12,11 +12,72 @@ import { GuestCheck } from '../components/guest/GuestCheck.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
-import bookings from '../data/bookings.json'
+import { useDispatch, useSelector } from 'react-redux';
+import { getBookingData, getBookingError, getBookingStatus } from '../features/bookings/bookingsSlice';
+import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
 
 
 
 export const GuestList = () => {
+
+
+  const dispatch = useDispatch();
+  const bookingListData = useSelector(getBookingData)
+  const bookingListError = useSelector(getBookingError)
+  const bookingListStatus = useSelector(getBookingStatus)
+  const [spinner, setSpinner] = useState(true);
+  const [bookingList, setBookingList] = useState([]);
+
+  useEffect(()=> {
+    if(bookingListStatus === "idle"){
+      dispatch(getBookingListFromAPIThunk());
+    }
+    else if(bookingListStatus === "pending"){
+      setSpinner(true);
+    }
+    else if(bookingListStatus === "fulfilled"){
+      let components = [];
+
+      bookingListData.forEach(booking => {
+        components.push(
+          <TrStyled>
+                <td>
+                  <GuestImage img={booking.photo} name={booking.name} id={booking.id} />
+                </td>
+                <td>
+                  <GuestDiv data={booking.orderDate} />
+                </td>
+                <td>
+                  <GuestCheck date={booking.checkInDate} hour={booking.checkInTime} />
+                </td>
+                <td>
+                  <GuestCheck date={booking.checkOut} hour={booking.checkOutTime} />
+                </td>
+                <td>
+                  <ButtonStyled>View Notes</ButtonStyled>
+                </td>
+                <td>
+                  <p>{booking.room}</p>
+                </td>
+                <td>
+                  <div>
+                    <ButtonStyled color={'red'} bg={'#FFEDEC'}>{booking.status}</ButtonStyled>
+                  </div>
+                </td>
+                <td>
+                <GuestDiv data={<HiDotsVertical />} />
+                </td>
+            </TrStyled>
+        )
+      });
+      setSpinner(false);
+      setBookingList(components)
+    }
+
+  }, [dispatch, bookingListData, bookingListStatus])
+
+
+
   return (
     <>
       <MenuStyled>
@@ -38,138 +99,25 @@ export const GuestList = () => {
         </div>
       </MenuStyled>
 
-      <TableGuestStyled>
-        <TheadStyled>
-          <tr>
-              <th>Guest</th>
-              <th>Order Date</th>
-              <th>Check In</th>
-              <th>Check Out</th>
-              <th>Special Request</th>
-              <th>Room Type</th>
-              <th>Status</th>
-          </tr>
-        </TheadStyled>
+      {spinner ? <p>Loading...</p> : 
+        <TableGuestStyled>
+          <TheadStyled>
+            <tr>
+                <th>Guest</th>
+                <th>Order Date</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Special Request</th>
+                <th>Room Type</th>
+                <th>Status</th>
+            </tr>
+          </TheadStyled>
 
-        <tbody>
-          {bookings.map(guest =>(
-            <TrStyled>
-                <td>
-                  <GuestImage img={guest.photo} name={guest.name} id={guest.id} />
-                </td>
-                <td>
-                  <GuestDiv data={guest.orderDate} />
-                </td>
-                <td>
-                  <GuestCheck date={guest.checkInDate} hour={guest.checkInTime} />
-                </td>
-                <td>
-                  <GuestCheck date={guest.checkOut} hour={guest.checkOutTime} />
-                </td>
-                <td>
-                  <ButtonStyled>View Notes</ButtonStyled>
-                </td>
-                <td>
-                  <p>{guest.room}</p>
-                </td>
-                <td>
-                  <div>
-                    <ButtonStyled color={'red'} bg={'#FFEDEC'}>{guest.status}</ButtonStyled>
-                  </div>
-                </td>
-                <td>
-                <GuestDiv data={<HiDotsVertical />} />
-                </td>
-            </TrStyled>
-
-          ))}
-          
-          <TrStyled>
-              <td>
-              <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
-              </td>
-              <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
-              </td>
-              <td>
-                <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
-                </div>
-              </td>
-              <td>
-              <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled>
-              <td>
-                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
-              </td>
-              <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
-              </td>
-              <td>
-                <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
-                </div>
-              </td>
-              <td>
-              <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled>
-              <td>
-                <GuestImage img={'../../public/room.jpg'} name={'Cahyadi purnomo'} id={'#000123456'} />
-              </td>
-              <td>
-                <GuestDiv data={'Oct 30th 2020 09:21 AM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 2th, 2020'} hour={'9.46PM'} />
-              </td>
-              <td>
-                <GuestCheck date={'Nov 4th, 2020'} hour={'6.12PM'} />
-              </td>
-              <td>
-                <ButtonStyled>View Notes</ButtonStyled>
-              </td>
-              <td>
-                <p>Deluxe A - 03</p>
-              </td>
-              <td>
-                <div>
-                  <ButtonStyled color={'red'} bg={'#FFEDEC'}>Refund</ButtonStyled>
-                </div>
-              </td>
-              <td>
-              <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-        </tbody>
-      </TableGuestStyled>
+          <tbody>
+            {bookingList}
+          </tbody>
+        </TableGuestStyled>
+      }
     </>
   )
 }

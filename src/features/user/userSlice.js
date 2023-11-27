@@ -3,7 +3,7 @@ import { getUserListFromAPIThunk } from "./userThunk";
 
 
 export const userSlice = createSlice({
-    name: "UserSlice",
+    name: "user",
     initialState: {
         data: [],
         status: "idle",
