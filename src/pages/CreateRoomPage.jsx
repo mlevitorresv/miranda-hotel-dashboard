@@ -6,12 +6,18 @@ import { SelectStyled } from '../components/table/SelectStyled'
 import { H1Styled } from '../components/H1Styled'
 import { AmenitiesContainerStyled } from '../components/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/AmenityStyled'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const CreateRoomPage = () => {
 
+    const dispatch = useDispatch();
+    const roomList =  useSelector(selec)
 
+    const handleAddRoom = () => {
+
+    }
   return (
-          <FormStyled>
+          <FormStyled onSubmit={handleAddRoom}>
                 <H1Styled>New Room</H1Styled>
                 <ButtonStyled>Upload Photos</ButtonStyled>
                 <SelectStyled type={'secondary'}>

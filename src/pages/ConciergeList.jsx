@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ListStyled } from '../components/ListStyled'
 import { ListElementStyled } from '../components/ListElementStyled'
 import { SearchBarStyled } from '../components/table/SearchBarStyled.js'
@@ -11,10 +11,59 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
-import users from '../data/users.json'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserData, getUserError, getUserStatus } from '../features/user/userSlice.js'
+import { getUserListFromAPIThunk } from '../features/user/userThunk.js'
 
 export const ConciergeList = () => {
+
+  const dispatch = useDispatch();
+  const userListData = useSelector(getUserData);
+  const userListError = useSelector(getUserError);
+  const userListStatus = useSelector(getUserStatus);
+  const [spinner,setSpinner] =  useState(true);
+  const [userList, setUserList] = useState([]);
+
+  useEffect(() => {
+    if(userListStatus === "idle"){
+      dispatch(getUserListFromAPIThunk())
+    }
+    else if(userListStatus === "pending"){
+      setSpinner(true);
+    }
+    else if(userListStatus === "fulfilled"){
+      let components = [];
+      userListData.forEach(user => {
+        components.push(
+            <TrStyled>
+              <td>
+                <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date}/>
+              </td>
+              <td>
+                <GuestDiv data={user.email} />
+              </td>
+              <td>
+                <GuestDiv data={user.description} />
+              </td>
+              <td>
+                <ConciergeContact data={user.phone} />
+              </td>
+              <td>
+                <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
+              </td>
+              <td>
+                <GuestDiv data={<HiDotsVertical />} />
+              </td>
+            </TrStyled>
+        )
+      });
+      setSpinner(false);
+      setUserList(components);
+    }
+
+  }, [dispatch, userListData, userListStatus])
+
   return (
     <>
       <MenuStyled>
@@ -33,131 +82,23 @@ export const ConciergeList = () => {
         </div>
       </MenuStyled>
 
-      <TableGuestStyled className='user'>
-        <TheadStyled>
-          <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Job Desk</th>
-              <th>Contact</th>
-              <th>Status</th>
-          </tr>
-        </TheadStyled>
+      {spinner ? <p>Loading...</p> : 
+        <TableGuestStyled className='user'>
+          <TheadStyled>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Job Desk</th>
+                <th>Contact</th>
+                <th>Status</th>
+            </tr>
+          </TheadStyled>
 
-        <tbody>
-          {users.map(user => (
-            // <Link to={'/users/edit'}>
-              <TrStyled>
-                <td>
-                <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date}/>
-                </td>
-                <td>
-                  <GuestDiv data={user.email} />
-                </td>
-                <td>
-                  <GuestDiv data={user.description} />
-                </td>
-                <td>
-                  <ConciergeContact data={user.phone} />
-                </td>
-                <td>
-                  <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
-                </td>
-                <td>
-                  <GuestDiv data={<HiDotsVertical />} />
-                </td>
-            </TrStyled>
-          // </Link>
-          ))}
-
-          <TrStyled>
-              <td>
-              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
-              </td>
-              <td>
-                <GuestDiv data={'levitorres66@gmail.com'} />
-              </td>
-              <td>
-                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.Answering guest inquiries, directing phone calls, coordinating travel plans, and moreAnswering guest inquiries, directing phone calls, coordinating travel plans, and moreAnswering guest inquiries, directing phone calls, coordinating travel plans, and more'} />
-              </td>
-              <td>
-                <ConciergeContact data={'012 334 5512'} />
-              </td>
-              <td>
-                <GuestDiv data={'INACTIVE'} color={'#E23428'} />
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled>
-              <td>
-              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
-              </td>
-              <td>
-                <GuestDiv data={'levitorres66@gmail.com'} />
-              </td>
-              <td>
-                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
-              </td>
-              <td>
-                <ConciergeContact data={'012 334 5512'} />
-              </td>
-              <td>
-                <div>
-                  <GuestDiv data={'ACTIVE'} color={'#5AD07A'} />
-                </div>
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled>
-              <td>
-              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
-              </td>
-              <td>
-                <GuestDiv data={'levitorres66@gmail.com'} />
-              </td>
-              <td>
-                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
-              </td>
-              <td>
-                <ConciergeContact data={'012 334 5512'} />
-              </td>
-              <td>
-                <div>
-                  <GuestDiv data={'INACTIVE'} color={'#E23428'} />
-                </div>
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-          <TrStyled>
-              <td>
-              <GuestImage img={'../../public/levi.jpeg'} name={'Cahyadi purnomo'} id={'#000123456'} join={'joined on Aug 2th 2017'}/>
-              </td>
-              <td>
-                <GuestDiv data={'levitorres66@gmail.com'} />
-              </td>
-              <td>
-                <GuestDiv data={'Answering guest inquiries, directing phone calls, coordinating travel plans, and more.'} />
-              </td>
-              <td>
-                <ConciergeContact data={'012 334 5512'} />
-              </td>
-              <td>
-                <div>
-                  <GuestDiv data={'ACTIVE'} color={'#5AD07A'} />
-                </div>
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-          </TrStyled>
-        </tbody>
-      </TableGuestStyled>
+          <tbody>
+            {userList}
+          </tbody>
+        </TableGuestStyled>
+      }
     </>
   )
 }

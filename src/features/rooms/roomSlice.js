@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getRoomListFromAPIThunk } from "./roomThunk";
 
 
-export const RoomSlice = createSlice({
+export const roomSlice = createSlice({
     name: "RoomSlice",
     initialState: {
         data: [],
@@ -10,7 +10,9 @@ export const RoomSlice = createSlice({
         error: null
     },
     reducers:{
-
+        addRoomElement: (state, action) => {
+            state.data = [action.payload, ...state.data]
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getRoomListFromAPIThunk.fulfilled, (state, action) => {
@@ -27,6 +29,8 @@ export const RoomSlice = createSlice({
     }
 })
 
+
+// export const { addRoomElement } = roomSlice.actions;
 export const getRoomData = state => state.room.data;
 export const getRoomStatus = state => state.room.status;
 export const getRoomError  = state => state.room.error;

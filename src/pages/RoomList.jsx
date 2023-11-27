@@ -12,7 +12,6 @@ import { RoomRate } from '../components/RoomRate.jsx';
 import { RoomStatus } from '../components/RoomStatus.jsx';
 import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
-import Rooms from '../data/rooms.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice.js';
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
