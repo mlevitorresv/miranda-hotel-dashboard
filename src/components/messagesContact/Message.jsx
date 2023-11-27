@@ -6,6 +6,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import { MessageContentSyled } from './MessageContentStyled';
 import { PopUp } from '../popUp/PopUp';
 import { PopUpContainerStyled } from '../popUp/PopUpContainerStyled';
+import { MessageInfo } from './MessageInfo';
 
 
 export const Message = (props) => {
@@ -26,7 +27,7 @@ export const Message = (props) => {
       <MessageStyled onClick={handlePopUp}>
           <MessageContentSyled>{props.comment}</MessageContentSyled>
           <div className='bottom'>
-              <GuestImage img={props.img} name={props.name} join={props.join} />
+              <MessageInfo img={props.img} name={props.name} join={props.join} />
               <div>
                   <CiCircleCheck className='check'/>
                   <CiCircleRemove className='remove'/>

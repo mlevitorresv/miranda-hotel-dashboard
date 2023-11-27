@@ -1,18 +1,66 @@
-import React from 'react'
-import { MessageDivStyled } from '../components/MessagesDivStyled'
+import React, { useDebugValue, useEffect, useState } from 'react'
+import { MessageDivStyled } from '../components/messagesContact/MessagesDivStyled'
 import { MessagesContainer } from '../components/messagesContact/MessagesContainer'
-import { ListStyled } from '../components/ListStyled'
-import { ListElementStyled } from '../components/ListElementStyled'
+import { ListStyled } from '../components/common/ListStyled'
+import { ListElementStyled } from '../components/common/ListElementStyled'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
 import { TheadStyled } from '../components/table/TheadStyled.js'
 import { TrStyled } from '../components/table/TrStyled.js'
-import { ButtonStyled } from '../components/ButtonStyled.js'
+import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
-import { MenuStyled } from '../components/MenuStyled.js'
+import { MenuStyled } from '../components/common/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
-import comments from '../data/comment.json'
+import { useDispatch, useSelector } from 'react-redux'
+import { getContactData, getContactError, getContactStatus } from '../features/contact/contactSlice.js'
+import { getContactListFromAPIThunk } from '../features/contact/contactThunk.js'
 
 export const Reviews = () => {
+
+  const dispatch = useDispatch();
+  const contactListData = useSelector(getContactData);
+  const contactListError = useSelector(getContactError);
+  const contactListStatus = useSelector(getContactStatus);
+  const [spinner, setSpinner] = useState(true);
+  const [contactList, setContactList] = useState([]);
+
+  useEffect(()=> {
+
+    if(contactListStatus === "idle"){
+      dispatch(getContactListFromAPIThunk())
+    }
+    else if(contactListStatus === "pending"){
+      setSpinner(true)
+    }
+    else if(contactListStatus === "fulfilled"){
+      let components = [];
+      contactListData.forEach(contact => {
+        components.push(
+          <TrStyled>
+            <td>
+              <GuestDiv data={'#' + contact.id} />
+            </td>
+            <td>
+              <GuestDiv data={contact.date + ' ' + contact.dateTime} />
+            </td>
+            <td>
+              <GuestDiv data={contact.name} />
+            </td>
+            <td >
+              <GuestDiv className='comment' data={contact.comment} />
+            </td>
+            <td>
+              <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>
+            </td>
+          </TrStyled>
+        )
+      });
+      setSpinner(false);
+      setContactList(components);
+    }
+
+
+  },[dispatch, contactListData, contactListStatus])
+
   return (
     <div>
       <MessageDivStyled bg={'transparent'}>
@@ -32,56 +80,22 @@ export const Reviews = () => {
         </div>
       </MenuStyled>
 
-      <TableGuestStyled className='rev'>
-        <TheadStyled>
-          <tr>
-              <th>ID</th>
-              <th>Date</th>
-              <th>Customer</th>
-              <th>Comment</th>
-          </tr>
-        </TheadStyled>
+      {spinner ? <p>Loading...</p> : 
+        <TableGuestStyled className='rev'>
+          <TheadStyled>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Comment</th>
+            </tr>
+          </TheadStyled>
 
-        <tbody>
-          {comments.map(comment => (
-            <TrStyled>
-                <td>
-                  <GuestDiv data={'#' + comment.id} />
-                </td>
-                <td>
-                  <GuestDiv data={comment.date + ' ' + comment.dateTime} />
-                </td>
-                <td>
-                  <GuestDiv data={comment.name} />
-                </td>
-                <td >
-                  <GuestDiv className='comment' data={comment.comment} />
-                </td>
-                <td>
-                <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>
-                </td>
-            </TrStyled>
-          ))}
-
-          {/* <TrStyled>
-              <td>
-                <GuestDiv data={'#000123456'} />
-              </td>
-              <td>
-                <GuestDiv data={'Nov 21th 2020 09:21 AM'} />
-              </td>
-              <td>
-                <GuestDiv data={'James Sitepu'} />
-              </td>
-              <td >
-                <GuestDiv className='comment' data={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'} />
-              </td>
-              <td>
-              <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>
-              </td>
-          </TrStyled> */}
-        </tbody>
-      </TableGuestStyled>
+          <tbody>
+            {contactList}
+          </tbody>
+        </TableGuestStyled>
+      }
     </div>
   )
 }

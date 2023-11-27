@@ -1,9 +1,9 @@
 import React from 'react'
 import { FormStyled } from '../components/form/FormStyled'
-import { ButtonStyled } from '../components/ButtonStyled'
-import { InputStyled } from '../components/InputStyled'
+import { ButtonStyled } from '../components/common/ButtonStyled'
+import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
-import { H1Styled } from '../components/H1Styled'
+import { H1Styled } from '../components/common/H1Styled'
 
 export const EditUserPage = (props) => {
 

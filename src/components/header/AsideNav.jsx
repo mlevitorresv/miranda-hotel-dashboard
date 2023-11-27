@@ -6,8 +6,8 @@ import { SlKey } from "react-icons/sl";
 import { LuCalendarCheck2 } from 'react-icons/lu';
 import { FiUsers } from "react-icons/fi";
 import { FaPhoneAlt } from "react-icons/fa";
-import { DivStyled } from '../DivStyled.js'
-import { ButtonStyled } from '../ButtonStyled.js';
+import { DivStyled } from '../common/DivStyled.js'
+import { ButtonStyled } from '../common/ButtonStyled.js';
 
 export const AsideNav = () => {
   return (

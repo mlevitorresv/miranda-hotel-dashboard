@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { ListStyled } from '../components/ListStyled';
-import { ListElementStyled } from '../components/ListElementStyled';
+import { ListStyled } from '../components/common/ListStyled';
+import { ListElementStyled } from '../components/common/ListElementStyled';
 import { SearchBarStyled } from '../components/table/SearchBarStyled.js';
 import { TheadStyled } from '../components/table/TheadStyled.js';
 import { TrStyled } from '../components/table/TrStyled.js';
 import { GuestDiv } from '../components/guest/GuestDiv.jsx';
-import { MenuStyled } from '../components/MenuStyled.js';
+import { MenuStyled } from '../components/common/MenuStyled.js';
 import { HiDotsVertical } from "react-icons/hi";
-import { GuestImageRoom } from '../components/GuestImageRoom.jsx';
-import { RoomRate } from '../components/RoomRate.jsx';
-import { RoomStatus } from '../components/RoomStatus.jsx';
+import { GuestImageRoom } from '../components/room/GuestImageRoom.jsx';
+import { RoomRate } from '../components/room/RoomRate.jsx';
+import { RoomStatus } from '../components/room/RoomStatus.jsx';
 import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { useDispatch, useSelector } from 'react-redux';

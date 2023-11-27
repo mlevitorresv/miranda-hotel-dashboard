@@ -1,11 +1,11 @@
 import React from 'react'
 import { FormStyled } from '../components/form/FormStyled'
-import { ButtonStyled } from '../components/ButtonStyled'
-import { InputStyled } from '../components/InputStyled'
+import { ButtonStyled } from '../components/common/ButtonStyled'
+import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
-import { H1Styled } from '../components/H1Styled'
-import { AmenitiesContainerStyled } from '../components/AmenitiesContainerStyled'
-import { AmenityStyled } from '../components/AmenityStyled'
+import { H1Styled } from '../components/common/H1Styled'
+import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
+import { AmenityStyled } from '../components/amenities/AmenityStyled'
 
 export const EditRoomPage = (props) => {
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { HeaderStyled } from './headerStyled'
-import { H1Styled } from '../H1Styled'
+import { H1Styled } from '../common/H1Styled'
 import { 
     DashboardStyledIcon, 
     HeartStyledIcon, 
     NotificationStyledIcon,
     ArrowStyledIcon,
     LogOutStyledIcon
-} from '../IconStyled'
+} from '../common/IconStyled'
 import { AsideNav } from './AsideNav'
 import { Link } from "react-router-dom"
 

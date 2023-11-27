@@ -1,5 +1,5 @@
-import { InputStyled } from '../components/InputStyled'
-import { ButtonStyled } from '../components/ButtonStyled'
+import { InputStyled } from '../components/common/InputStyled'
+import { ButtonStyled } from '../components/common/ButtonStyled'
 import { Link, useNavigate } from "react-router-dom";
 import { FormStyled } from '../components/form/FormStyled';
 import { FormPageStyled } from '../components/form/FormPageStyled';

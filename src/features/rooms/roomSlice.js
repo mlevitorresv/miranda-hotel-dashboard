@@ -30,7 +30,7 @@ export const roomSlice = createSlice({
 })
 
 
-// export const { addRoomElement } = roomSlice.actions;
+export const { addRoomElement } = roomSlice.actions;
 export const getRoomData = state => state.room.data;
 export const getRoomStatus = state => state.room.status;
 export const getRoomError  = state => state.room.error;

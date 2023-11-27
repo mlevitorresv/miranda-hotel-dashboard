@@ -1,7 +1,7 @@
 import React from 'react'
 import { DetailsGuestDivStyled } from '../components/guest/details/DetailsGuestDivStyled'
 import { DetailsGuestDivUserStyled } from '../components/guest/details/DetailsGuestDivUserStyled'
-import { ButtonStyled } from '../components/ButtonStyled'
+import { ButtonStyled } from '../components/common/ButtonStyled'
 import { FaPhoneAlt } from "react-icons/fa";
 import { PiChatCircleTextFill } from "react-icons/pi";
 import { HiDotsVertical } from "react-icons/hi";
