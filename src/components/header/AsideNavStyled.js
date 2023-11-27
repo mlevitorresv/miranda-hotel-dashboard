@@ -5,7 +5,6 @@ import styled from "styled-components"
 export const AsideNavStyled = styled.nav`
     padding: 2em;
     width: 15em;
-    height: auto;
     display: flex;
     flex-direction: column;
     background-color: white;
