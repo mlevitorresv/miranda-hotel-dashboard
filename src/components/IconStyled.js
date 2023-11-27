@@ -6,6 +6,8 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineChat } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
+import { RiLogoutBoxLine } from "react-icons/ri";
+
 
 
 
@@ -39,5 +41,9 @@ export const NotificationStyledIcon = styled(IoMdNotificationsOutline)`
 `
 
 export const ChatStyledIcon = styled(MdOutlineChat)`
+    ${sharedIconStyle}
+`
+
+export const LogOutStyledIcon = styled(RiLogoutBoxLine)`
     ${sharedIconStyle}
 `

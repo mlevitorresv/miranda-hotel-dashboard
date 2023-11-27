@@ -5,10 +5,11 @@ import {
     DashboardStyledIcon, 
     HeartStyledIcon, 
     NotificationStyledIcon,
-    ArrowStyledIcon
+    ArrowStyledIcon,
+    LogOutStyledIcon
 } from '../IconStyled'
 import { AsideNav } from './AsideNav'
-import { Outlet } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 export const Header = (props) => {
@@ -38,6 +39,10 @@ export const Header = (props) => {
     handlerMenu();
   }, []);
 
+  const handleLogOut = () => {
+    localStorage.clear();
+  }
+
 
   return (
     <>    
@@ -51,6 +56,9 @@ export const Header = (props) => {
         <div>
           <HeartStyledIcon />
           <NotificationStyledIcon />
+          <Link to='/'>
+            <LogOutStyledIcon onClick={handleLogOut}/>
+          </Link>
         </div>
       </HeaderStyled>
     </>
