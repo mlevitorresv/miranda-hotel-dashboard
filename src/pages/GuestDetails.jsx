@@ -12,6 +12,7 @@ import { DetailsPhotoStyled } from '../components/guest/details/DetailsPhotoStyl
 import { DetailsTitleStyled } from '../components/guest/details/DetailsTitleStyled';
 import { DetailsDataStyled } from '../components/guest/details/DetailsDataStyled';
 import { DetailsSpanStyled } from '../components/guest/details/DetailsSpanStyled';
+import { DetailsDescStyled } from '../components/guest/details/DetailsDescStyled';
 import { LuBedDouble } from 'react-icons/lu';
 import { IoWifiOutline } from "react-icons/io5";
 import { SiAdguard } from "react-icons/si";
@@ -61,7 +62,7 @@ export const GuestDetails = () => {
               <DetailsDataStyled>$145 <DetailsSpanStyled>/night</DetailsSpanStyled></DetailsDataStyled>
             </div>
           </DetailsGuestDivUserStyled>
-          <p>
+          <DetailsDescStyled>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna 
           aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
@@ -70,7 +71,7 @@ export const GuestDetails = () => {
           esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
           occaecat cupidatat non proident, sunt in culpa qui officia 
           deserunt mollit anim id est laborum
-          </p>
+          </DetailsDescStyled>
         </DetailsGuestRoomStyled>
         <DetailsGuestDivUserStyled type='secondary'  wrap='true'>
           <ButtonStyled><LuBedDouble/> 3 Bed Space </ButtonStyled>
@@ -82,23 +83,22 @@ export const GuestDetails = () => {
         </DetailsGuestDivUserStyled>
       </DetailsInfoStyled>
       <DetailsPhotoStyled>
-        <ImgStyled src="../../../../public/room.jpg" alt="room" />
-
-
-
-
-
-
-
-        {/* <Swiper
+        <Swiper
           spaceBetween={0}
-          slidesPerView={3}
+          slidesPerView={1}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
-        > */}
-          {/* <SwiperSlide><ImgStyled src="../../../../public/room.jpg" alt="room" /></SwiperSlide>
-          <SwiperSlide><ImgStyled src="../../../../public/room.jpg" alt="room" /></SwiperSlide> */}
-        {/* </Swiper> */}
+        >
+          <SwiperSlide><ImgStyled src="../../../../public/room.jpg" alt="room" /></SwiperSlide>
+          <SwiperSlide><ImgStyled src="../../../../public/room.jpg" alt="room" /></SwiperSlide>
+          <SwiperSlide><ImgStyled src="../../../../public/room.jpg" alt="room" /></SwiperSlide>
+        </Swiper>
+        <DetailsDescStyled type='photo'>
+          <DetailsTitleStyled>Bed Room</DetailsTitleStyled>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna 
+          aliqua. Ut enim ad minim veniam, quis nostrud exerci
+          </DetailsDescStyled>
       </DetailsPhotoStyled>
     </DetailsGuestDivStyled>
   )
