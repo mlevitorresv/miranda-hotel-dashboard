@@ -17,7 +17,7 @@ import { LuBedDouble } from 'react-icons/lu';
 import { IoWifiOutline } from "react-icons/io5";
 import { SiAdguard } from "react-icons/si";
 import { HrStyled } from '../components/common/HrStyled';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { ImgStyled } from '../components/common/ImgStyled';
 
 
@@ -84,6 +84,7 @@ export const GuestDetails = () => {
       </DetailsInfoStyled>
       <DetailsPhotoStyled>
         <Swiper
+          className='swiper'
           spaceBetween={0}
           slidesPerView={1}
           onSlideChange={() => console.log('slide change')}
