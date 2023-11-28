@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 export const DetailsGuestDivUserStyled = styled.div`
     display: flex;    
-    justify-content: space-between;
+    justify-content: ${props => props.wrap === 'true' ? '' : 'space-between'};
+    flex-wrap: ${props => props.wrap === 'true' ? 'wrap' : 'nowrap'};
     padding: 1em;
-    width: 45%;
+    width: ${props => props.type === 'secondary' ? '' : '45%'};
 
     .image{
         display: flex;

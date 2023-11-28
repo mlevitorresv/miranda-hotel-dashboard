@@ -5,7 +5,6 @@ import { CiCircleCheck } from "react-icons/ci";
 import { CiCircleRemove } from "react-icons/ci";
 import { MessageContentSyled } from './MessageContentStyled';
 import { PopUp } from '../popUp/PopUp';
-import { PopUpContainerStyled } from '../popUp/PopUpContainerStyled';
 import { MessageInfo } from './MessageInfo';
 
 
