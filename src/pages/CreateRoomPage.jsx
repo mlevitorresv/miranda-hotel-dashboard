@@ -6,7 +6,7 @@ import { SelectStyled } from '../components/table/SelectStyled'
 import { H1Styled } from '../components/common/H1Styled'
 import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/amenities/AmenityStyled'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addRoomElement } from '../features/rooms/roomSlice'
 
 export const CreateRoomPage = () => {
