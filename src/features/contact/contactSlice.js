@@ -12,6 +12,11 @@ export const contactSlice = createSlice({
     reducers:{
         addContactElement: (state, action) => {
             state.data = [action.payload, ...state.data]
+        },
+        removeContactElement: (state, action) => {
+            console.log('antes: ' + state.data)
+            state.data = state.data.filter((comment) => comment.id !== action.payload.id)
+            console.log('despues: ' + state.data)
         }
     },
     extraReducers: (builder) => {
@@ -30,6 +35,7 @@ export const contactSlice = createSlice({
 })
 
 
+export const { addContactElement, removeContactElement } = contactSlice.actions;
 export const getContactData = state => state.contact.data;
 export const getContactStatus = state => state.contact.status;
 export const getContactError  = state => state.contact.error;

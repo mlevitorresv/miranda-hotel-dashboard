@@ -6,10 +6,13 @@ import { CiCircleRemove } from "react-icons/ci";
 import { MessageContentSyled } from './MessageContentStyled';
 import { PopUp } from '../popUp/PopUp';
 import { MessageInfo } from './MessageInfo';
+import { removeContactElement } from '../../features/contact/contactSlice';
+import { useDispatch } from 'react-redux';
 
 
 export const Message = (props) => {
   
+  const dispatch = useDispatch();
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   const handlePopUp = () => {

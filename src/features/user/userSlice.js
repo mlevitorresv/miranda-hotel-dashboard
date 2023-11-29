@@ -12,6 +12,9 @@ export const userSlice = createSlice({
     reducers:{
         addUserElement: (state, action) => {
             state.data = [action.payload, ...state.data]
+        },
+        removeUserElement: (state, action) => {
+            state.data = state.data.filter((user) => user.id !== action.payload.id)
         }
     },
     extraReducers: (builder) => {
@@ -30,6 +33,7 @@ export const userSlice = createSlice({
 })
 
 
+export const { addUserElement, removeUserElement } = userSlice.actions;
 export const getUserData = state => state.user.data;
 export const getUserStatus = state => state.user.status;
 export const getUserError  = state => state.user.error;

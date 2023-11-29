@@ -30,6 +30,7 @@ export const bookingSlice = createSlice({
 })
 
 
+export const { addBookingElement, removeBookingElement } = bookingSlice.actions;
 export const getBookingData = state => state.booking.data;
 export const getBookingStatus = state => state.booking.status;
 export const getBookingError  = state => state.booking.error;
