@@ -13,7 +13,7 @@ import { SelectStyled } from '../components/table/SelectStyled.js'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserData, getUserError, getUserStatus } from '../features/user/userSlice.js'
+import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus } from '../features/user/userSlice.js'
 import { getUserListFromAPIThunk } from '../features/user/userThunk.js'
 
 export const ConciergeList = () => {
@@ -22,8 +22,12 @@ export const ConciergeList = () => {
   const userListData = useSelector(getUserData);
   const userListError = useSelector(getUserError);
   const userListStatus = useSelector(getUserStatus);
+  const userListActive = useSelector(getUserActive);
+  const userListInactive = useSelector(getUserInactive);
   const [spinner,setSpinner] =  useState(true);
   const [userList, setUserList] = useState([]);
+  const [showActiveUser, setShowActiveUser] = useState(false);
+  const [showInactiveUser, setShowInactiveUser] = useState(false);
 
   
   useEffect(() => {
@@ -35,7 +39,18 @@ export const ConciergeList = () => {
     }
     else if(userListStatus === "fulfilled"){
       let components = [];
-      userListData.forEach(user => {
+      let filteredList;
+      if(showActiveUser){
+        filteredList = userListActive;
+      }
+      else if(showInactiveUser){
+        filteredList = userListInactive;
+      }
+      else{
+        filteredList =userListData;
+      }
+
+      filteredList.forEach(user => {
         components.push(
             <TrStyled>
               <td>
@@ -63,15 +78,24 @@ export const ConciergeList = () => {
       setUserList(components);
     }
 
-  }, [dispatch, userListData, userListStatus])
+  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser])
 
   return (
     <>
       <MenuStyled>
         <ListStyled>
-          <ListElementStyled color='#135846'>All employee</ListElementStyled>
-          <ListElementStyled>Active employee</ListElementStyled>
-          <ListElementStyled>Inactive employee</ListElementStyled>
+          <ListElementStyled
+            onClick={() => (setShowActiveUser(false), setShowInactiveUser(false) )}
+            className={!showInactiveUser && !showActiveUser ? 'active' : ''}
+          >All employee</ListElementStyled>
+          <ListElementStyled
+            onClick={() => (setShowActiveUser(true), setShowInactiveUser(false) )}
+            className={showActiveUser ? 'active' : ''}
+          >Active employee</ListElementStyled>
+          <ListElementStyled
+            onClick={() => (setShowActiveUser(false), setShowInactiveUser(true) )}
+            className={showInactiveUser ? 'active' : ''}
+          >Inactive employee</ListElementStyled>
         </ListStyled>
 
         <div>

@@ -37,3 +37,5 @@ export const { addUserElement, removeUserElement } = userSlice.actions;
 export const getUserData = state => state.user.data;
 export const getUserStatus = state => state.user.status;
 export const getUserError  = state => state.user.error;
+export const getUserActive = state => state.user.data.filter(user => user.status === 'ACTIVE')
+export const getUserInactive = state => state.user.data.filter(user => user.status === 'INACTIVE')
