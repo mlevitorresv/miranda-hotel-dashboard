@@ -7,7 +7,7 @@ import { RoomList } from './pages/RoomList.jsx'
 import { ConciergeList } from './pages/ConciergeList.jsx'
 import { Reviews } from './pages/Reviews.jsx'
 import { Layout } from './components/layout/Layout.jsx'
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { CreateUserPage } from './pages/CreateUserPage.jsx'
 import { EditUserPage } from './pages/EditUserPage.jsx'
 import { CreateRoomPage } from './pages/CreateRoomPage.jsx'
@@ -17,59 +17,59 @@ import { Provider } from 'react-redux'
 
 
 function App() {
-    const [data, setData] = useState('');
-  
-    useEffect(() => {
-      const savedData = localStorage.getItem('conex');
-      if (savedData) {
-        setData(JSON.parse(savedData));
-      }
-    }, []);
-  
-    return (
-      <>
-        <BrowserRouter>    
-          <Provider store={store}>
-            <Routes>
-                {/* LOGIN */}
-                <Route path='/' element={<LoginPage />} />
+  const [data, setData] = useState('');
 
-                {data ? (
-                    <>
-                        {/* <Header /> */}
-                        <Route element={<Layout />}>
+  useEffect(() => {
+    const savedData = localStorage.getItem('conex');
+    if (savedData) {
+      setData(JSON.parse(savedData));
+    }
+  }, []);
 
-                            {/* PRINCIPAL */}
-                            <Route path='/home' element={<Dashboard />} />
+  return (
+    <>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Routes>
+            {/* LOGIN */}
+            <Route path='/' element={<LoginPage />} />
 
-                            {/* BOOKINGS */}
-                            <Route path='/bookings' element={<GuestList />} />            
-                            <Route path='/bookings/:id' element={<GuestDetails />} />
-                            <Route path='/bookings/create' element={<GuestList />} />
-                            <Route path='/bookings/edit/:id' element={<GuestList />} />
+            {data ? (
+              <>
+                {/* <Header /> */}
+                <Route element={<Layout />}>
 
-                            {/* ROOMS */}
-                            <Route path='/rooms' element={<RoomList />} />
-                            <Route path='/rooms/:id' element={<RoomList />} />
-                            <Route path='/rooms/create' element={<CreateRoomPage />} />
-                            <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
+                  {/* PRINCIPAL */}
+                  <Route path='/home' element={<Dashboard />} />
 
-                            {/* USERS */}
-                            <Route path='/users' element={<ConciergeList />} />
-                            <Route path='/users/:id' element={<ConciergeList />} />
-                            <Route path='/users/create' element={<CreateUserPage />} />
-                            <Route path='/users/edit/:id' element={<EditUserPage />} />
+                  {/* BOOKINGS */}
+                  <Route path='/bookings' element={<GuestList />} />
+                  <Route path='/bookings/:id' element={<GuestDetails />} />
+                  <Route path='/bookings/create' element={<GuestList />} />
+                  <Route path='/bookings/edit/:id' element={<GuestList />} />
 
-                            {/* CONTACT */}
-                            <Route path='/contact' element={<Reviews/>} />
-                        </Route>
-                    </>
-                ) : null} 
-            </Routes>
-          </Provider>
-    </BrowserRouter>
-      </>
-    );
-  }
-  
-  export default App;
+                  {/* ROOMS */}
+                  <Route path='/rooms' element={<RoomList />} />
+                  <Route path='/rooms/:id' element={<RoomList />} />
+                  <Route path='/rooms/create' element={<CreateRoomPage />} />
+                  <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
+
+                  {/* USERS */}
+                  <Route path='/users' element={<ConciergeList />} />
+                  <Route path='/users/:id' element={<ConciergeList />} />
+                  <Route path='/users/create' element={<CreateUserPage />} />
+                  <Route path='/users/edit/:id' element={<EditUserPage />} />
+
+                  {/* CONTACT */}
+                  <Route path='/contact' element={<Reviews />} />
+                </Route>
+              </>
+            ) : null}
+          </Routes>
+        </Provider>
+      </BrowserRouter >
+    </>
+  );
+}
+
+export default App;

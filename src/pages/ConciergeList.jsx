@@ -25,6 +25,7 @@ export const ConciergeList = () => {
   const [spinner,setSpinner] =  useState(true);
   const [userList, setUserList] = useState([]);
 
+  
   useEffect(() => {
     if(userListStatus === "idle"){
       dispatch(getUserListFromAPIThunk())
@@ -74,7 +75,7 @@ export const ConciergeList = () => {
         </ListStyled>
 
         <div>
-          <SearchBarStyled />
+          <SearchBarStyled/>
           <SelectStyled>
             <option value="date" selected>Joined Date</option>
             <option value="name">name</option>

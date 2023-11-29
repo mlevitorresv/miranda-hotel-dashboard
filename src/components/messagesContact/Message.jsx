@@ -6,7 +6,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import { MessageContentSyled } from './MessageContentStyled';
 import { PopUp } from '../popUp/PopUp';
 import { MessageInfo } from './MessageInfo';
-import { removeContactElement } from '../../features/contact/contactSlice';
+// import { removeContactElement } from '../../features/contact/contactSlice';
 import { useDispatch } from 'react-redux';
 
 
@@ -24,15 +24,19 @@ export const Message = (props) => {
     
   };
 
+  const handleRemoveContact = (id) =>{
+    // dispatch(removeContactElement(id));
+  }
+
   return (
     <>
-      <MessageStyled onClick={handlePopUp}>
+      <MessageStyled  onClick={handlePopUp}>
           <MessageContentSyled>{props.comment}</MessageContentSyled>
           <div className='bottom'>
               <MessageInfo img={props.img} name={props.name} join={props.join} />
               <div>
                   <CiCircleCheck className='check'/>
-                  <CiCircleRemove className='remove'/>
+                  <CiCircleRemove className='remove' onClick={handleRemoveContact(props.id)}/>
               </div>
           </div>
       </MessageStyled>

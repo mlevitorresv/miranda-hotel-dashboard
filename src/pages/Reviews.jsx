@@ -11,7 +11,7 @@ import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { MenuStyled } from '../components/common/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { getContactData, getContactError, getContactStatus } from '../features/contact/contactSlice.js'
+import { getContactArchived, getContactData, getContactError, getContactStatus } from '../features/contact/contactSlice.js'
 import { getContactListFromAPIThunk } from '../features/contact/contactThunk.js'
 
 export const Reviews = () => {
@@ -20,20 +20,23 @@ export const Reviews = () => {
   const contactListData = useSelector(getContactData);
   const contactListError = useSelector(getContactError);
   const contactListStatus = useSelector(getContactStatus);
+  const archivedContactList = useSelector(getContactArchived);
+  const [showArchived, setShowArchived] = useState(false);
   const [spinner, setSpinner] = useState(true);
   const [contactList, setContactList] = useState([]);
 
-  useEffect(()=> {
+  useEffect(() => {
 
-    if(contactListStatus === "idle"){
+    if (contactListStatus === "idle") {
       dispatch(getContactListFromAPIThunk())
     }
-    else if(contactListStatus === "pending"){
+    else if (contactListStatus === "pending") {
       setSpinner(true)
     }
-    else if(contactListStatus === "fulfilled"){
+    else if (contactListStatus === "fulfilled") {
       let components = [];
-      contactListData.forEach(contact => {
+      const filteredContactList = showArchived ? archivedContactList : contactListData
+      filteredContactList.forEach(contact => {
         components.push(
           <TrStyled>
             <td>
@@ -49,17 +52,18 @@ export const Reviews = () => {
               <GuestDiv className='comment' data={contact.comment} />
             </td>
             <td>
-              <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>
+              {contact.archived ? <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled> : <ButtonStyled color={'#5AD07A'} bg={'#E8FFEE'}>Archived</ButtonStyled>}
             </td>
           </TrStyled>
         )
       });
+
       setSpinner(false);
       setContactList(components);
     }
 
 
-  },[dispatch, contactListData, contactListStatus])
+  }, [dispatch, contactListData, contactListStatus, showArchived])
 
   return (
     <div>
@@ -69,8 +73,14 @@ export const Reviews = () => {
 
       <MenuStyled>
         <ListStyled>
-          <ListElementStyled color='#135846'>All Contacts</ListElementStyled>
-          <ListElementStyled>Archived</ListElementStyled>
+          <ListElementStyled
+            onClick={() => setShowArchived(false)}
+            className={showArchived ? '' : 'active'}
+          >All Contacts</ListElementStyled>
+          <ListElementStyled
+            onClick={() => setShowArchived(true)}
+            className={showArchived ? 'active' : ''}
+          >Archived</ListElementStyled>
         </ListStyled>
 
         <div>
@@ -80,14 +90,14 @@ export const Reviews = () => {
         </div>
       </MenuStyled>
 
-      {spinner ? <p>Loading...</p> : 
+      {spinner ? <p>Loading...</p> :
         <TableGuestStyled className='rev'>
           <TheadStyled>
             <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Comment</th>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Comment</th>
             </tr>
           </TheadStyled>
 
