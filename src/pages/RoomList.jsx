@@ -76,10 +76,7 @@ export const RoomList = () => {
     <>
       <MenuStyled>
         <ListStyled>
-          <ListElementStyled color='#135846'>All Bookings</ListElementStyled>
-          <ListElementStyled>Checking in</ListElementStyled>
-          <ListElementStyled>Checking out</ListElementStyled>
-          <ListElementStyled>In progress</ListElementStyled>
+          
         </ListStyled>
 
         <div>

@@ -34,3 +34,6 @@ export const { addBookingElement, removeBookingElement } = bookingSlice.actions;
 export const getBookingData = state => state.booking.data;
 export const getBookingStatus = state => state.booking.status;
 export const getBookingError  = state => state.booking.error;
+export const getBookingRefund = state => state.booking.data.filter(booking => booking.status === 'refund')
+export const getBookingPending = state => state.booking.data.filter(booking => booking.status === 'pending')
+export const getBookingBooked = state => state.booking.data.filter(booking => booking.status === 'booked')
