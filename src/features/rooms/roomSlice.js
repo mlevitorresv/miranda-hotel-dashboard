@@ -10,6 +10,9 @@ export const roomSlice = createSlice({
         error: null
     },
     reducers:{
+        getRoomById: (state, action) => {
+            state.data.filter((room) => room.id === action.payload.id)
+        },
         addRoomElement: (state, action) => {
             state.data = [action.payload, ...state.data]
         },
