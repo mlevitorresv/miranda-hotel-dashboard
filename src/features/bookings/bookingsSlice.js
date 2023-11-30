@@ -10,8 +10,14 @@ export const bookingSlice = createSlice({
         error: null
     },
     reducers:{
+        getElementyId: (state, action) => {
+            state.data.filter((booking) => booking.id === action.payload.id)
+        },
         addBookingElement: (state, action) => {
             state.data = [action.payload, ...state.data]
+        },
+        removeBookingElement: (state, action) => {
+            state.data = state.filter((booking) => booking.id !== action.payload.id)
         }
     },
     extraReducers: (builder) => {
