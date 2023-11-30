@@ -10,14 +10,15 @@ export const contactSlice = createSlice({
         error: null
     },
     reducers:{
+        getContactById: (state, action) => {
+            state.data.filter((comment) => comment.id === action.payload.id)
+        },
         addContactElement: (state, action) => {
             state.data = [action.payload, ...state.data]
+        },
+        removeContactElement: (state, action) => {
+            state.data = state.data.filter((comment) => comment.id !== action.payload.id)
         }
-        // removeContactElement: (state, action) => {
-        //     console.log('antes: ' + state.data)
-        //     state.data = state.data.filter((comment) => comment.id !== action.payload.id)
-        //     console.log('despues: ' + state.data)
-        // }
     },
     extraReducers: (builder) => {
         builder.addCase(getContactListFromAPIThunk.fulfilled, (state, action) => {
