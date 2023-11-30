@@ -24,6 +24,19 @@ export const Reviews = () => {
   const [showArchived, setShowArchived] = useState(false);
   const [spinner, setSpinner] = useState(true);
   const [contactList, setContactList] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('date');
+
+
+
+  const handleSort = (list, e) => {
+    setSelectedOption(e.target.value)
+    let sortedComments = list.slice();
+    switch(selectedOption){
+      case 'date':
+        sortedComments.sort((a, b) => new Date(a.date + '' +a.dateTime) - new Date(b.date + '' +b.dateTime))
+    }
+    setContactList(sortedComments);
+  }
 
   useEffect(() => {
 
@@ -52,7 +65,7 @@ export const Reviews = () => {
               <GuestDiv className='comment' data={contact.comment} />
             </td>
             <td>
-              {contact.archived ? <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled> : <ButtonStyled color={'#5AD07A'} bg={'#E8FFEE'}>Archived</ButtonStyled>}
+              {contact.archived ? <ButtonStyled color={'#5AD07A'} bg={'#E8FFEE'}>Archived</ButtonStyled> : <ButtonStyled color={'red'} bg={'#FFEDEC'}>Archive</ButtonStyled>}
             </td>
           </TrStyled>
         )
@@ -84,7 +97,7 @@ export const Reviews = () => {
         </ListStyled>
 
         <div>
-          <SelectStyled>
+          <SelectStyled  onChange={(e) => handleSort(contactListData, e)}>
             <option value="date" selected>Date</option>
           </SelectStyled>
         </div>
