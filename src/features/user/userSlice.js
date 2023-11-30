@@ -10,6 +10,9 @@ export const userSlice = createSlice({
         error: null
     },
     reducers:{
+        getUserElement: (state, action) => {
+            state.data.filter((user) =>user.id === action.payload.id)
+        },
         addUserElement: (state, action) => {
             state.data = [action.payload, ...state.data]
         },
