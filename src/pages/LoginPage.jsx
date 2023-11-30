@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { FormStyled } from '../components/form/FormStyled';
 import { FormPageStyled } from '../components/form/FormPageStyled';
 import { useState } from 'react';
+import { useAuth } from '../context/AuthProvider';
 
 
 export const LoginPage = () => {
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const {login} = useAuth();
 
   const navigate = useNavigate();
 
@@ -25,7 +27,9 @@ export const LoginPage = () => {
     e.preventDefault();
 
     if(email === 'test@test.com' && pass === 'test1234'){
-      localStorage.setItem('conex', true);
+      // localStorage.setItem('conex', true);
+      const userData = {username: email, password: pass}
+      login(userData)
       navigate('/home');
     }else{
       alert('No se inició sesión, usuaario o password incorrectos')

@@ -10,11 +10,13 @@ import {
 } from '../common/IconStyled'
 import { AsideNav } from './AsideNav'
 import { Link } from "react-router-dom"
+import { useAuth } from '../../context/AuthProvider'
 
 
 export const Header = (props) => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const { logout } = useAuth();
 
   const handlerMenu = () => {
     const dashboardIcon = document.getElementById('dashboardIcon');
@@ -40,7 +42,7 @@ export const Header = (props) => {
   }, []);
 
   const handleLogOut = () => {
-    localStorage.clear();
+    logout();
   }
 
 

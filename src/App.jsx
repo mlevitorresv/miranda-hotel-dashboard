@@ -14,6 +14,7 @@ import { CreateRoomPage } from './pages/CreateRoomPage.jsx'
 import { EditRoomPage } from './pages/EditRoomPage.jsx'
 import { store } from './app/store.js'
 import { Provider } from 'react-redux'
+import { AuthProvider } from './context/AuthProvider.jsx'
 
 
 function App() {
@@ -29,44 +30,46 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Provider store={store}>
-          <Routes>
-            {/* LOGIN */}
-            <Route path='/' element={<LoginPage />} />
+        <AuthProvider>
+          <Provider store={store}>
+            <Routes>
+              {/* LOGIN */}
+              <Route path='/' element={<LoginPage />} />
 
-            {data ? (
-              <>
-                {/* <Header /> */}
-                <Route element={<Layout />}>
+              {data ? (
+                <>
+                  {/* <Header /> */}
+                  <Route element={<Layout />}>
 
-                  {/* PRINCIPAL */}
-                  <Route path='/home' element={<Dashboard />} />
+                    {/* PRINCIPAL */}
+                    <Route path='/home' element={<Dashboard />} />
 
-                  {/* BOOKINGS */}
-                  <Route path='/bookings' element={<GuestList />} />
-                  <Route path='/bookings/:id' element={<GuestDetails />} />
-                  <Route path='/bookings/create' element={<GuestList />} />
-                  <Route path='/bookings/edit/:id' element={<GuestList />} />
+                    {/* BOOKINGS */}
+                    <Route path='/bookings' element={<GuestList />} />
+                    <Route path='/bookings/:id' element={<GuestDetails />} />
+                    <Route path='/bookings/create' element={<GuestList />} />
+                    <Route path='/bookings/edit/:id' element={<GuestList />} />
 
-                  {/* ROOMS */}
-                  <Route path='/rooms' element={<RoomList />} />
-                  <Route path='/rooms/:id' element={<RoomList />} />
-                  <Route path='/rooms/create' element={<CreateRoomPage />} />
-                  <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
+                    {/* ROOMS */}
+                    <Route path='/rooms' element={<RoomList />} />
+                    <Route path='/rooms/:id' element={<RoomList />} />
+                    <Route path='/rooms/create' element={<CreateRoomPage />} />
+                    <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
 
-                  {/* USERS */}
-                  <Route path='/users' element={<ConciergeList />} />
-                  <Route path='/users/:id' element={<ConciergeList />} />
-                  <Route path='/users/create' element={<CreateUserPage />} />
-                  <Route path='/users/edit/:id' element={<EditUserPage />} />
+                    {/* USERS */}
+                    <Route path='/users' element={<ConciergeList />} />
+                    <Route path='/users/:id' element={<ConciergeList />} />
+                    <Route path='/users/create' element={<CreateUserPage />} />
+                    <Route path='/users/edit/:id' element={<EditUserPage />} />
 
-                  {/* CONTACT */}
-                  <Route path='/contact' element={<Reviews />} />
-                </Route>
-              </>
-            ) : null}
-          </Routes>
-        </Provider>
+                    {/* CONTACT */}
+                    <Route path='/contact' element={<Reviews />} />
+                  </Route>
+                </>
+              ) : null}
+            </Routes>
+          </Provider>
+        </AuthProvider>
       </BrowserRouter >
     </>
   );
