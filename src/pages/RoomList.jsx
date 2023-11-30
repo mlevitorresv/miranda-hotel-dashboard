@@ -24,6 +24,7 @@ export const RoomList = () => {
   const roomListStatus = useSelector(getRoomStatus);
   const [spinner, setSpinner] = useState(true);
   const [roomList, setRoomList] = useState([]);
+  const [selectedSort, setSelectedSort] = useState('number');
 
   useEffect(() => {
     if(roomListStatus === "idle"){
@@ -34,8 +35,25 @@ export const RoomList = () => {
     }
     else if(roomListStatus === "fulfilled"){
       let components = [];
+      let sortedList = roomListData.slice();
       
-      roomListData.forEach(room => {
+      if(selectedSort === 'number'){
+        sortedList.sort((a, b) => a.id - b.id)
+      }
+      else if(selectedSort === 'booked'){
+        sortedList.sort((a, b) => a.available - b.available)
+      }
+      else if(selectedSort === 'available'){
+        sortedList.sort((a, b) => b.available - a.available)
+      }
+      else if(selectedSort === 'priceLow'){
+        sortedList.sort((a, b) => a.price - b.price)
+      }
+      else if(selectedSort === 'priceHigh'){
+        sortedList.sort((a, b) => b.price - a.price)
+      }
+      
+      sortedList.forEach(room => {
         components.push(
 
           <TrStyled align={'bottom'} key={room.id}>
@@ -55,7 +73,7 @@ export const RoomList = () => {
               <RoomRate price={room.price * (room.discount / 100)} />
             </td>
             <td>
-              <RoomStatus status={!room.status ? 'Booked' : 'Available'}/>               
+              <RoomStatus status={room.available ? 'Available' : 'Booked'}/>               
             </td>
             <td>
               <GuestDiv data={<HiDotsVertical />} />
@@ -67,7 +85,7 @@ export const RoomList = () => {
       setSpinner(false);
       setRoomList(components)
     }
-  }, [dispatch, roomListData,roomListStatus])
+  }, [dispatch, roomListData, roomListStatus, selectedSort])
 
 
 
@@ -81,11 +99,12 @@ export const RoomList = () => {
 
         <div>
           <SearchBarStyled />
-          <SelectStyled>
+          <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="number" selected>Room Number</option>
-            <option value="Available">Available</option>
-            <option value="Booked">Booked</option>
-            <option value="Price">Price</option>
+            <option value="available">Available</option>
+            <option value="booked">Booked</option>
+            <option value="priceLow">Price: Low to High</option>
+            <option value="priceHigh">Price: High to Low</option>
           </SelectStyled>
         </div>
       </MenuStyled>
