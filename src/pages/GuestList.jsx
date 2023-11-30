@@ -30,10 +30,10 @@ export const GuestList = () => {
   const bookingListBooked = useSelector(getBookingBooked)
   const [spinner, setSpinner] = useState(true);
   const [bookingList, setBookingList] = useState([]);
-
   const [showBookingsRefund, setShowBookingsRefund] = useState(false);
   const [showBookingsPending, setShowBookingsPending] = useState(false);
   const [showBookingsBooked, setShowBookingsBooked] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('date');
 
   useEffect(()=> {
     if(bookingListStatus === "idle"){
@@ -55,11 +55,24 @@ export const GuestList = () => {
         filteredList = bookingListRefund;
       }
       else{
-        filteredList= bookingListData;
+        filteredList = bookingListData;
       }
 
+      let sortedList = filteredList.slice();
+      if(selectedSort === 'date'){
+        sortedList.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
+      }
+      else if(selectedSort === 'guest'){
+        sortedList.sort((a, b) => a.id - b.id)
+      }
+      else if(selectedSort === 'checkIn'){
+        sortedList.sort((a, b) => new Date(b.checkInDate) - new Date(a.checkInDate))
+      }
+      else if(selectedSort === 'checkOut'){
+        sortedList.sort((a, b) => new Date(b.checkOut) - new Date(a.checkOut))
+      }
 
-      filteredList.forEach(booking => {
+      sortedList.forEach(booking => {
         components.push(
           <TrStyled>
                 <td>
@@ -102,7 +115,7 @@ export const GuestList = () => {
       setBookingList(components)
     }
 
-  }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund])
+  }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort])
 
 
 
@@ -130,9 +143,9 @@ export const GuestList = () => {
 
         <div>
           <SearchBarStyled />
-          <SelectStyled>
+          <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="date" selected>Order Date</option>
-            <option value="guest">Guest</option>
+            <option value="guest">Guest(ID)</option>
             <option value="checkIn">Check in</option>
             <option value="checkOut">Check out</option>
           </SelectStyled>
