@@ -28,6 +28,7 @@ export const ConciergeList = () => {
   const [userList, setUserList] = useState([]);
   const [showActiveUser, setShowActiveUser] = useState(false);
   const [showInactiveUser, setShowInactiveUser] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('date');
 
   
   useEffect(() => {
@@ -49,8 +50,14 @@ export const ConciergeList = () => {
       else{
         filteredList =userListData;
       }
-
-      filteredList.forEach(user => {
+      let sortedList = filteredList.slice();
+      if(selectedSort === 'date'){
+        sortedList.sort((a, b) => new Date(b.date) - new Date(a.date))
+      }
+      else{
+        sortedList.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      sortedList.forEach(user => {
         components.push(
             <TrStyled>
               <td>
@@ -78,7 +85,7 @@ export const ConciergeList = () => {
       setUserList(components);
     }
 
-  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser])
+  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort])
 
   return (
     <>
@@ -100,7 +107,7 @@ export const ConciergeList = () => {
 
         <div>
           <SearchBarStyled/>
-          <SelectStyled>
+          <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="date" selected>Joined Date</option>
             <option value="name">name</option>
           </SelectStyled>

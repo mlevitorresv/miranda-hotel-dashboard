@@ -24,19 +24,8 @@ export const Reviews = () => {
   const [showArchived, setShowArchived] = useState(false);
   const [spinner, setSpinner] = useState(true);
   const [contactList, setContactList] = useState([]);
-  const [selectedOption, setSelectedOption] = useState('date');
+  const [selectedSort, setSelectedSort] = useState('newest');
 
-
-
-  const handleSort = (list, e) => {
-    setSelectedOption(e.target.value)
-    let sortedComments = list.slice();
-    switch(selectedOption){
-      case 'date':
-        sortedComments.sort((a, b) => new Date(a.date + '' +a.dateTime) - new Date(b.date + '' +b.dateTime))
-    }
-    setContactList(sortedComments);
-  }
 
   useEffect(() => {
 
@@ -49,7 +38,14 @@ export const Reviews = () => {
     else if (contactListStatus === "fulfilled") {
       let components = [];
       const filteredContactList = showArchived ? archivedContactList : contactListData
-      filteredContactList.forEach(contact => {
+      let sortedList = filteredContactList.slice();
+      if(selectedSort === 'newest'){
+        sortedList.sort((a, b) => new Date(b.date) - new Date(a.date))
+      }
+      else{
+        sortedList.sort((a, b) => new Date(a.date) - new Date(b.date))
+      }
+      sortedList.forEach(contact => {
         components.push(
           <TrStyled>
             <td>
@@ -76,7 +72,7 @@ export const Reviews = () => {
     }
 
 
-  }, [dispatch, contactListData, contactListStatus, showArchived])
+  }, [dispatch, contactListData, contactListStatus, showArchived, selectedSort])
 
   return (
     <div>
@@ -97,8 +93,9 @@ export const Reviews = () => {
         </ListStyled>
 
         <div>
-          <SelectStyled  onChange={(e) => handleSort(contactListData, e)}>
-            <option value="date" selected>Date</option>
+          <SelectStyled  onChange={(e) => setSelectedSort(e.target.value)}>
+            <option value="newest" selected>Newest</option>
+            <option value="oldest" selected>Oldest</option>
           </SelectStyled>
         </div>
       </MenuStyled>
