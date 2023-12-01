@@ -118,7 +118,7 @@ export const RoomList = () => {
         </ListStyled>
 
         <div>
-          <ButtonStyled onClick={() => navigate('/rooms/create')}>Create room</ButtonStyled>
+          <ButtonStyled color='white' bg='#135846' onClick={() => navigate('/rooms/create')}>Create room</ButtonStyled>
           <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="number" selected>Room Number</option>
             <option value="available">Available</option>

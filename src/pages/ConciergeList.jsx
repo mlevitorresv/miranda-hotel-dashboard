@@ -25,62 +25,62 @@ export const ConciergeList = () => {
   const userListStatus = useSelector(getUserStatus);
   const userListActive = useSelector(getUserActive);
   const userListInactive = useSelector(getUserInactive);
-  const [spinner,setSpinner] =  useState(true);
+  const [spinner, setSpinner] = useState(true);
   const [userList, setUserList] = useState([]);
   const [showActiveUser, setShowActiveUser] = useState(false);
   const [showInactiveUser, setShowInactiveUser] = useState(false);
   const [selectedSort, setSelectedSort] = useState('date');
   const navigate = useNavigate();
 
-  
+
   useEffect(() => {
-    if(userListStatus === "idle"){
+    if (userListStatus === "idle") {
       dispatch(getUserListFromAPIThunk())
     }
-    else if(userListStatus === "pending"){
+    else if (userListStatus === "pending") {
       setSpinner(true);
     }
-    else if(userListStatus === "fulfilled"){
+    else if (userListStatus === "fulfilled") {
       let components = [];
       let filteredList;
-      if(showActiveUser){
+      if (showActiveUser) {
         filteredList = userListActive;
       }
-      else if(showInactiveUser){
+      else if (showInactiveUser) {
         filteredList = userListInactive;
       }
-      else{
-        filteredList =userListData;
+      else {
+        filteredList = userListData;
       }
       let sortedList = filteredList.slice();
-      if(selectedSort === 'date'){
+      if (selectedSort === 'date') {
         sortedList.sort((a, b) => new Date(b.date) - new Date(a.date))
       }
-      else{
+      else {
         sortedList.sort((a, b) => a.name.localeCompare(b.name))
       }
       sortedList.forEach(user => {
         components.push(
-            <TrStyled>
-              <td>
-                <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date}/>
-              </td>
-              <td>
-                <GuestDiv data={user.email} />
-              </td>
-              <td>
-                <GuestDiv data={user.description} />
-              </td>
-              <td>
-                <ConciergeContact data={user.phone} />
-              </td>
-              <td>
-                <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
-              </td>
-              <td>
-                <GuestDiv data={<HiDotsVertical />} />
-              </td>
-            </TrStyled>
+          <TrStyled>
+            <td>
+              <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date} />
+            </td>
+            <td>
+              <GuestDiv data={user.email} />
+            </td>
+            <td>
+              <GuestDiv data={user.description} />
+            </td>
+            <td>
+              <ConciergeContact data={user.phone} />
+            </td>
+            <td>
+              <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
+            </td>
+            <td>
+              <GuestDiv data={<HiDotsVertical />} />
+            </td>
+          </TrStyled>
         )
       });
       setSpinner(false);
@@ -94,21 +94,21 @@ export const ConciergeList = () => {
       <MenuStyled>
         <ListStyled>
           <ListElementStyled
-            onClick={() => (setShowActiveUser(false), setShowInactiveUser(false) )}
+            onClick={() => (setShowActiveUser(false), setShowInactiveUser(false))}
             className={!showInactiveUser && !showActiveUser ? 'active' : ''}
           >All employee</ListElementStyled>
           <ListElementStyled
-            onClick={() => (setShowActiveUser(true), setShowInactiveUser(false) )}
+            onClick={() => (setShowActiveUser(true), setShowInactiveUser(false))}
             className={showActiveUser ? 'active' : ''}
           >Active employee</ListElementStyled>
           <ListElementStyled
-            onClick={() => (setShowActiveUser(false), setShowInactiveUser(true) )}
+            onClick={() => (setShowActiveUser(false), setShowInactiveUser(true))}
             className={showInactiveUser ? 'active' : ''}
           >Inactive employee</ListElementStyled>
         </ListStyled>
 
         <div>
-        <ButtonStyled onClick={() => navigate('/users/create')}>Create user</ButtonStyled>
+          <ButtonStyled color='white' bg='#135846' onClick={() => navigate('/users/create')}>Create user</ButtonStyled>
           <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="date" selected>Joined Date</option>
             <option value="name">name</option>
@@ -116,15 +116,15 @@ export const ConciergeList = () => {
         </div>
       </MenuStyled>
 
-      {spinner ? <p>Loading...</p> : 
+      {spinner ? <p>Loading...</p> :
         <TableGuestStyled className='user'>
           <TheadStyled>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Job Desk</th>
-                <th>Contact</th>
-                <th>Status</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Job Desk</th>
+              <th>Contact</th>
+              <th>Status</th>
             </tr>
           </TheadStyled>
 
