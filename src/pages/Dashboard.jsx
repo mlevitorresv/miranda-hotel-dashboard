@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DivKPI } from '../components/KPI/DivKPI';
 import { MessagesContainer } from '../components/messagesContact/MessagesContainer';
 import { MessageDivStyled } from '../components/messagesContact/MessagesDivStyled';
 
 export const Dashboard =() => {
+  useEffect(()=>{
+
+  }, [])
   return (
     <>
         <DivKPI />

@@ -27,7 +27,6 @@ export const LoginPage = () => {
     e.preventDefault();
 
     if(email === 'test@test.com' && pass === 'test1234'){
-      // localStorage.setItem('conex', true);
       const userData = {username: email, password: pass}
       login(userData)
       navigate('/home');
