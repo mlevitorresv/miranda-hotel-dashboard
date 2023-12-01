@@ -15,6 +15,7 @@ import { SelectStyled } from '../components/table/SelectStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus } from '../features/bookings/bookingsSlice';
 import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
+import { Tfooter } from '../components/table/Tfooter.jsx'
 
 
 
@@ -34,6 +35,8 @@ export const GuestList = () => {
   const [showBookingsPending, setShowBookingsPending] = useState(false);
   const [showBookingsBooked, setShowBookingsBooked] = useState(false);
   const [selectedSort, setSelectedSort] = useState('date');
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(()=> {
     if(bookingListStatus === "idle"){
@@ -72,7 +75,12 @@ export const GuestList = () => {
         sortedList.sort((a, b) => new Date(b.checkOut) - new Date(a.checkOut))
       }
 
-      sortedList.forEach(booking => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
+
+      const paginatedList = sortedList.slice(startIndex, endIndex);
+
+      paginatedList.forEach(booking => {
         components.push(
           <TrStyled>
                 <td>
@@ -118,6 +126,10 @@ export const GuestList = () => {
   }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort])
 
 
+  //PAGINATION
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
 
   return (
     <>
@@ -171,6 +183,13 @@ export const GuestList = () => {
           </tbody>
         </TableGuestStyled>
       }
+      <Tfooter 
+            currentPage = {currentPage}
+            onPageChanged = {handlePageChange}
+            items={bookingListData.length}
+            itemsPerPage={itemsPerPage}
+
+          />
     </>
   )
 }
