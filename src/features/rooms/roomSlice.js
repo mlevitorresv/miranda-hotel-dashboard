@@ -40,3 +40,5 @@ export const { addRoomElement, removeRoomElement } = roomSlice.actions;
 export const getRoomData = state => state.room.data;
 export const getRoomStatus = state => state.room.status;
 export const getRoomError  = state => state.room.error;
+export const getBookedRooms = state => state.room.data.filter(room => !room.available)
+export const getAvailableRooms = state => state.room.data.filter(room => room.available)

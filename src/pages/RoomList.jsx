@@ -14,7 +14,7 @@ import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice.js';
+import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice.js';
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,44 +24,49 @@ export const RoomList = () => {
   const roomListData = useSelector(getRoomData);
   const roomListError = useSelector(getRoomError);
   const roomListStatus = useSelector(getRoomStatus);
+  const bookedRoomList = useSelector(getBookedRooms);
+  const availableRoomList = useSelector(getAvailableRooms);
   const [spinner, setSpinner] = useState(true);
   const [roomList, setRoomList] = useState([]);
   const [selectedSort, setSelectedSort] = useState('number');
+  const [showBooked, setShowBooked] = useState(false);
+  const [showAvailable, setShowAvailable] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(roomListStatus === "idle"){
+    if (roomListStatus === "idle") {
       dispatch(getRoomListFromAPIThunk())
     }
-    else if(roomListStatus === "pending"){
+    else if (roomListStatus === "pending") {
       setSpinner(true);
     }
-    else if(roomListStatus === "fulfilled"){
+    else if (roomListStatus === "fulfilled") {
       let components = [];
-      let sortedList = roomListData.slice();
-      
-      if(selectedSort === 'number'){
+      const filteredRoomList = showBooked ? bookedRoomList : showAvailable ? availableRoomList : roomListData
+      let sortedList = filteredRoomList.slice();
+
+      if (selectedSort === 'number') {
         sortedList.sort((a, b) => a.id - b.id)
       }
-      else if(selectedSort === 'booked'){
+      else if (selectedSort === 'booked') {
         sortedList.sort((a, b) => a.available - b.available)
       }
-      else if(selectedSort === 'available'){
+      else if (selectedSort === 'available') {
         sortedList.sort((a, b) => b.available - a.available)
       }
-      else if(selectedSort === 'priceLow'){
+      else if (selectedSort === 'priceLow') {
         sortedList.sort((a, b) => a.price - b.price)
       }
-      else if(selectedSort === 'priceHigh'){
+      else if (selectedSort === 'priceHigh') {
         sortedList.sort((a, b) => b.price - a.price)
       }
-      
+
       sortedList.forEach(room => {
         components.push(
 
           <TrStyled align={'bottom'} key={room.id}>
             <td>
-              <GuestImageRoom img={room.photo} id={room.id} data={room.type}/>
+              <GuestImageRoom img={room.photo} id={room.id} data={room.type} />
             </td>
             <td>
               <GuestDiv data={room.bed} />
@@ -76,7 +81,7 @@ export const RoomList = () => {
               <RoomRate price={room.price * (room.discount / 100)} />
             </td>
             <td>
-              <RoomStatus status={room.available ? 'Available' : 'Booked'}/>               
+              <RoomStatus status={room.available ? 'Available' : 'Booked'} />
             </td>
             <td>
               <GuestDiv data={<HiDotsVertical />} />
@@ -84,11 +89,11 @@ export const RoomList = () => {
           </TrStyled>
 
         )
-      });      
+      });
       setSpinner(false);
       setRoomList(components)
     }
-  }, [dispatch, roomListData, roomListStatus, selectedSort])
+  }, [dispatch, roomListData, roomListStatus, selectedSort, showBooked, showAvailable])
 
 
 
@@ -97,7 +102,19 @@ export const RoomList = () => {
     <>
       <MenuStyled>
         <ListStyled>
-          
+          <ListElementStyled
+            onClick={() => { setShowBooked(false), setShowAvailable(false) }}
+            className={showBooked | showAvailable ? '' : 'active'}
+          >All</ListElementStyled>
+          <ListElementStyled
+            onClick={() => { setShowBooked(true), setShowAvailable(false) }}
+            className={showBooked ? 'active' : ''}
+          >Booked</ListElementStyled>
+          <ListElementStyled
+            onClick={() => { setShowBooked(false), setShowAvailable(true) }}
+            className={showAvailable ? 'active' : ''}
+          >Available</ListElementStyled>
+
         </ListStyled>
 
         <div>
@@ -112,16 +129,16 @@ export const RoomList = () => {
         </div>
       </MenuStyled>
 
-      {spinner ? <p>Loading...</p> : 
+      {spinner ? <p>Loading...</p> :
         <TableGuestStyled className='room'>
           <TheadStyled>
             <tr>
-                <th>Room Name</th>
-                <th>Bed Type</th>
-                <th>Facilities</th>
-                <th>Price</th>
-                <th>Offer Price</th>
-                <th>Status</th>
+              <th>Room Name</th>
+              <th>Bed Type</th>
+              <th>Facilities</th>
+              <th>Price</th>
+              <th>Offer Price</th>
+              <th>Status</th>
             </tr>
           </TheadStyled>
 
