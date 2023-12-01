@@ -11,6 +11,7 @@ import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { GuestCheck } from '../components/guest/GuestCheck.jsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/common/MenuStyled.js'
+import { InputStyled } from '../components/common/InputStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus } from '../features/bookings/bookingsSlice';
@@ -154,6 +155,10 @@ export const GuestList = () => {
         </ListStyled>
 
         <div>
+          <InputStyled
+            type='secondary'
+            placeholder='Find by user'
+          ></InputStyled>
           <ButtonStyled color='white' bg='#135846' onClick={() => navigate('/bookings/create')}>Create booking</ButtonStyled>
           <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="date" selected>Order Date</option>
