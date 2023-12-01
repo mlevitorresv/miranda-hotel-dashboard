@@ -11,10 +11,11 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/common/MenuStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus } from '../features/user/userSlice.js'
 import { getUserListFromAPIThunk } from '../features/user/userThunk.js'
+import { ButtonStyled } from '../components/common/ButtonStyled.js'
 
 export const ConciergeList = () => {
 
@@ -29,6 +30,7 @@ export const ConciergeList = () => {
   const [showActiveUser, setShowActiveUser] = useState(false);
   const [showInactiveUser, setShowInactiveUser] = useState(false);
   const [selectedSort, setSelectedSort] = useState('date');
+  const navigate = useNavigate();
 
   
   useEffect(() => {
@@ -106,7 +108,7 @@ export const ConciergeList = () => {
         </ListStyled>
 
         <div>
-          <SearchBarStyled/>
+        <ButtonStyled onClick={() => navigate('/users/create')}>Create user</ButtonStyled>
           <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="date" selected>Joined Date</option>
             <option value="name">name</option>

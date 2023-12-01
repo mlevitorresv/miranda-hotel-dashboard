@@ -12,9 +12,11 @@ import { RoomRate } from '../components/room/RoomRate.jsx';
 import { RoomStatus } from '../components/room/RoomStatus.jsx';
 import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
+import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice.js';
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
+import { useNavigate } from 'react-router-dom';
 
 export const RoomList = () => {
 
@@ -25,6 +27,7 @@ export const RoomList = () => {
   const [spinner, setSpinner] = useState(true);
   const [roomList, setRoomList] = useState([]);
   const [selectedSort, setSelectedSort] = useState('number');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(roomListStatus === "idle"){
@@ -98,7 +101,7 @@ export const RoomList = () => {
         </ListStyled>
 
         <div>
-          <SearchBarStyled />
+          <ButtonStyled onClick={() => navigate('/rooms/create')}>Create room</ButtonStyled>
           <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
             <option value="number" selected>Room Number</option>
             <option value="available">Available</option>
