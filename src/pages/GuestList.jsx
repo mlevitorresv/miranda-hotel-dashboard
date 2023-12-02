@@ -139,10 +139,9 @@ export const GuestList = () => {
       setBookingList(components)
     }
 
-  }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort, activeMenus])
+  }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort, activeMenus, currentPage])
 
 
-  //PAGINATION
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }

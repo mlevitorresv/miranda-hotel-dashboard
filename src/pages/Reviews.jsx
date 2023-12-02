@@ -13,6 +13,7 @@ import { SelectStyled } from '../components/table/SelectStyled.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContactArchived, getContactData, getContactError, getContactStatus } from '../features/contact/contactSlice.js'
 import { getContactListFromAPIThunk } from '../features/contact/contactThunk.js'
+import { Tfooter } from '../components/table/Tfooter.jsx'
 
 export const Reviews = () => {
 
@@ -25,6 +26,8 @@ export const Reviews = () => {
   const [spinner, setSpinner] = useState(true);
   const [contactList, setContactList] = useState([]);
   const [selectedSort, setSelectedSort] = useState('newest');
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
 
   useEffect(() => {
@@ -45,7 +48,11 @@ export const Reviews = () => {
       else{
         sortedList.sort((a, b) => new Date(a.date) - new Date(b.date))
       }
-      sortedList.forEach(contact => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
+
+      const paginatedList = sortedList.slice(startIndex, endIndex);
+      paginatedList.forEach(contact => {
         components.push(
           <TrStyled>
             <td>
@@ -72,7 +79,12 @@ export const Reviews = () => {
     }
 
 
-  }, [dispatch, contactListData, contactListStatus, showArchived, selectedSort])
+  }, [dispatch, contactListData, contactListStatus, showArchived, selectedSort, currentPage])
+
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
 
   return (
     <div>
@@ -116,6 +128,13 @@ export const Reviews = () => {
           </tbody>
         </TableGuestStyled>
       }
+      <Tfooter
+        currentPage={currentPage}
+        onPageChanged={handlePageChange}
+        items={contactListData.length}
+        itemsPerPage={itemsPerPage}
+
+      />
     </div>
   )
 }

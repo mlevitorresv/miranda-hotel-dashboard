@@ -17,6 +17,7 @@ import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatu
 import { getUserListFromAPIThunk } from '../features/user/userThunk.js'
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js'
+import { Tfooter } from '../components/table/Tfooter.jsx'
 
 export const ConciergeList = () => {
 
@@ -33,6 +34,8 @@ export const ConciergeList = () => {
   const [selectedSort, setSelectedSort] = useState('date');
   const [activeMenus, setActiveMenus] = useState({})
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
 
   useEffect(() => {
@@ -61,7 +64,12 @@ export const ConciergeList = () => {
       else {
         sortedList.sort((a, b) => a.name.localeCompare(b.name))
       }
-      sortedList.forEach(user => {
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
+
+      const paginatedList = sortedList.slice(startIndex, endIndex);
+      paginatedList.forEach(user => {
         components.push(
           <TrStyled>
             <td>
@@ -102,7 +110,13 @@ export const ConciergeList = () => {
       setUserList(components);
     }
 
-  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort, activeMenus])
+  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort, activeMenus, currentPage])
+
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
 
   return (
     <>
@@ -148,6 +162,13 @@ export const ConciergeList = () => {
           </tbody>
         </TableGuestStyled>
       }
+      <Tfooter
+        currentPage={currentPage}
+        onPageChanged={handlePageChange}
+        items={userListData.length}
+        itemsPerPage={itemsPerPage}
+
+      />
     </>
   )
 }

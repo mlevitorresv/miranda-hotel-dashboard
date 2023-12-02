@@ -18,6 +18,7 @@ import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomSt
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
 import { useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
+import { Tfooter } from '../components/table/Tfooter.jsx';
 
 export const RoomList = () => {
 
@@ -34,6 +35,8 @@ export const RoomList = () => {
   const [showAvailable, setShowAvailable] = useState(false);
   const [activeMenus, setActiveMenus] = useState({})
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
     if (roomListStatus === "idle") {
@@ -63,7 +66,11 @@ export const RoomList = () => {
         sortedList.sort((a, b) => b.price - a.price)
       }
 
-      sortedList.forEach(room => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
+
+      const paginatedList = sortedList.slice(startIndex, endIndex);
+      paginatedList.forEach(room => {
         components.push(
 
           <TrStyled align={'bottom'} key={room.id}>
@@ -108,9 +115,12 @@ export const RoomList = () => {
       setSpinner(false);
       setRoomList(components)
     }
-  }, [dispatch, roomListData, roomListStatus, selectedSort, showBooked, showAvailable, activeMenus])
+  }, [dispatch, roomListData, roomListStatus, selectedSort, showBooked, showAvailable, activeMenus, currentPage])
 
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
 
 
   return (
@@ -162,6 +172,13 @@ export const RoomList = () => {
           </tbody>
         </TableGuestStyled>
       }
+      <Tfooter
+        currentPage={currentPage}
+        onPageChanged={handlePageChange}
+        items={roomListData.length}
+        itemsPerPage={itemsPerPage}
+
+      />
     </>
   )
 }
