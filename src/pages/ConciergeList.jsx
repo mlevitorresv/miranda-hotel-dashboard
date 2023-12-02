@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus, removeUserElement } from '../features/user/userSlice.js'
 import { getUserListFromAPIThunk } from '../features/user/userThunk.js'
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
-import { DropwdownStyled } from '../components/dropdown/dropwdownStyled.js'
+import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js'
 
 export const ConciergeList = () => {
 
@@ -31,14 +31,9 @@ export const ConciergeList = () => {
   const [showActiveUser, setShowActiveUser] = useState(false);
   const [showInactiveUser, setShowInactiveUser] = useState(false);
   const [selectedSort, setSelectedSort] = useState('date');
-  const [showMenu, setShowMenu] = useState(false);
+  const [activeMenus, setActiveMenus] = useState({})
   const navigate = useNavigate();
 
-
-  const handleMenuClick = () => {
-    setShowMenu(!showMenu)
-    console.log(showMenu)
-  }
 
   useEffect(() => {
     if (userListStatus === "idle") {
@@ -84,15 +79,21 @@ export const ConciergeList = () => {
             <td>
               <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
             </td>
-            <td onClick={() => handleMenuClick()}>
-              <GuestDiv data={<HiDotsVertical/>} />
-              {showMenu && (
+            <td onClick={() => {
+              setActiveMenus((prevMenus) => ({
+                ...prevMenus,
+                [user.id]: !prevMenus[user.id],
+              }));
+            }}>
+              <GuestDiv
+                data={<HiDotsVertical />}
+              />
+              {activeMenus[user.id] && (
                 <DropwdownStyled>
                   <p>edit</p>
-                  <p onClick={() => dispatch(removeUserElement({id: user.id}))}>delete</p>
+                  <p  onClick={() => dispatch(removeUserElement({id: user.id}))}>delete</p>
                 </DropwdownStyled>
               )}
-
             </td>
           </TrStyled>
         )
@@ -101,7 +102,7 @@ export const ConciergeList = () => {
       setUserList(components);
     }
 
-  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort])
+  }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort, activeMenus])
 
   return (
     <>

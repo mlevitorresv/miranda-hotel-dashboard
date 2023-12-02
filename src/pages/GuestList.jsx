@@ -14,9 +14,10 @@ import { MenuStyled } from '../components/common/MenuStyled.js'
 import { InputStyled } from '../components/common/InputStyled.js'
 import { SelectStyled } from '../components/table/SelectStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus } from '../features/bookings/bookingsSlice';
+import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus, removeBookingElement } from '../features/bookings/bookingsSlice';
 import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
 import { Tfooter } from '../components/table/Tfooter.jsx'
+import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js'
 
 
 
@@ -38,6 +39,7 @@ export const GuestList = () => {
   const [selectedSort, setSelectedSort] = useState('date');
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [activeMenus, setActiveMenus] = useState({})
 
   useEffect(() => {
     if (bookingListStatus === "idle") {
@@ -114,8 +116,21 @@ export const GuestList = () => {
 
               </div>
             </td>
-            <td>
-              <GuestDiv data={<HiDotsVertical />} />
+            <td onClick={() => {
+              setActiveMenus((prevMenus) => ({
+                ...prevMenus,
+                [booking.id]: !prevMenus[booking.id],
+              }));
+            }}>
+              <GuestDiv
+                data={<HiDotsVertical />}
+              />
+              {activeMenus[booking.id] && (
+                <DropwdownStyled>
+                  <p>edit</p>
+                  <p  onClick={() => dispatch(removeBookingElement({id: booking.id}))}>delete</p>
+                </DropwdownStyled>
+              )}
             </td>
           </TrStyled>
         )
@@ -124,7 +139,7 @@ export const GuestList = () => {
       setBookingList(components)
     }
 
-  }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort])
+  }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort, activeMenus])
 
 
   //PAGINATION

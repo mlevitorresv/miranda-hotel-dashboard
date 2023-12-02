@@ -15,21 +15,7 @@ export const CreateRoomPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        roomType: '',
-        number: '',
-        description: '',
-        offer: '',
-        price: '',
-        discount: '',
-        cancellation: '',
-        tv: '',
-        service: '',
-        sea: '',
-        spa: '',
-        jacuzzi: ''
-
-    });
+    const [formData, setFormData] = useState({});
 
 
     const handleAddRoom = (e) => {
@@ -52,7 +38,7 @@ export const CreateRoomPage = () => {
         dispatch(addRoomElement(formData));
         console.log('despues de dispatch' + JSON.stringify(formData))
 
-        // navigate('/rooms')
+        navigate('/rooms')
     }
 
     return (

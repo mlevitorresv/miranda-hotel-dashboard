@@ -17,7 +17,7 @@ export const bookingSlice = createSlice({
             state.data = [action.payload, ...state.data]
         },
         removeBookingElement: (state, action) => {
-            state.data = state.filter((booking) => booking.id !== action.payload.id)
+            state.data = state.data.filter((booking) => booking.id !== action.payload.id)
         }
     },
     extraReducers: (builder) => {

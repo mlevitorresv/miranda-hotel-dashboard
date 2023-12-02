@@ -14,9 +14,10 @@ import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice.js';
+import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus, removeRoomElement } from '../features/rooms/roomSlice.js';
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
 import { useNavigate } from 'react-router-dom';
+import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
 
 export const RoomList = () => {
 
@@ -31,6 +32,7 @@ export const RoomList = () => {
   const [selectedSort, setSelectedSort] = useState('number');
   const [showBooked, setShowBooked] = useState(false);
   const [showAvailable, setShowAvailable] = useState(false);
+  const [activeMenus, setActiveMenus] = useState({})
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,8 +85,21 @@ export const RoomList = () => {
             <td>
               <RoomStatus status={room.available ? 'Available' : 'Booked'} />
             </td>
-            <td>
-              <GuestDiv data={<HiDotsVertical />} />
+            <td onClick={() => {
+              setActiveMenus((prevMenus) => ({
+                ...prevMenus,
+                [room.id]: !prevMenus[room.id],
+              }));
+            }}>
+              <GuestDiv
+                data={<HiDotsVertical />}
+              />
+              {activeMenus[room.id] && (
+                <DropwdownStyled>
+                  <p>edit</p>
+                  <p onClick={() => dispatch(removeRoomElement({id: room.id}))}>delete</p>
+                </DropwdownStyled>
+              )}
             </td>
           </TrStyled>
 
@@ -93,7 +108,7 @@ export const RoomList = () => {
       setSpinner(false);
       setRoomList(components)
     }
-  }, [dispatch, roomListData, roomListStatus, selectedSort, showBooked, showAvailable])
+  }, [dispatch, roomListData, roomListStatus, selectedSort, showBooked, showAvailable, activeMenus])
 
 
 
