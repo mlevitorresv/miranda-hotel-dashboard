@@ -8,13 +8,13 @@ export const Dashboard =() => {
 
   }, [])
   return (
-    <>
+    <div>
         <DivKPI />
 
         <MessageDivStyled>
           <h1 className='messages__title'>Latest review by customers</h1>
           <MessagesContainer />
         </MessageDivStyled>
-    </>
+    </div>
   )
 }
