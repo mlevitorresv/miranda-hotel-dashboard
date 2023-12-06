@@ -7,7 +7,10 @@ describe('Comprobación de login', () => {
     cy.get('input[name=passInput').type('test1234');
     
     cy.get('button[type=submit]').click();
+  
     cy.url().should('include', '/home');
+    cy.window().then(win => console.log(win));
+    cy.reload();
   })
 
 
