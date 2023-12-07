@@ -9,8 +9,7 @@ describe('Comprobación de login', () => {
     cy.get('button[type=submit]').click();
   
     cy.url().should('include', '/home');
-    cy.window().then(win => console.log(win));
-    cy.reload();
+    cy.visit('http://localhost:5173/home')
   })
 
 
