@@ -1,13 +1,13 @@
 import React from 'react'
-import { AsideNavStyled } from './AsideNavStyled'
-import { NavLinkStyled } from './NavLinkStyled'
+import { AsideNavStyled } from './AsideNavStyled.ts'
+import { NavLinkStyled } from './NavLinkStyled.ts'
 import { LuLayoutDashboard } from "react-icons/lu";
 import { SlKey } from "react-icons/sl";
 import { LuCalendarCheck2 } from 'react-icons/lu';
 import { FiUsers } from "react-icons/fi";
 import { FaPhoneAlt } from "react-icons/fa";
-import { DivStyled } from '../common/DivStyled.js'
-import { ButtonStyled } from '../common/ButtonStyled.js';
+import { DivStyled } from '../common/DivStyled.ts'
+import { ButtonStyled } from '../common/ButtonStyled.ts';
 
 export const AsideNav = () => {
   return (
