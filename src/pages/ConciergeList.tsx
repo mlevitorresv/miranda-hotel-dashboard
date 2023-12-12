@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { ListStyled } from '../components/common/ListStyled'
 import { ListElementStyled } from '../components/common/ListElementStyled'
 import { TheadStyled } from '../components/table/TheadStyled'
-import { GuestImage } from '../components/guest/GuestImage.tsx'
+import { GuestImage } from '../components/guest/GuestImage'
 import { TrStyled } from '../components/table/TrStyled'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
-import { ConciergeContact } from '../components/concierge/ConciergeContact.tsx'
+import { ConciergeContact } from '../components/concierge/ConciergeContact'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/common/MenuStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
@@ -16,7 +16,7 @@ import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatu
 import { getUserListFromAPIThunk } from '../features/user/userThunk'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
-import { Tfooter } from '../components/table/Tfooter.tsx'
+import { Tfooter } from '../components/table/Tfooter'
 import { UserInterface } from '../interfaces/UserInterface'
 
 export const ConciergeList = () => {

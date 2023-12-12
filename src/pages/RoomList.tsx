@@ -4,12 +4,12 @@ import { ListElementStyled } from '../components/common/ListElementStyled.js';
 import { SearchBarStyled } from '../components/table/SearchBarStyled.js';
 import { TheadStyled } from '../components/table/TheadStyled.js';
 import { TrStyled } from '../components/table/TrStyled.js';
-import { GuestDiv } from '../components/guest/GuestDiv.tsx';
+import { GuestDiv } from '../components/guest/GuestDiv';
 import { MenuStyled } from '../components/common/MenuStyled.js';
 import { HiDotsVertical } from "react-icons/hi";
-import { GuestImageRoom } from '../components/room/GuestImageRoom.tsx';
-import { RoomRate } from '../components/room/RoomRate.tsx';
-import { RoomStatus } from '../components/room/RoomStatus.tsx';
+import { GuestImageRoom } from '../components/room/GuestImageRoom';
+import { RoomRate } from '../components/room/RoomRate';
+import { RoomStatus } from '../components/room/RoomStatus';
 import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
