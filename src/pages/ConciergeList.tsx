@@ -1,41 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import { ListStyled } from '../components/common/ListStyled'
-import { ListElementStyled } from '../components/common/ListElementStyled.ts'
-import { TheadStyled } from '../components/table/TheadStyled.ts'
+import { ListElementStyled } from '../components/common/ListElementStyled'
+import { TheadStyled } from '../components/table/TheadStyled'
 import { GuestImage } from '../components/guest/GuestImage.jsx'
-import { TrStyled } from '../components/table/TrStyled.ts'
+import { TrStyled } from '../components/table/TrStyled'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { ConciergeContact } from '../components/concierge/ConciergeContact.jsx'
 import { HiDotsVertical } from "react-icons/hi";
-import { MenuStyled } from '../components/common/MenuStyled.ts'
-import { SelectStyled } from '../components/table/SelectStyled.ts'
-import { TableGuestStyled } from '../components/table/TableGuestStyled.ts'
+import { MenuStyled } from '../components/common/MenuStyled'
+import { SelectStyled } from '../components/table/SelectStyled'
+import { TableGuestStyled } from '../components/table/TableGuestStyled'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus, removeUserElement } from '../features/user/userSlice.js'
-import { getUserListFromAPIThunk } from '../features/user/userThunk.js'
-import { ButtonStyled } from '../components/common/ButtonStyled.ts'
-import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.ts'
+import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus, removeUserElement } from '../features/user/userSlice'
+import { getUserListFromAPIThunk } from '../features/user/userThunk'
+import { ButtonStyled } from '../components/common/ButtonStyled'
+import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter.jsx'
+import { UserInterface } from '../interfaces/UserInterface'
 
 export const ConciergeList = () => {
 
-  const dispatch = useDispatch();
-  const userListData = useSelector(getUserData);
-  const userListError = useSelector(getUserError);
-  const userListStatus = useSelector(getUserStatus);
-  const userListActive = useSelector(getUserActive);
-  const userListInactive = useSelector(getUserInactive);
-  const [spinner, setSpinner] = useState(true);
-  const [userList, setUserList] = useState([]);
-  const [showActiveUser, setShowActiveUser] = useState(false);
-  const [showInactiveUser, setShowInactiveUser] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('date');
+  const dispatch: Dispatch = useDispatch();
+  const userListData = useSelector<UserInterface[]>(getUserData);
+  const userListError = useSelector<string | undefined>(getUserError);
+  const userListStatus = useSelector<string>(getUserStatus);
+  const userListActive = useSelector<UserInterface[]>(getUserActive);
+  const userListInactive = useSelector<UserInterface[]>(getUserInactive);
+  const [spinner, setSpinner] = useState<boolean>(true);
+  const [userList, setUserList] = useState<UserInterface[]>([]);
+  const [showActiveUser, setShowActiveUser] = useState<boolean>(false);
+  const [showInactiveUser, setShowInactiveUser] = useState<boolean>(false);
+  const [selectedSort, setSelectedSort] = useState<string>('date');
   const [activeMenus, setActiveMenus] = useState({})
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
   useEffect(() => {
     if (userListStatus === "idle") {
@@ -45,7 +45,7 @@ export const ConciergeList = () => {
       setSpinner(true);
     }
     else if (userListStatus === "fulfilled") {
-      let components = [];
+      let components: UserInterface[] = [];
       let filteredList;
       if (showActiveUser) {
         filteredList = userListActive;
@@ -58,17 +58,17 @@ export const ConciergeList = () => {
       }
       let sortedList = filteredList.slice();
       if (selectedSort === 'date') {
-        sortedList.sort((a, b) => new Date(b.date) - new Date(a.date))
+        sortedList.sort((a: UserInterface[], b: UserInterface[]) => new Date(b.date) - new Date(a.date))
       }
       else {
-        sortedList.sort((a, b) => a.name.localeCompare(b.name))
+        sortedList.sort((a: UserInterface[], b: UserInterface[]) => a.name.localeCompare(b.name))
       }
 
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
 
       const paginatedList = sortedList.slice(startIndex, endIndex);
-      paginatedList.forEach(user => {
+      paginatedList.forEach((user: UserInterface) => {
         components.push(
           <TrStyled>
             <td>
@@ -112,7 +112,7 @@ export const ConciergeList = () => {
   }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort, activeMenus, currentPage])
 
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
 
