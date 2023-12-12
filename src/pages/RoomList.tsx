@@ -52,19 +52,19 @@ export const RoomList = () => {
       let sortedList = filteredRoomList.slice();
 
       if (selectedSort === 'number') {
-        sortedList.sort((a: RoomInterface[], b: RoomInterface[]) => a.id - b.id)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => a.id - b.id)
       }
       else if (selectedSort === 'booked') {
-        sortedList.sort((a: RoomInterface[], b: RoomInterface[]) => a.available - b.available)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => a.available - b.available)
       }
       else if (selectedSort === 'available') {
-        sortedList.sort((a: RoomInterface[], b: RoomInterface[]) => b.available - a.available)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => b.available - a.available)
       }
       else if (selectedSort === 'priceLow') {
-        sortedList.sort((a: RoomInterface[], b: RoomInterface[]) => a.price - b.price)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => a.price - b.price)
       }
       else if (selectedSort === 'priceHigh') {
-        sortedList.sort((a: RoomInterface[], b: RoomInterface[]) => b.price - a.price)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => b.price - a.price)
       }
 
       const startIndex = (currentPage - 1) * itemsPerPage;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, useEffect, useState } from 'react'
 import { ListStyled } from '../components/common/ListStyled'
 import { ListElementStyled } from '../components/common/ListElementStyled'
 import { TheadStyled } from '../components/table/TheadStyled'
@@ -58,10 +58,10 @@ export const ConciergeList = () => {
       }
       let sortedList = filteredList.slice();
       if (selectedSort === 'date') {
-        sortedList.sort((a: UserInterface[], b: UserInterface[]) => new Date(b.date) - new Date(a.date))
+        sortedList.sort((a: UserInterface, b: UserInterface) => new Date(b.date) - new Date(a.date))
       }
       else {
-        sortedList.sort((a: UserInterface[], b: UserInterface[]) => a.name.localeCompare(b.name))
+        sortedList.sort((a: UserInterface, b: UserInterface) => a.name.localeCompare(b.name))
       }
 
       const startIndex = (currentPage - 1) * itemsPerPage;
