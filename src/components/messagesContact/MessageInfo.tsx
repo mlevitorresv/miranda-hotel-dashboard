@@ -1,15 +1,15 @@
 import React from 'react'
-import { GuestImageStyled } from './GuestImageStyled'
+import { MessageInfoStyled } from './MessageInfoStyled'
 
-export const GuestImage = (props) => {
+export const MessageInfo = (props: any) => {
   return (
-    <GuestImageStyled>
+    <MessageInfoStyled>
         <img src={props.img} alt="room of hotel" />
         <div>
             <p className='name'>{props.name}</p>
             <p className='id'>{props.id}</p>
-            <p className='join'>{props.join}</p>
+            <p className='join'>Joined At: {props.join}</p>
         </div>
-    </GuestImageStyled>
+    </MessageInfoStyled>
   )
 }

@@ -7,13 +7,13 @@ import { TableGuestStyled } from '../components/table/TableGuestStyled.ts'
 import { TheadStyled } from '../components/table/TheadStyled.ts'
 import { TrStyled } from '../components/table/TrStyled.ts'
 import { ButtonStyled } from '../components/common/ButtonStyled.ts'
-import { GuestDiv } from '../components/guest/GuestDiv.jsx'
+import { GuestDiv } from '../components/guest/GuestDiv.tsx'
 import { MenuStyled } from '../components/common/MenuStyled.ts'
 import { SelectStyled } from '../components/table/SelectStyled.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContactArchived, getContactData, getContactError, getContactStatus } from '../features/contact/contactSlice.js'
 import { getContactListFromAPIThunk } from '../features/contact/contactThunk.js'
-import { Tfooter } from '../components/table/Tfooter.jsx'
+import { Tfooter } from '../components/table/Tfooter.tsx'
 
 export const Reviews = () => {
 

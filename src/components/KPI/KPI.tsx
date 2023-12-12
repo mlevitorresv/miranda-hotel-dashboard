@@ -3,7 +3,7 @@ import { KPIStyled } from './KPIStyled'
 import { IconContainerKPIStyled } from './IconContainerKPIStyled'
 import { DataContainerKPIStyled } from './DataContainerKPIStyled'
 
-export const KPI = (props) => {
+export const KPI = (props: any) => {
   return (
     <KPIStyled>
         <IconContainerKPIStyled className='iconContainer'>

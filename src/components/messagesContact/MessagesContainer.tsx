@@ -4,7 +4,7 @@ import { Message } from './Message'
 import 'swiper/css'
 import comments from '../../data/comment.json'
 
-export const MessagesContainer = (props) => {
+export const MessagesContainer = (props: any) => {
   return (
     <Swiper
         spaceBetween={50}

@@ -10,7 +10,7 @@ import { MessageInfo } from './MessageInfo';
 import { useDispatch } from 'react-redux';
 
 
-export const Message = (props) => {
+export const Message = (props: any) => {
   
   const dispatch = useDispatch();
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -24,9 +24,9 @@ export const Message = (props) => {
     
   };
 
-  const handleRemoveContact = (id) =>{
-    // dispatch(removeContactElement(id));
-  }
+  // const handleRemoveContact = (id) =>{
+  //   // dispatch(removeContactElement(id));
+  // }
 
   return (
     <>
@@ -36,7 +36,7 @@ export const Message = (props) => {
               <MessageInfo img={props.img} name={props.name} join={props.join} />
               <div>
                   <CiCircleCheck className='check'/>
-                  <CiCircleRemove className='remove' onClick={handleRemoveContact(props.id)}/>
+                  <CiCircleRemove className='remove' /*onClick={handleRemoveContact(props.id)}*//>
               </div>
           </div>
       </MessageStyled>

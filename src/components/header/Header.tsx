@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { HeaderStyled } from './headerStyled'
+import { HeaderStyled } from './HeaderStyled'
 import { H1Styled } from '../common/H1Styled'
 import { 
     DashboardStyledIcon, 
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom"
 import { useAuth } from '../../context/AuthProvider'
 
 
-export const Header = (props) => {
+export const Header = (props: any) => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { logout } = useAuth();

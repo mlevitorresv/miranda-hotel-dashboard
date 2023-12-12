@@ -1,7 +1,7 @@
 import React from 'react'
 import { RoomStatusStyled } from './RoomStatusStyled'
 
-export const RoomStatus = (props) => {
+export const RoomStatus = (props: any) => {
     let bgColor;
     if(props.status === 'Available'){
         bgColor = '#5AD07A';

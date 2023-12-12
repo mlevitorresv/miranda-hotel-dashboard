@@ -4,11 +4,11 @@ import { ListElementStyled } from '../components/common/ListElementStyled'
 import { TableGuestStyled } from '../components/table/TableGuestStyled.ts'
 import { SearchBarStyled } from '../components/table/SearchBarStyled.ts'
 import { TheadStyled } from '../components/table/TheadStyled.ts'
-import { GuestImage } from '../components/guest/GuestImage.jsx'
+import { GuestImage } from '../components/guest/GuestImage.tsx'
 import { TrStyled } from '../components/table/TrStyled.ts'
 import { ButtonStyled } from '../components/common/ButtonStyled.ts'
-import { GuestDiv } from '../components/guest/GuestDiv.jsx'
-import { GuestCheck } from '../components/guest/GuestCheck.jsx'
+import { GuestDiv } from '../components/guest/GuestDiv.tsx'
+import { GuestCheck } from '../components/guest/GuestCheck.tsx'
 import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/common/MenuStyled.ts'
 import { InputStyled } from '../components/common/InputStyled.ts'
@@ -16,7 +16,7 @@ import { SelectStyled } from '../components/table/SelectStyled.ts'
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus, removeBookingElement } from '../features/bookings/bookingsSlice';
 import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
-import { Tfooter } from '../components/table/Tfooter.jsx'
+import { Tfooter } from '../components/table/Tfooter.tsx'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.ts'
 
 
