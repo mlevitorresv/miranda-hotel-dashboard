@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { ListStyled } from '../components/common/ListStyled';
 import { ListElementStyled } from '../components/common/ListElementStyled';
-import { SearchBarStyled } from '../components/table/SearchBarStyled.ts';
-import { TheadStyled } from '../components/table/TheadStyled.ts';
-import { TrStyled } from '../components/table/TrStyled.ts';
+import { SearchBarStyled } from '../components/table/SearchBarStyled';
+import { TheadStyled } from '../components/table/TheadStyled';
+import { TrStyled } from '../components/table/TrStyled';
 import { GuestDiv } from '../components/guest/GuestDiv.jsx';
-import { MenuStyled } from '../components/common/MenuStyled.ts';
+import { MenuStyled } from '../components/common/MenuStyled';
 import { HiDotsVertical } from "react-icons/hi";
 import { GuestImageRoom } from '../components/room/GuestImageRoom.jsx';
 import { RoomRate } from '../components/room/RoomRate.jsx';
 import { RoomStatus } from '../components/room/RoomStatus.jsx';
-import { SelectStyled } from '../components/table/SelectStyled.ts';
-import { TableGuestStyled } from '../components/table/TableGuestStyled.ts';
-import { ButtonStyled } from '../components/common/ButtonStyled.ts'
+import { SelectStyled } from '../components/table/SelectStyled';
+import { TableGuestStyled } from '../components/table/TableGuestStyled';
+import { ButtonStyled } from '../components/common/ButtonStyled'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus, removeRoomElement } from '../features/rooms/roomSlice.js';
-import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
+import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus, removeRoomElement } from '../features/rooms/roomSlice';
+import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk';
 import { useNavigate } from 'react-router-dom';
-import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.ts';
+import { DropwdownStyled } from '../components/dropdown/DropwdownStyled';
 import { Tfooter } from '../components/table/Tfooter.jsx';
 
 export const RoomList = () => {
