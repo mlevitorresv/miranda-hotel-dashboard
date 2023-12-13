@@ -1,8 +1,12 @@
 import styled from "styled-components"
 
+interface ButtonStyledPropsInterface {
+    color: string,
+    bg: string,
+    border: string
+}
 
-
-export const ButtonStyled = styled.button`
+export const ButtonStyled = styled.button<ButtonStyledPropsInterface>`
     // width: auto;
     font: normal normal 600 14px/21px Poppins;
     color: ${props => props.color ? props.color : '#135846'};

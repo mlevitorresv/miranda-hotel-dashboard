@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ListStyled } from '../components/common/ListStyled'
 import { ListElementStyled } from '../components/common/ListElementStyled'
 import { TheadStyled } from '../components/table/TheadStyled'
@@ -18,6 +18,7 @@ import { ButtonStyled } from '../components/common/ButtonStyled'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter'
 import { UserInterface } from '../interfaces/UserInterface'
+import { Dispatch } from '@reduxjs/toolkit'
 
 export const ConciergeList = () => {
 

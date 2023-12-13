@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const SelectStyled = styled.select`
+interface SelectStyledPropsInterface {
+    type: string
+}
+
+export const SelectStyled = styled.select<SelectStyledPropsInterface>`
     color: #135846;
     border: 1px solid #135846;
     border-radius: 10px;

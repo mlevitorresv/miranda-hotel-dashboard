@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+interface DetailsDescStyledPropsInterface{
+    type: string
+}
 
-
-export const DetailsDescStyled = styled.p`
+export const DetailsDescStyled = styled.p<DetailsDescStyledPropsInterface>`
     font-size: .8em;
     font-family: 'Poppins';
     color: #363636;

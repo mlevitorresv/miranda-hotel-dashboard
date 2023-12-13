@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
+interface DetailsGuestDivUserStyledPropsInterface{
+    wrap: string,
+    type: string
+}
 
-export const DetailsGuestDivUserStyled = styled.div`
+export const DetailsGuestDivUserStyled = styled.div<DetailsGuestDivUserStyledPropsInterface>`
     display: flex;    
     justify-content: ${props => props.wrap === 'true' ? '' : 'space-between'};
     flex-wrap: ${props => props.wrap === 'true' ? 'wrap' : 'nowrap'};

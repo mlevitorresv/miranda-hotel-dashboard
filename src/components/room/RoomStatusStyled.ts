@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
+interface RoomStatusStyledPropsInterface{
+  bg: string
+}
 
-export const RoomStatusStyled = styled.p`
+export const RoomStatusStyled = styled.p<RoomStatusStyledPropsInterface>`
   color: white;
   padding: .2em .7em;
   text-align: center;
