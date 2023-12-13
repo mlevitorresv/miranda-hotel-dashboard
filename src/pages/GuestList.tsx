@@ -1,44 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import { ListStyled } from '../components/common/ListStyled'
 import { ListElementStyled } from '../components/common/ListElementStyled'
-import { TableGuestStyled } from '../components/table/TableGuestStyled.ts'
-import { SearchBarStyled } from '../components/table/SearchBarStyled.ts'
-import { TheadStyled } from '../components/table/TheadStyled.ts'
-import { GuestImage } from '../components/guest/GuestImage.tsx'
-import { TrStyled } from '../components/table/TrStyled.ts'
-import { ButtonStyled } from '../components/common/ButtonStyled.ts'
-import { GuestDiv } from '../components/guest/GuestDiv.tsx'
-import { GuestCheck } from '../components/guest/GuestCheck.tsx'
+import { TableGuestStyled } from '../components/table/TableGuestStyled'
+import { SearchBarStyled } from '../components/table/SearchBarStyled'
+import { TheadStyled } from '../components/table/TheadStyled'
+import { GuestImage } from '../components/guest/GuestImage'
+import { TrStyled } from '../components/table/TrStyled'
+import { ButtonStyled } from '../components/common/ButtonStyled'
+import { GuestDiv } from '../components/guest/GuestDiv'
+import { GuestCheck } from '../components/guest/GuestCheck'
 import { HiDotsVertical } from "react-icons/hi";
-import { MenuStyled } from '../components/common/MenuStyled.ts'
-import { InputStyled } from '../components/common/InputStyled.ts'
-import { SelectStyled } from '../components/table/SelectStyled.ts'
+import { MenuStyled } from '../components/common/MenuStyled'
+import { InputStyled } from '../components/common/InputStyled'
+import { SelectStyled } from '../components/table/SelectStyled'
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus, removeBookingElement } from '../features/bookings/bookingsSlice';
 import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
-import { Tfooter } from '../components/table/Tfooter.tsx'
-import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.ts'
+import { Tfooter } from '../components/table/Tfooter'
+import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
+import { Dispatch } from '@reduxjs/toolkit'
+import { RootState } from '../app/store'
+import { BookingInterface } from '../interfaces/BookingsInterface'
 
 
 
 export const GuestList = () => {
 
 
-  const dispatch = useDispatch();
-  const bookingListData = useSelector(getBookingData)
-  const bookingListError = useSelector(getBookingError)
-  const bookingListStatus = useSelector(getBookingStatus)
-  const bookingListRefund = useSelector(getBookingRefund)
-  const bookingListPending = useSelector(getBookingPending)
-  const bookingListBooked = useSelector(getBookingBooked)
-  const [spinner, setSpinner] = useState(true);
-  const [bookingList, setBookingList] = useState([]);
-  const [showBookingsRefund, setShowBookingsRefund] = useState(false);
-  const [showBookingsPending, setShowBookingsPending] = useState(false);
-  const [showBookingsBooked, setShowBookingsBooked] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('date');
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const dispatch: Dispatch= useDispatch();
+  const bookingListData = useSelector<RootState>(getBookingData)
+  const bookingListError = useSelector<RootState>(getBookingError)
+  const bookingListStatus = useSelector<RootState>(getBookingStatus)
+  const bookingListRefund = useSelector<RootState>(getBookingRefund)
+  const bookingListPending = useSelector<RootState>(getBookingPending)
+  const bookingListBooked = useSelector<RootState>(getBookingBooked)
+  const [spinner, setSpinner] = useState<boolean>(true);
+  const [bookingList, setBookingList] = useState<BookingInterface[]>([]);
+  const [showBookingsRefund, setShowBookingsRefund] = useState<boolean>(false);
+  const [showBookingsPending, setShowBookingsPending] = useState<boolean>(false);
+  const [showBookingsBooked, setShowBookingsBooked] = useState<boolean>(false);
+  const [selectedSort, setSelectedSort] = useState<string>('date');
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [activeMenus, setActiveMenus] = useState({})
 
   useEffect(() => {
@@ -49,7 +52,7 @@ export const GuestList = () => {
       setSpinner(true);
     }
     else if (bookingListStatus === "fulfilled") {
-      let components = [];
+      let components: React.JSX.Element[] = [];
       let filteredList;
       if (showBookingsBooked) {
         filteredList = bookingListBooked;
@@ -66,16 +69,16 @@ export const GuestList = () => {
 
       let sortedList = filteredList.slice();
       if (selectedSort === 'date') {
-        sortedList.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
+        sortedList.sort((a: BookingInterface, b: BookingInterface) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime())
       }
       else if (selectedSort === 'guest') {
-        sortedList.sort((a, b) => a.id - b.id)
+        sortedList.sort((a: BookingInterface, b: BookingInterface) => a.id - b.id)
       }
       else if (selectedSort === 'checkIn') {
-        sortedList.sort((a, b) => new Date(b.checkInDate) - new Date(a.checkInDate))
+        sortedList.sort((a: BookingInterface, b: BookingInterface) => new Date(b.checkInDate).getTime() - new Date(a.checkInDate).getTime())
       }
       else if (selectedSort === 'checkOut') {
-        sortedList.sort((a, b) => new Date(b.checkOut) - new Date(a.checkOut))
+        sortedList.sort((a: BookingInterface, b: BookingInterface) => new Date(b.checkOut).getTime() - new Date(a.checkOut).getTime())
       }
 
       const startIndex = (currentPage - 1) * itemsPerPage;
@@ -83,7 +86,7 @@ export const GuestList = () => {
 
       const paginatedList = sortedList.slice(startIndex, endIndex);
 
-      paginatedList.forEach(booking => {
+      paginatedList.forEach((booking: BookingInterface) => {
         components.push(
           <TrStyled>
             <td>
@@ -142,7 +145,7 @@ export const GuestList = () => {
   }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort, activeMenus, currentPage])
 
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
 

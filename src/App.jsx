@@ -1,6 +1,6 @@
 import { Dashboard } from './pages/Dashboard.jsx'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { GuestList } from './pages/GuestList.jsx'
+import { GuestList } from './pages/GuestList.tsx'
 import { LoginPage } from './pages/LoginPage.jsx'
 import { GuestDetails } from './pages/GuestDetails.jsx'
 import { RoomList } from './pages/RoomList.tsx'

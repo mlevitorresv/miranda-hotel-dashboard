@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getBookingListFromAPIThunk } from "./bookingsThunk";
+import { BookingInterface, BookingSliceInitialStateInterface } from "../../interfaces/BookingsInterface";
+import { RootState } from "../../app/store";
 
+const initialState: BookingSliceInitialStateInterface = {
+    data: [],
+    status: 'idle',
+    error: undefined
+}
 
 export const bookingSlice = createSlice({
     name: "booking",
-    initialState: {
-        data: [],
-        status: "idle",
-        error: null
-    },
+    initialState: initialState,
     reducers:{
         getBookingById: (state, action) => {
             state.data.filter((booking) => booking.id === action.payload.id)
@@ -37,9 +40,9 @@ export const bookingSlice = createSlice({
 
 
 export const { addBookingElement, removeBookingElement } = bookingSlice.actions;
-export const getBookingData = state => state.booking.data;
-export const getBookingStatus = state => state.booking.status;
-export const getBookingError  = state => state.booking.error;
-export const getBookingRefund = state => state.booking.data.filter(booking => booking.status === 'refund')
-export const getBookingPending = state => state.booking.data.filter(booking => booking.status === 'pending')
-export const getBookingBooked = state => state.booking.data.filter(booking => booking.status === 'booked')
+export const getBookingData = (state: RootState): BookingInterface[] => state.booking.data;
+export const getBookingStatus = (state: RootState) => state.booking.status;
+export const getBookingError  = (state: RootState) => state.booking.error;
+export const getBookingRefund = (state: RootState) => state.booking.data.filter((booking) => booking.status === 'refund')
+export const getBookingPending = (state: RootState) => state.booking.data.filter((booking) => booking.status === 'pending')
+export const getBookingBooked = (state: RootState) => state.booking.data.filter((booking) => booking.status === 'booked')
