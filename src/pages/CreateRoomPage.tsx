@@ -9,13 +9,14 @@ import { AmenityStyled } from '../components/amenities/AmenityStyled'
 import { useDispatch } from 'react-redux'
 import { addRoomElement } from '../features/rooms/roomSlice'
 import { useNavigate } from 'react-router-dom'
+import { RoomInterface } from '../interfaces/RoomInterface'
 
 export const CreateRoomPage = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState<RoomInterface | {}>({});
 
 
     const handleAddRoom = (e: React.FormEvent<HTMLFormElement>) => {

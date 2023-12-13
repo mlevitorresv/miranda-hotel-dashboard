@@ -8,12 +8,13 @@ import { useDispatch } from 'react-redux'
 import { addUserElement } from '../features/user/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { UserInterface } from '../interfaces/UserInterface'
 
 export const CreateUserPage = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState<UserInterface | {}>({});
 
     const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
