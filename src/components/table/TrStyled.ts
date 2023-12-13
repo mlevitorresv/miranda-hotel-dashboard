@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface TrStyledPropsInterface{
-    align: string
+    align?: string
 }
 
 export const TrStyled = styled.tr<TrStyledPropsInterface>`

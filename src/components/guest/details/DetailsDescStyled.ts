@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface DetailsDescStyledPropsInterface{
-    type: string
+    type?: string
 }
 
 export const DetailsDescStyled = styled.p<DetailsDescStyledPropsInterface>`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface MessageDivStyledPropsInterface{
-    bg: string
+    bg?: string
 }
 
 export const MessageDivStyled = styled.div<MessageDivStyledPropsInterface>`

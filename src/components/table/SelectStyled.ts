@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface SelectStyledPropsInterface {
-    type: string
+    type?: string
 }
 
 export const SelectStyled = styled.select<SelectStyledPropsInterface>`

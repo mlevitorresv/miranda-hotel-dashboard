@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 interface DetailsGuestDivUserStyledPropsInterface{
-    wrap: string,
-    type: string
+    wrap?: string,
+    type?: string
 }
 
 export const DetailsGuestDivUserStyled = styled.div<DetailsGuestDivUserStyledPropsInterface>`

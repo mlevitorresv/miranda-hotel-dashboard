@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
 interface ButtonStyledPropsInterface {
-    color: string,
-    bg: string,
-    border: string
+    color?: string,
+    bg?: string,
+    border?: string
 }
 
 export const ButtonStyled = styled.button<ButtonStyledPropsInterface>`
