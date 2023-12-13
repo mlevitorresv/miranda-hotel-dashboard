@@ -4,8 +4,9 @@ import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { H1Styled } from '../components/common/H1Styled'
+import { UserInterface } from '../interfaces/UserInterface'
 
-export const EditUserPage = (props) => {
+export const EditUserPage = (props: UserInterface) => {
 
 
   return (

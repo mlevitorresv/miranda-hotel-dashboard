@@ -6,8 +6,9 @@ import { SelectStyled } from '../components/table/SelectStyled'
 import { H1Styled } from '../components/common/H1Styled'
 import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/amenities/AmenityStyled'
+import { RoomInterface } from '../interfaces/RoomInterface'
 
-export const EditRoomPage = (props) => {
+export const EditRoomPage = (props: RoomInterface) => {
 
 
   return (
@@ -20,7 +21,6 @@ export const EditRoomPage = (props) => {
                     <option value="doubleSuper" >Double Super</option>
                     <option value="suite" >Suite</option>
                 </SelectStyled>
-                <InputStyled type="number" name="roomNumberInput" id="roomNumberInput" placeholder={props.number}/>
                 <InputStyled type="text" name="descInput" id="descInput" placeholder={props.description}/>
                 <SelectStyled type={'secondary'}>
                     <option value="noOffer" selected>No offer</option>
