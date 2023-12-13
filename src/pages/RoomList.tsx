@@ -1,4 +1,5 @@
-import React, { Dispatch, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Dispatch } from '@reduxjs/toolkit';
 import { ListStyled } from '../components/common/ListStyled.js';
 import { ListElementStyled } from '../components/common/ListElementStyled.js';
 import { SearchBarStyled } from '../components/table/SearchBarStyled.js';
@@ -47,7 +48,7 @@ export const RoomList = () => {
       setSpinner(true);
     }
     else if (roomListStatus === "fulfilled") {
-      let components: RoomInterface[] = [];
+      let components: React.JSX.Element[] = [];
       const filteredRoomList = showBooked ? bookedRoomList : showAvailable ? availableRoomList : roomListData
       let sortedList = filteredRoomList.slice();
 

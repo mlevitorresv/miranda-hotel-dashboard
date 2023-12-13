@@ -45,7 +45,7 @@ export const ConciergeList = () => {
       setSpinner(true);
     }
     else if (userListStatus === "fulfilled") {
-      let components: UserInterface[] = [];
+      let components: React.JSX.Element[] = [];
       let filteredList;
       if (showActiveUser) {
         filteredList = userListActive;
