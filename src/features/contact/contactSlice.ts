@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getContactListFromAPIThunk } from "./contactThunk";
+import { ContactInterface, ContactSliceInitialStateInterface } from "../../interfaces/ContactInterface";
+import { RootState } from "../../app/store";
 
+const initialState: ContactSliceInitialStateInterface = {
+    data: [],
+    status: 'idle',
+    error: undefined
+}
 
 export const contactSlice = createSlice({
     name: "contact",
-    initialState: {
-        data: [],
-        status: "idle",
-        error: null
-    },
+    initialState: initialState,
     reducers:{
         getContactById: (state, action) => {
             state.data.filter((comment) => comment.id === action.payload.id)
@@ -37,7 +40,7 @@ export const contactSlice = createSlice({
 
 
 export const { addContactElement } = contactSlice.actions;
-export const getContactData = state => state.contact.data;
-export const getContactStatus = state => state.contact.status;
-export const getContactError  = state => state.contact.error;
-export const getContactArchived = state => state.contact.data.filter((comment) => comment.archived);
+export const getContactData = (state: RootState): ContactInterface[] => state.contact.data;
+export const getContactStatus = (state: RootState) => state.contact.status;
+export const getContactError  = (state: RootState) => state.contact.error;
+export const getContactArchived = (state: RootState) => state.contact.data.filter((comment) => comment.archived);
