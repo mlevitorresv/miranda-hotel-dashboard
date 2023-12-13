@@ -58,7 +58,7 @@ export const ConciergeList = () => {
       }
       let sortedList = filteredList.slice();
       if (selectedSort === 'date') {
-        sortedList.sort((a: UserInterface, b: UserInterface) => new Date(b.date) - new Date(a.date))
+        sortedList.sort((a: UserInterface, b: UserInterface) => new Date(b.date).getTime() - new Date(a.date).getTime())
       }
       else {
         sortedList.sort((a: UserInterface, b: UserInterface) => a.name.localeCompare(b.name))
