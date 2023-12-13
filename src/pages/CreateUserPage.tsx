@@ -15,19 +15,19 @@ export const CreateUserPage = () => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({});
 
-    const handleAddUser = (e) => {
+    const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
-            name: e.target.name.value,
-            ocupation: e.target.ocupation.value,
-            description: e.target.desc.value,
-            email: e.target.email.value,
-            phone: e.target.phone.value,
-            date: e.target.date.value,
-            desc: e.target.desc.value,
-            active: e.target.active.value,
-            password: e.target.password.value,
+            name: e.currentTarget.name.value,
+            ocupation: e.currentTarget.ocupation.value,
+            description: e.currentTarget.desc.value,
+            email: e.currentTarget.email.value,
+            phone: e.currentTarget.phone.value,
+            date: e.currentTarget.date.value,
+            desc: e.currentTarget.desc.value,
+            active: e.currentTarget.active.value,
+            password: e.currentTarget.password.value,
         }))
         dispatch(addUserElement(formData));
         console.log('despues de dispatch' + JSON.stringify(formData))

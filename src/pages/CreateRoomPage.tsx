@@ -18,22 +18,22 @@ export const CreateRoomPage = () => {
     const [formData, setFormData] = useState({});
 
 
-    const handleAddRoom = (e) => {
+    const handleAddRoom = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
-            roomType: e.target.roomType.value,
-            number: e.target.roomNumber.value,
-            description: e.target.desc.value,
-            offer: e.target.offerType.value,
-            price: e.target.price.value,
-            discount: e.target.discount.value,
-            cancellation: e.target.cancellation.value,
-            tv: e.target.TV.value,
-            service: e.target.service.value,
-            sea: e.target.sea.value,
-            spa: e.target.spa.value,
-            jacuzzi: e.target.jacuzzi.value
+            roomType: e.currentTarget.roomType.value,
+            number: e.currentTarget.roomNumber.value,
+            description: e.currentTarget.desc.value,
+            offer: e.currentTarget.offerType.value,
+            price: e.currentTarget.price.value,
+            discount: e.currentTarget.discount.value,
+            cancellation: e.currentTarget.cancellation.value,
+            tv: e.currentTarget.TV.value,
+            service: e.currentTarget.service.value,
+            sea: e.currentTarget.sea.value,
+            spa: e.currentTarget.spa.value,
+            jacuzzi: e.currentTarget.jacuzzi.value
         }))
         dispatch(addRoomElement(formData));
         console.log('despues de dispatch' + JSON.stringify(formData))
