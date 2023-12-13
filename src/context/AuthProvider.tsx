@@ -2,6 +2,12 @@ import React, { useContext, useEffect, useState, createContext } from 'react'
 
 const AuthContext = createContext()
 
+interface AuthProviderInterface{
+  username: string,
+  password: string
+
+}
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
 
@@ -10,7 +16,7 @@ export const AuthProvider = ({ children }) => {
         if(storedUser) setUser(JSON.parse(storedUser))
     },[])
 
-    const login = (userData) => {
+    const login = (userData: AuthProviderInterface) => {
         setUser(userData);
         localStorage.setItem('conex', JSON.stringify(userData))
     }
