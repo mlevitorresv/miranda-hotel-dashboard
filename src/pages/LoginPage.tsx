@@ -3,7 +3,7 @@ import { ButtonStyled } from '../components/common/ButtonStyled'
 import { Link, useNavigate } from "react-router-dom";
 import { FormStyled } from '../components/form/FormStyled';
 import { FormPageStyled } from '../components/form/FormPageStyled';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthProvider';
 
 
@@ -15,15 +15,15 @@ export const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const handleChangeEmail = (e) =>{
-    setEmail(e.target.value);
+  const handleChangeEmail = (e: React.FormEvent<HTMLInputElement>) =>{
+    setEmail(e.currentTarget.value);
   }
 
-  const handleChangePass = (e) =>{
-    setPass(e.target.value);
+  const handleChangePass = (e: React.FormEvent<HTMLInputElement>) =>{
+    setPass(e.currentTarget.value);
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if(email === 'test@test.com' && pass === 'test1234'){
