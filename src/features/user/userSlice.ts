@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUserListFromAPIThunk } from "./userThunk";
 import { UserInterface, UserSliceInitialStateInterface } from '../../interfaces/UserInterface'
+import { RootState } from "../../app/store";
 
 const initialState: UserSliceInitialStateInterface = {
     data: [],
@@ -39,8 +40,8 @@ export const userSlice = createSlice({
 
 
 export const { addUserElement, removeUserElement } = userSlice.actions;
-export const getUserData = (state): UserInterface[] => state.user.data;
-export const getUserStatus = (state) => state.user.status;
-export const getUserError  = (state) => state.user.error;
-export const getUserActive = (state) => state.user.data.filter((user) => user.status === 'ACTIVE')
-export const getUserInactive = (state) => state.user.data.filter((user) => user.status === 'INACTIVE')
+export const getUserData = (state: RootState): UserInterface[] => state.user.data;
+export const getUserStatus = (state: RootState) => state.user.status;
+export const getUserError  = (state: RootState) => state.user.error;
+export const getUserActive = (state: RootState) => state.user.data.filter((user) => user.status === 'ACTIVE')
+export const getUserInactive = (state: RootState) => state.user.data.filter((user) => user.status === 'INACTIVE')

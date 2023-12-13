@@ -12,7 +12,7 @@ import { CreateUserPage } from './pages/CreateUserPage.jsx'
 import { EditUserPage } from './pages/EditUserPage.jsx'
 import { CreateRoomPage } from './pages/CreateRoomPage.jsx'
 import { EditRoomPage } from './pages/EditRoomPage.jsx'
-import { store } from './app/store.js'
+import { store } from './app/store.ts'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthProvider.jsx'
 

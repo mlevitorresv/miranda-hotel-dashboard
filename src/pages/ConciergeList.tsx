@@ -19,15 +19,16 @@ import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter'
 import { UserInterface } from '../interfaces/UserInterface'
 import { Dispatch } from '@reduxjs/toolkit'
+import { RootState } from '../app/store'
 
 export const ConciergeList = () => {
 
   const dispatch: Dispatch = useDispatch();
-  const userListData = useSelector<UserInterface[]>(getUserData);
-  const userListError = useSelector<string | undefined>(getUserError);
-  const userListStatus = useSelector<string>(getUserStatus);
-  const userListActive = useSelector<UserInterface[]>(getUserActive);
-  const userListInactive = useSelector<UserInterface[]>(getUserInactive);
+  const userListData = useSelector<RootState>(getUserData);
+  const userListError = useSelector<RootState>(getUserError);
+  const userListStatus = useSelector<RootState>(getUserStatus);
+  const userListActive = useSelector<RootState>(getUserActive);
+  const userListInactive = useSelector<RootState>(getUserInactive);
   const [spinner, setSpinner] = useState<boolean>(true);
   const [userList, setUserList] = useState<UserInterface[]>([]);
   const [showActiveUser, setShowActiveUser] = useState<boolean>(false);

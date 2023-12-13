@@ -4,7 +4,7 @@ import { UserInterface } from "../../interfaces/UserInterface";
 
 
 
-export const getUserListFromAPIThunk = createAsyncThunk<UserInterface[]>("user/getUserFromApi", async (): Promise<UserInterface[]> => {
+export const getUserListFromAPIThunk = createAsyncThunk<UserInterface[], void, { state: any, rejectValue: string }>("user/getUserFromApi", async (): Promise<UserInterface[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(users);

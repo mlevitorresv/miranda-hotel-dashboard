@@ -21,15 +21,16 @@ import { useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
 import { Tfooter } from '../components/table/Tfooter.jsx';
 import { RoomInterface } from '../interfaces/RoomInterface.js';
+import { RootState } from '../app/store.js';
 
 export const RoomList = () => {
 
   const dispatch: Dispatch = useDispatch();
-  const roomListData = useSelector<RoomInterface[]>(getRoomData);
-  const roomListError = useSelector<string | undefined>(getRoomError);
-  const roomListStatus = useSelector<string>(getRoomStatus);
-  const bookedRoomList = useSelector<RoomInterface[]>(getBookedRooms);
-  const availableRoomList = useSelector<RoomInterface[]>(getAvailableRooms);
+  const roomListData = useSelector<RootState>(getRoomData);
+  const roomListError = useSelector<RootState>(getRoomError);
+  const roomListStatus = useSelector<RootState>(getRoomStatus);
+  const bookedRoomList = useSelector<RootState>(getBookedRooms);
+  const availableRoomList = useSelector<RootState>(getAvailableRooms);
   const [spinner, setSpinner] = useState<boolean>(true);
   const [roomList, setRoomList] = useState<RoomInterface[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>('number');
