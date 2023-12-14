@@ -21,6 +21,7 @@ import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Dispatch } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import { BookingInterface } from '../interfaces/BookingsInterface'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 
 
 
@@ -35,14 +36,15 @@ export const GuestList = () => {
   const bookingListPending = useSelector<RootState>(getBookingPending)
   const bookingListBooked = useSelector<RootState>(getBookingBooked)
   const [spinner, setSpinner] = useState<boolean>(true);
-  const [bookingList, setBookingList] = useState<BookingInterface[]>([]);
+  const [bookingList, setBookingList] = useState<React.JSX.Element[]>([]);
   const [showBookingsRefund, setShowBookingsRefund] = useState<boolean>(false);
   const [showBookingsPending, setShowBookingsPending] = useState<boolean>(false);
   const [showBookingsBooked, setShowBookingsBooked] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('date');
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
-  const [activeMenus, setActiveMenus] = useState({})
+  const [activeMenus, setActiveMenus] = useState<Record<number, boolean>>({})
+  const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
     if (bookingListStatus === "idle") {
