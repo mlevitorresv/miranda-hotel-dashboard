@@ -10,15 +10,15 @@ export interface GuestCheckPropsInterface{
 }
 
 export interface GuestDivPropsInterface{
-    color: string
-    data: string
+    color?: string
+    data: React.JSX.Element | string
 }
 
 export interface GuestImagePropsInterface{
     img: string
     name: string
     id: number
-    join: string
+    join?: string
 }
 
 export interface HeaderPropsInterface{
@@ -47,7 +47,7 @@ export interface MessageInfoPropsInterface{
 
 export interface PopUpPropsInterface{
     onClose: Function
-    children: React.JSX.Element
+    children: React.JSX.Element[]
 }
 
 export interface GuestImageRoomPropsInterface{
