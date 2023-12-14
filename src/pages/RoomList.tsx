@@ -17,7 +17,7 @@ import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus, removeRoomElement } from '../features/rooms/roomSlice.js';
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
 import { Tfooter } from '../components/table/Tfooter.jsx';
 import { RoomInterface } from '../interfaces/RoomInterface.js';
@@ -32,12 +32,12 @@ export const RoomList = () => {
   const bookedRoomList = useSelector<RootState>(getBookedRooms);
   const availableRoomList = useSelector<RootState>(getAvailableRooms);
   const [spinner, setSpinner] = useState<boolean>(true);
-  const [roomList, setRoomList] = useState<RoomInterface[]>([]);
+  const [roomList, setRoomList] = useState<React.JSX.Element[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>('number');
   const [showBooked, setShowBooked] = useState<boolean>(false);
   const [showAvailable, setShowAvailable] = useState<boolean>(false);
-  const [activeMenus, setActiveMenus] = useState({})
-  const navigate = useNavigate();
+  const [activeMenus, setActiveMenus] = useState<Record<number, boolean>>({})
+  const navigate: NavigateFunction = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
@@ -57,10 +57,16 @@ export const RoomList = () => {
         sortedList.sort((a: RoomInterface, b: RoomInterface) => a.id - b.id)
       }
       else if (selectedSort === 'booked') {
-        sortedList.sort((a: RoomInterface, b: RoomInterface) => a.available - b.available)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => {
+          if(!a.available && b.available) return -1;
+            else if (a.available && !b.available) return 1;          
+        })
       }
       else if (selectedSort === 'available') {
-        sortedList.sort((a: RoomInterface, b: RoomInterface) => b.available - a.available)
+        sortedList.sort((a: RoomInterface, b: RoomInterface) => {
+          if(a.available && !b.available) return -1;
+            else if (!a.available && b.available) return 1;          
+        })
       }
       else if (selectedSort === 'priceLow') {
         sortedList.sort((a: RoomInterface, b: RoomInterface) => a.price - b.price)
