@@ -133,7 +133,7 @@ export const Reviews = () => {
       <Tfooter
         currentPage={currentPage}
         onPageChanged={handlePageChange}
-        items={contactListData.length}
+        items={(contactListData as ContactInterface[]).length}
         itemsPerPage={itemsPerPage}
 
       />

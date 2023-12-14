@@ -210,7 +210,7 @@ export const GuestList = () => {
       <Tfooter
         currentPage={currentPage}
         onPageChanged={handlePageChange}
-        items={bookingListData.length}
+        items={(bookingListData as BookingInterface[]).length}
         itemsPerPage={itemsPerPage}
 
       />

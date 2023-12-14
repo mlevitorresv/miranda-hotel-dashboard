@@ -166,7 +166,7 @@ export const ConciergeList = () => {
       <Tfooter
         currentPage={currentPage}
         onPageChanged={handlePageChange}
-        items={userListData.length}
+        items={(userListData as UserInterface[]).length}
         itemsPerPage={itemsPerPage}
 
       />

@@ -63,7 +63,7 @@ export const RoomList = () => {
           } else if (a.available && !b.available) {
             return 1;
           } else {
-            return 0;
+            return 0; 
           }
         })
       }
@@ -194,7 +194,7 @@ export const RoomList = () => {
       <Tfooter
         currentPage={currentPage}
         onPageChanged={handlePageChange}
-        items={roomListData.length}
+        items={(roomListData as RoomInterface[]).length}
         itemsPerPage={itemsPerPage}
 
       />

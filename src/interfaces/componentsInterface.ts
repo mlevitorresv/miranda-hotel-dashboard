@@ -12,6 +12,7 @@ export interface GuestCheckPropsInterface{
 export interface GuestDivPropsInterface{
     color?: string
     data: React.JSX.Element | string
+    className?: string
 }
 
 export interface GuestImagePropsInterface{
