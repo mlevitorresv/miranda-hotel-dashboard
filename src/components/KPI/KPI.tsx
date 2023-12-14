@@ -2,8 +2,9 @@ import React from 'react'
 import { KPIStyled } from './KPIStyled'
 import { IconContainerKPIStyled } from './IconContainerKPIStyled'
 import { DataContainerKPIStyled } from './DataContainerKPIStyled'
+import { KPIPropsInterface } from '../../interfaces/componentsInterface'
 
-export const KPI = (props: any) => {
+export const KPI = (props: KPIPropsInterface) => {
   return (
     <KPIStyled>
         <IconContainerKPIStyled className='iconContainer'>

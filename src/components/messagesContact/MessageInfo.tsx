@@ -1,7 +1,8 @@
 import React from 'react'
 import { MessageInfoStyled } from './MessageInfoStyled'
+import { MessageInfoPropsInterface } from '../../interfaces/componentsInterface'
 
-export const MessageInfo = (props: any) => {
+export const MessageInfo = (props: MessageInfoPropsInterface) => {
   return (
     <MessageInfoStyled>
         <img src={props.img} alt="room of hotel" />

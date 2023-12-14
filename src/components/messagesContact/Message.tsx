@@ -8,9 +8,10 @@ import { PopUp } from '../popUp/PopUp';
 import { MessageInfo } from './MessageInfo';
 // import { removeContactElement } from '../../features/contact/contactSlice';
 import { useDispatch } from 'react-redux';
+import { MessagePropsInterface } from '../../interfaces/componentsInterface';
 
 
-export const Message = (props: any) => {
+export const Message = (props: MessagePropsInterface) => {
   
   const dispatch = useDispatch();
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);

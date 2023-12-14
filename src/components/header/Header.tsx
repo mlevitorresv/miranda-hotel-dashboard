@@ -11,9 +11,10 @@ import {
 import { AsideNav } from './AsideNav'
 import { Link } from "react-router-dom"
 import { useAuth } from '../../context/AuthProvider'
+import { HeaderPropsInterface } from '../../interfaces/componentsInterface'
 
 
-export const Header = (props: any) => {
+export const Header = (props: HeaderPropsInterface) => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { logout } = useAuth();

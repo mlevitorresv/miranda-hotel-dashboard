@@ -1,7 +1,8 @@
 import React from 'react'
 import { GuestImageRoomStyled } from './GuestImageRoomStyled'
+import { GuestImageRoomPropsInterface } from '../../interfaces/componentsInterface'
 
-export const GuestImageRoom = (props: any) => {
+export const GuestImageRoom = (props: GuestImageRoomPropsInterface) => {
   return (
     <GuestImageRoomStyled>
         <img src={props.img} alt="room of hotel" />

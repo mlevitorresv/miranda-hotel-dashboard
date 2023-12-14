@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate'
 import { TfootStyled } from './TfootStyled';
+import { TfooterPropsInterface } from '../../interfaces/componentsInterface';
 
-export const Tfooter = (props: any) => {
+export const Tfooter = (props: TfooterPropsInterface) => {
     const itemsPerPage = 10;
     const endIndex = Math.min(props.currentPage * itemsPerPage, props.items)
 
