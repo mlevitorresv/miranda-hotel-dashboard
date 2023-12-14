@@ -10,7 +10,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MenuStyled } from '../components/common/MenuStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { TableGuestStyled } from '../components/table/TableGuestStyled'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavigateFunction, Navigator, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus, removeUserElement } from '../features/user/userSlice'
 import { getUserListFromAPIThunk } from '../features/user/userThunk'
@@ -30,12 +30,12 @@ export const ConciergeList = () => {
   const userListActive = useSelector<RootState>(getUserActive);
   const userListInactive = useSelector<RootState>(getUserInactive);
   const [spinner, setSpinner] = useState<boolean>(true);
-  const [userList, setUserList] = useState<UserInterface[]>([]);
+  const [userList, setUserList] = useState<React.JSX.Element[]>([]);
   const [showActiveUser, setShowActiveUser] = useState<boolean>(false);
   const [showInactiveUser, setShowInactiveUser] = useState<boolean>(false);
   const [selectedSort, setSelectedSort] = useState<string>('date');
-  const [activeMenus, setActiveMenus] = useState({})
-  const navigate = useNavigate();
+  const [activeMenus, setActiveMenus] = useState<Record<number, boolean>>({})
+  const navigate: NavigateFunction = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
