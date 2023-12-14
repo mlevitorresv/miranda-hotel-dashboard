@@ -26,7 +26,7 @@ export const Reviews = () => {
   const archivedContactList = useSelector<RootState>(getContactArchived);
   const [showArchived, setShowArchived] = useState<boolean>(false);
   const [spinner, setSpinner] = useState<boolean>(true);
-  const [contactList, setContactList] = useState<ContactInterface[]>([]);
+  const [contactList, setContactList] = useState<React.JSX.Element[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>('newest');
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
@@ -84,7 +84,7 @@ export const Reviews = () => {
   }, [dispatch, contactListData, contactListStatus, showArchived, selectedSort, currentPage])
 
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
 
