@@ -1,4 +1,4 @@
-import React from "react"
+import React, { MouseEventHandler } from "react"
 
 export interface ConciergeContactPropsInterface{
     data: string
@@ -25,6 +25,10 @@ export interface HeaderPropsInterface{
     title: string
 }
 
+export interface AsideNavPropsInterface{
+    id: string
+}
+
 export interface KPIPropsInterface{
     icon: React.JSX.Element
     number: string
@@ -46,7 +50,7 @@ export interface MessageInfoPropsInterface{
 }
 
 export interface PopUpPropsInterface{
-    onClose: Function
+    onClose: MouseEventHandler<HTMLDivElement>;
     children: React.JSX.Element[]
 }
 

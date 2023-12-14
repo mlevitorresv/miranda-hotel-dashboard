@@ -8,8 +8,10 @@ import { FiUsers } from "react-icons/fi";
 import { FaPhoneAlt } from "react-icons/fa";
 import { DivStyled } from '../common/DivStyled'
 import { ButtonStyled } from '../common/ButtonStyled';
+import { AsideNavPropsInterface } from '../../interfaces/componentsInterface';
 
-export const AsideNav = () => {
+
+export const AsideNav = (props: AsideNavPropsInterface) => {
   return (
     <AsideNavStyled>
         <img src="../../../public/logoDashboard.png" alt="hotel miranda's logo" />
