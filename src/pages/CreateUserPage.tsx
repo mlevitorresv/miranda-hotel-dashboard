@@ -20,7 +20,7 @@ export const CreateUserPage = () => {
         e.preventDefault();
         console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
-            name: e.currentTarget.name.value,
+            name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value,
             ocupation: e.currentTarget.ocupation.value,
             description: e.currentTarget.desc.value,
             email: e.currentTarget.email.value,
