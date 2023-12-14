@@ -21,11 +21,11 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
 import { Tfooter } from '../components/table/Tfooter.jsx';
 import { RoomInterface } from '../interfaces/RoomInterface.js';
-import { RootState } from '../app/store.js';
+import { AppDispatch, RootState } from '../app/store.js';
 
 export const RoomList = () => {
 
-  const dispatch: Dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const roomListData = useSelector<RootState>(getRoomData);
   const roomListError = useSelector<RootState>(getRoomError);
   const roomListStatus = useSelector<RootState>(getRoomStatus);

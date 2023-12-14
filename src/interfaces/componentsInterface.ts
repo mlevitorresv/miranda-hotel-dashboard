@@ -17,7 +17,7 @@ export interface GuestDivPropsInterface{
 export interface GuestImagePropsInterface{
     img: string
     name: string
-    id: number
+    id: number | string
     join?: string
 }
 

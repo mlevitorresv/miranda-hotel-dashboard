@@ -19,11 +19,11 @@ import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter'
 import { UserInterface } from '../interfaces/UserInterface'
 import { Dispatch } from '@reduxjs/toolkit'
-import { RootState } from '../app/store'
+import { AppDispatch, RootState } from '../app/store'
 
 export const ConciergeList = () => {
 
-  const dispatch: Dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const userListData = useSelector<RootState>(getUserData);
   const userListError = useSelector<RootState>(getUserError);
   const userListStatus = useSelector<RootState>(getUserStatus);

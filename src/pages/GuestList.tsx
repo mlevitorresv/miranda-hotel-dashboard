@@ -19,7 +19,7 @@ import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
 import { Tfooter } from '../components/table/Tfooter'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Dispatch } from '@reduxjs/toolkit'
-import { RootState } from '../app/store'
+import { AppDispatch, RootState } from '../app/store'
 import { BookingInterface } from '../interfaces/BookingsInterface'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 
@@ -28,7 +28,7 @@ import { NavigateFunction, useNavigate } from 'react-router-dom'
 export const GuestList = () => {
 
 
-  const dispatch: Dispatch= useDispatch();
+  const dispatch: AppDispatch= useDispatch();
   const bookingListData = useSelector<RootState>(getBookingData)
   const bookingListError = useSelector<RootState>(getBookingError)
   const bookingListStatus = useSelector<RootState>(getBookingStatus)
