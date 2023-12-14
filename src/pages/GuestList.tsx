@@ -57,16 +57,16 @@ export const GuestList = () => {
       let components: React.JSX.Element[] = [];
       let filteredList;
       if (showBookingsBooked) {
-        filteredList = bookingListBooked;
+        filteredList = bookingListBooked as BookingInterface[];
       }
       else if (showBookingsPending) {
-        filteredList = bookingListPending;
+        filteredList = bookingListPending as BookingInterface[];
       }
       else if (showBookingsRefund) {
-        filteredList = bookingListRefund;
+        filteredList = bookingListRefund as BookingInterface[];
       }
       else {
-        filteredList = bookingListData;
+        filteredList = bookingListData as BookingInterface[];
       }
 
       let sortedList = filteredList.slice();

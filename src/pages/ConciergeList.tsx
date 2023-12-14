@@ -50,13 +50,13 @@ export const ConciergeList = () => {
       let components: React.JSX.Element[] = [];
       let filteredList;
       if (showActiveUser) {
-        filteredList = userListActive;
+        filteredList = userListActive as UserInterface[];
       }
       else if (showInactiveUser) {
-        filteredList = userListInactive;
+        filteredList = userListInactive as UserInterface[];
       }
       else {
-        filteredList = userListData;
+        filteredList = userListData as UserInterface[];
       }
       let sortedList = filteredList.slice();
       if (selectedSort === 'date') {

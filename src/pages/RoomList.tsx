@@ -50,7 +50,7 @@ export const RoomList = () => {
     }
     else if (roomListStatus === "fulfilled") {
       let components: React.JSX.Element[] = [];
-      const filteredRoomList = showBooked ? bookedRoomList : showAvailable ? availableRoomList : roomListData
+      const filteredRoomList = showBooked ? bookedRoomList as RoomInterface[] : showAvailable ? availableRoomList as RoomInterface[] : roomListData as RoomInterface[];
       let sortedList = filteredRoomList.slice();
 
       if (selectedSort === 'number') {
@@ -58,14 +58,24 @@ export const RoomList = () => {
       }
       else if (selectedSort === 'booked') {
         sortedList.sort((a: RoomInterface, b: RoomInterface) => {
-          if(!a.available && b.available) return -1;
-            else if (a.available && !b.available) return 1;          
+          if (!a.available && b.available) {
+            return -1;
+          } else if (a.available && !b.available) {
+            return 1;
+          } else {
+            return 0;
+          }
         })
       }
       else if (selectedSort === 'available') {
         sortedList.sort((a: RoomInterface, b: RoomInterface) => {
-          if(a.available && !b.available) return -1;
-            else if (!a.available && b.available) return 1;          
+          if (a.available && !b.available) {
+            return -1;
+          } else if (!a.available && b.available) {
+            return 1;
+          } else {
+            return 0;
+          } 
         })
       }
       else if (selectedSort === 'priceLow') {
