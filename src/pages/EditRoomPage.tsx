@@ -26,8 +26,8 @@ export const EditRoomPage = (props: RoomInterface) => {
                     <option value="noOffer" selected>No offer</option>
                     <option value="Offer">Offer</option>
                 </SelectStyled>
-                <InputStyled type="number" name="priceInput" id="priceInput" placeholder={props.price} />
-                <InputStyled type="number" name="discountInput" id="discountInput" placeholder={props.discount}/>
+                <InputStyled type="number" name="priceInput" id="priceInput" placeholder={props.price.toString()} />
+                <InputStyled type="number" name="discountInput" id="discountInput" placeholder={props.discount.toString()}/>
                 <InputStyled type="text" name="cancellationInput" id="cancellationInput" placeholder='cancellation politics'/>                
                 <H1Styled>Amenities</H1Styled>
                 <AmenitiesContainerStyled>
