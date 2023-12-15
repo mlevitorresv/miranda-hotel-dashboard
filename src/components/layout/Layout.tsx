@@ -13,7 +13,7 @@ export const Layout = () => {
     useEffect(() => {
 
         switch (location.pathname) {
-            case '/':
+            case '/home':
                 setTitle('Dashboard');
                 break;
             

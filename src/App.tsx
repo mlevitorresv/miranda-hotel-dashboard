@@ -27,10 +27,6 @@ function App() {
     }
   }, []);
 
-  useEffect(()=>{
-
-  }, [])
-
   return (
     <>
       <BrowserRouter>
@@ -46,7 +42,7 @@ function App() {
                   <Route element={<Layout />}>
 
                     {/* PRINCIPAL */}
-                    <Route path='home' element={<Dashboard />} />
+                    <Route path='/home' element={<Dashboard />} />
 
                     {/* BOOKINGS */}
                     <Route path='/bookings' element={<GuestList />} />

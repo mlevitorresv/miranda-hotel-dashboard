@@ -4,9 +4,6 @@ import { MessagesContainer } from '../components/messagesContact/MessagesContain
 import { MessageDivStyled } from '../components/messagesContact/MessagesDivStyled';
 
 export const Dashboard =() => {
-  useEffect(()=>{
-
-  }, [])
 
   return (
     <div>
