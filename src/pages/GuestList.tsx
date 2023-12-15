@@ -19,7 +19,7 @@ import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
 import { Tfooter } from '../components/table/Tfooter'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Dispatch } from '@reduxjs/toolkit'
-import { AppDispatch, RootState } from '../app/store'
+import { AppDispatch, RootState, useAppSelector } from '../app/store'
 import { BookingInterface } from '../interfaces/BookingsInterface'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 
@@ -29,12 +29,12 @@ export const GuestList = () => {
 
 
   const dispatch: AppDispatch= useDispatch();
-  const bookingListData = useSelector<RootState>(getBookingData)
-  const bookingListError = useSelector<RootState>(getBookingError)
-  const bookingListStatus = useSelector<RootState>(getBookingStatus)
-  const bookingListRefund = useSelector<RootState>(getBookingRefund)
-  const bookingListPending = useSelector<RootState>(getBookingPending)
-  const bookingListBooked = useSelector<RootState>(getBookingBooked)
+  const bookingListData = useAppSelector<BookingInterface[]>(getBookingData)
+  const bookingListError = useAppSelector<string | undefined>(getBookingError)
+  const bookingListStatus = useAppSelector<string>(getBookingStatus)
+  const bookingListRefund = useAppSelector<BookingInterface[]>(getBookingRefund)
+  const bookingListPending = useAppSelector<BookingInterface[]>(getBookingPending)
+  const bookingListBooked = useAppSelector<BookingInterface[]>(getBookingBooked)
   const [spinner, setSpinner] = useState<boolean>(true);
   const [bookingList, setBookingList] = useState<React.JSX.Element[]>([]);
   const [showBookingsRefund, setShowBookingsRefund] = useState<boolean>(false);

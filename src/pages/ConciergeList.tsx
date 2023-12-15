@@ -19,16 +19,16 @@ import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter'
 import { UserInterface } from '../interfaces/UserInterface'
 import { Dispatch } from '@reduxjs/toolkit'
-import { AppDispatch, RootState } from '../app/store'
+import { AppDispatch, RootState, useAppSelector } from '../app/store'
 
 export const ConciergeList = () => {
 
   const dispatch: AppDispatch = useDispatch();
-  const userListData = useSelector<RootState>(getUserData);
-  const userListError = useSelector<RootState>(getUserError);
-  const userListStatus = useSelector<RootState>(getUserStatus);
-  const userListActive = useSelector<RootState>(getUserActive);
-  const userListInactive = useSelector<RootState>(getUserInactive);
+  const userListData = useAppSelector<UserInterface[]>(getUserData);
+  const userListError = useAppSelector<string | undefined>(getUserError);
+  const userListStatus = useAppSelector<string>(getUserStatus);
+  const userListActive = useAppSelector<UserInterface[]>(getUserActive);
+  const userListInactive = useAppSelector<UserInterface[]>(getUserInactive);
   const [spinner, setSpinner] = useState<boolean>(true);
   const [userList, setUserList] = useState<React.JSX.Element[]>([]);
   const [showActiveUser, setShowActiveUser] = useState<boolean>(false);

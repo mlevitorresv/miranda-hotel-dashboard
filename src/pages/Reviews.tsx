@@ -14,16 +14,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getContactArchived, getContactData, getContactError, getContactStatus } from '../features/contact/contactSlice.js'
 import { getContactListFromAPIThunk } from '../features/contact/contactThunk.js'
 import { Tfooter } from '../components/table/Tfooter'
-import { AppDispatch, RootState } from '../app/store'
+import { AppDispatch, RootState, useAppSelector } from '../app/store'
 import { ContactInterface } from '../interfaces/ContactInterface'
 
 export const Reviews = () => {
 
   const dispatch: AppDispatch = useDispatch();
-  const contactListData = useSelector<RootState>(getContactData);
-  const contactListError = useSelector<RootState>(getContactError);
-  const contactListStatus = useSelector<RootState>(getContactStatus);
-  const archivedContactList = useSelector<RootState>(getContactArchived);
+  const contactListData = useAppSelector<ContactInterface[]>(getContactData);
+  const contactListError = useAppSelector<string | undefined>(getContactError);
+  const contactListStatus = useAppSelector<string>(getContactStatus);
+  const archivedContactList = useAppSelector<ContactInterface[]>(getContactArchived);
   const [showArchived, setShowArchived] = useState<boolean>(false);
   const [spinner, setSpinner] = useState<boolean>(true);
   const [contactList, setContactList] = useState<React.JSX.Element[]>([]);
