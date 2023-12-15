@@ -41,6 +41,6 @@ export const contactSlice = createSlice({
 
 export const { addContactElement } = contactSlice.actions;
 export const getContactData = (state: RootState): ContactInterface[] => state.contact.data;
-export const getContactStatus = (state: RootState) => state.contact.status;
-export const getContactError  = (state: RootState) => state.contact.error;
-export const getContactArchived = (state: RootState) => state.contact.data.filter((comment) => comment.archived);
+export const getContactStatus = (state: RootState): string => state.contact.status;
+export const getContactError  = (state: RootState): string | undefined => state.contact.error;
+export const getContactArchived = (state: RootState): ContactInterface[] => state.contact.data.filter((comment) => comment.archived);

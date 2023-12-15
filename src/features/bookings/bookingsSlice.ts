@@ -41,8 +41,8 @@ export const bookingSlice = createSlice({
 
 export const { addBookingElement, removeBookingElement } = bookingSlice.actions;
 export const getBookingData = (state: RootState): BookingInterface[] => state.booking.data;
-export const getBookingStatus = (state: RootState) => state.booking.status;
-export const getBookingError  = (state: RootState) => state.booking.error;
-export const getBookingRefund = (state: RootState) => state.booking.data.filter((booking) => booking.status === 'refund')
-export const getBookingPending = (state: RootState) => state.booking.data.filter((booking) => booking.status === 'pending')
-export const getBookingBooked = (state: RootState) => state.booking.data.filter((booking) => booking.status === 'booked')
+export const getBookingStatus = (state: RootState): string => state.booking.status;
+export const getBookingError  = (state: RootState): string | undefined => state.booking.error;
+export const getBookingRefund = (state: RootState): BookingInterface[] => state.booking.data.filter((booking) => booking.status === 'refund')
+export const getBookingPending = (state: RootState): BookingInterface[] => state.booking.data.filter((booking) => booking.status === 'pending')
+export const getBookingBooked = (state: RootState): BookingInterface[] => state.booking.data.filter((booking) => booking.status === 'booked')

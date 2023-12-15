@@ -41,7 +41,7 @@ export const userSlice = createSlice({
 
 export const { addUserElement, removeUserElement } = userSlice.actions;
 export const getUserData = (state: RootState): UserInterface[] => state.user.data;
-export const getUserStatus = (state: RootState) => state.user.status;
-export const getUserError  = (state: RootState) => state.user.error;
-export const getUserActive = (state: RootState) => state.user.data.filter((user) => user.status === 'ACTIVE')
-export const getUserInactive = (state: RootState) => state.user.data.filter((user) => user.status === 'INACTIVE')
+export const getUserStatus = (state: RootState): string => state.user.status;
+export const getUserError  = (state: RootState): string | undefined => state.user.error;
+export const getUserActive = (state: RootState): UserInterface[] => state.user.data.filter((user) => user.status === 'ACTIVE')
+export const getUserInactive = (state: RootState): UserInterface[] => state.user.data.filter((user) => user.status === 'INACTIVE')
