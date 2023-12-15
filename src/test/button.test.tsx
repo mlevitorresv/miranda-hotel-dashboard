@@ -1,11 +1,12 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { ButtonStyled } from '../components/common/ButtonStyled';
 
 
 describe('Prueba de ButtonStyled', () => {
 
     test('debería tener el color de fondo correcto, green en este caso', () => {
-        render(<ButtonStyle bg='green'>Click me</ButtonStyle>);
+        render(<ButtonStyled bg='green'>Click me</ButtonStyled>);
 
         const button = screen.getByText('Click me');
         expect(button).toHaveStyle('background-color: green');
