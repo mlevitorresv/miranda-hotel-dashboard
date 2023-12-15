@@ -13,8 +13,6 @@ export interface RoomInterface{
     available: boolean
 }
 
-
-export const statusOption = <const>['idle', 'pending', 'fulfilled', 'rejected']
 export interface RoomSliceInitialStateInterface{
     data: RoomInterface[],
     status: 'idle' | 'pending' | 'fulfilled' | 'rejected',

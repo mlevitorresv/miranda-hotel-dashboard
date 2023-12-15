@@ -9,7 +9,6 @@ export interface UserInterface{
     status: string
 }
 
-export const statusOptions = <const>['idle', 'pending', 'fulfilled', 'rejected']
 
 export interface UserSliceInitialStateInterface{
     data: UserInterface[],

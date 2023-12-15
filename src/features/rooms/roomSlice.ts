@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getRoomListFromAPIThunk } from "./roomThunk";
-import { RoomInterface, RoomSliceInitialStateInterface, statusOption } from "../../interfaces/RoomInterface";
+import { RoomInterface, RoomSliceInitialStateInterface} from "../../interfaces/RoomInterface";
 import { RootState } from "../../app/store";
 
 const initialState: RoomSliceInitialStateInterface = {
