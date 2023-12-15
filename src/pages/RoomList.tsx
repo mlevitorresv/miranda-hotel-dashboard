@@ -50,8 +50,8 @@ export const RoomList = () => {
     }
     else if (roomListStatus === "fulfilled") {
       let components: React.JSX.Element[] = [];
-      const filteredRoomList = showBooked ? bookedRoomList as RoomInterface[] : showAvailable ? availableRoomList as RoomInterface[] : roomListData as RoomInterface[];
-      let sortedList = filteredRoomList.slice();
+      const filteredRoomList: RoomInterface[] = showBooked ? bookedRoomList : showAvailable ? availableRoomList : roomListData;
+      let sortedList: RoomInterface[] = filteredRoomList.slice();
 
       if (selectedSort === 'number') {
         sortedList.sort((a: RoomInterface, b: RoomInterface) => a.id - b.id)

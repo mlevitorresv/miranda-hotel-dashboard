@@ -55,21 +55,21 @@ export const GuestList = () => {
     }
     else if (bookingListStatus === "fulfilled") {
       let components: React.JSX.Element[] = [];
-      let filteredList;
+      let filteredList: BookingInterface[];
       if (showBookingsBooked) {
-        filteredList = bookingListBooked as BookingInterface[];
+        filteredList = bookingListBooked;
       }
       else if (showBookingsPending) {
-        filteredList = bookingListPending as BookingInterface[];
+        filteredList = bookingListPending;
       }
       else if (showBookingsRefund) {
-        filteredList = bookingListRefund as BookingInterface[];
+        filteredList = bookingListRefund;
       }
       else {
-        filteredList = bookingListData as BookingInterface[];
+        filteredList = bookingListData;
       }
 
-      let sortedList = filteredList.slice();
+      let sortedList: BookingInterface[] = filteredList.slice();
       if (selectedSort === 'date') {
         sortedList.sort((a: BookingInterface, b: BookingInterface) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime())
       }

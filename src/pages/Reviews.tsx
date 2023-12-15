@@ -42,8 +42,8 @@ export const Reviews = () => {
     }
     else if (contactListStatus === "fulfilled") {
       let components: React.JSX.Element[] = [];
-      const filteredContactList = showArchived ? archivedContactList as ContactInterface[] : contactListData as ContactInterface[];
-      let sortedList = filteredContactList.slice();
+      const filteredContactList: ContactInterface[] = showArchived ? archivedContactList as ContactInterface[] : contactListData;
+      let sortedList: ContactInterface[] = filteredContactList.slice();
       if(selectedSort === 'newest'){
         sortedList.sort((a: ContactInterface, b: ContactInterface) => new Date(b.date).getTime() - new Date(a.date).getTime())
       }
