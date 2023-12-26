@@ -15,6 +15,7 @@ import { EditRoomPage } from './pages/EditRoomPage'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthProvider.jsx'
+import { CreateBooking } from './pages/CreateBooking'
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
                     {/* BOOKINGS */}
                     <Route path='/bookings' element={<GuestList />} />
                     <Route path='/bookings/:id' element={<GuestDetails />} />
-                    <Route path='/bookings/create' element={<GuestList />} />
+                    <Route path='/bookings/create' element={<CreateBooking />} />
                     <Route path='/bookings/edit/:id' element={<GuestList />} />
 
                     {/* ROOMS */}
