@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormStyled } from '../components/form/FormStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
@@ -16,12 +16,25 @@ export const CreateRoomPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<RoomInterface | {}>({});
+    const [formData, setFormData] = useState<RoomInterface | {}>({
+        photo: '',
+        roomType: '',
+        number: '',
+        description: '',
+        offer: '',
+        price: '',
+        discount: '',
+        cancellation: '',
+        tv: '',
+        service: '',
+        sea: '',
+        spa: '',
+        jacuzzi: ''
+    });
 
 
     const handleAddRoom = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
             photo: e.currentTarget.photo.value,
             roomType: e.currentTarget.roomType.value,
@@ -37,11 +50,15 @@ export const CreateRoomPage = () => {
             spa: e.currentTarget.spa.value,
             jacuzzi: e.currentTarget.jacuzzi.value
         }))
-        dispatch(addRoomElement(formData));
-        console.log('despues de dispatch' + JSON.stringify(formData))
-
-        navigate('/rooms')
     }
+
+    useEffect(() => {
+        if (Object.keys(formData).length > 0) {
+            console.log('Antes de dispatch: ' + JSON.stringify(formData));
+            dispatch(addRoomElement(formData));
+            console.log('Después de dispatch: ' + JSON.stringify(formData));
+        }
+    }, [formData, dispatch])
 
     return (
         <FormStyled onSubmit={handleAddRoom}>

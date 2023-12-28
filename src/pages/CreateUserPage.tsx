@@ -14,11 +14,21 @@ export const CreateUserPage = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [formData, setFormData] = useState<UserInterface | {}>({});
+    const [formData, setFormData] = useState<UserInterface | {}>({
+        photo: '',
+        name: '',
+        ocupation: '',
+        description: '',
+        email: '',
+        phone: '',
+        date: '',
+        desc: '',
+        active: '',
+        password: '',
+    });
 
     const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
             photo: e.currentTarget.photo.value,
             name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value,
@@ -31,11 +41,15 @@ export const CreateUserPage = () => {
             active: e.currentTarget.active.value,
             password: e.currentTarget.password.value,
         }))
-        dispatch(addUserElement(formData));
-        console.log('despues de dispatch' + JSON.stringify(formData))
-
-        navigate('/users')
     }
+
+    useEffect(() => {
+        if (Object.keys(formData).length > 0) {
+            console.log('Antes de dispatch: ' + JSON.stringify(formData));
+            dispatch(addUserElement(formData));
+            console.log('Después de dispatch: ' + JSON.stringify(formData));
+        }
+    }, [formData, dispatch])
 
     return (
         <FormStyled onSubmit={handleAddUser}>

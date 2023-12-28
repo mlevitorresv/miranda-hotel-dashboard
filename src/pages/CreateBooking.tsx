@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormStyled } from '../components/form/FormStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
@@ -21,12 +21,23 @@ export const CreateBooking = () => {
 
 
   const availableRooms = useAppSelector<RoomInterface[]>(getAvailableRooms);
-  const [formData, setFormData] = useState<BookingInterface | {}>({});
+  const [formData, setFormData] = useState<BookingInterface | {}>({
+    photo: '',
+    name: '',
+    orderDate: '',
+    orderTime: '',
+    checkInDate: '',
+    checkInTime: '',
+    checkOut: '',
+    checkOutTime: '',
+    notes: '',
+    room: '',
+    status: ''
+  });
 
 
   const handleAddBooking = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('antes de dispatch' + JSON.stringify(formData))
     setFormData((prevData) => ({
       photo: e.currentTarget.photo.value,
       name: e.currentTarget.nameBooking.value,
@@ -40,12 +51,15 @@ export const CreateBooking = () => {
       room: e.currentTarget.room.value,
       status: 'booked'
     }))
-    dispatch(addBookingElement(formData));
-    console.log('despues de dispatch' + JSON.stringify(formData))
-
-    navigate('/bookings')
-    console.log(availableRooms)
   }
+
+  useEffect(() => {
+    if (Object.keys(formData).length > 0) {
+      console.log('Antes de dispatch: ' + JSON.stringify(formData));
+      dispatch(addBookingElement(formData));
+      console.log('Después de dispatch: ' + JSON.stringify(formData));
+    }
+  }, [formData, dispatch])
 
   return (
     <FormStyled onSubmit={handleAddBooking}>
