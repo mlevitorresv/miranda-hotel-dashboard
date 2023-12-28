@@ -12,7 +12,7 @@ export const EditUserPage = (props: UserInterface) => {
   return (
           <FormStyled>
                 <H1Styled>Edit User</H1Styled>
-                <ButtonStyled>Change Photo</ButtonStyled>
+                <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
                 <InputStyled type="text" name="nameInput" id="nameInput" placeholder={props.name}/>
                 <SelectStyled type={'secondary'}>
                     <option value="manager" selected>Manager</option>

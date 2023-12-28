@@ -20,6 +20,7 @@ export const CreateUserPage = () => {
         e.preventDefault();
         console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
+            photo: e.currentTarget.photo.value,
             name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value,
             ocupation: e.currentTarget.ocupation.value,
             description: e.currentTarget.desc.value,
@@ -39,7 +40,7 @@ export const CreateUserPage = () => {
     return (
         <FormStyled onSubmit={handleAddUser}>
             <H1Styled>New User</H1Styled>
-            <ButtonStyled>Upload Photo</ButtonStyled>
+            <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
             <InputStyled type="text" name="name" id="nameInput" />
             <SelectStyled type={'secondary'} name="ocupation">
                 <option value="manager" selected>Manager</option>

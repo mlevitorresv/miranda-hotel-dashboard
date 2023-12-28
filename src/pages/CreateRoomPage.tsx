@@ -23,6 +23,7 @@ export const CreateRoomPage = () => {
         e.preventDefault();
         console.log('antes de dispatch' + JSON.stringify(formData))
         setFormData((prevData) => ({
+            photo: e.currentTarget.photo.value,
             roomType: e.currentTarget.roomType.value,
             number: e.currentTarget.roomNumber.value,
             description: e.currentTarget.desc.value,
@@ -45,7 +46,7 @@ export const CreateRoomPage = () => {
     return (
         <FormStyled onSubmit={handleAddRoom}>
             <H1Styled>New Room</H1Styled>
-            <ButtonStyled>Upload Photos</ButtonStyled>
+            <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
             <SelectStyled type={'secondary'} name='roomType' >
                 <option value="singleBed" selected>Single Bed</option>
                 <option value="doubleBed">Double Bed</option>

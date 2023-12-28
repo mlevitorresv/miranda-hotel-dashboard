@@ -14,7 +14,7 @@ export const EditRoomPage = (props: RoomInterface) => {
   return (
           <FormStyled>
                 <H1Styled>Edit Room</H1Styled>
-                <ButtonStyled>Upload Photos</ButtonStyled>
+                <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
                 <SelectStyled type={'secondary'}>
                     <option value="singleBed" selected>Single Bed</option>
                     <option value="doubleBed">Double Bed</option>
