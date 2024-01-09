@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, createContext, ReactNode } from 'react'
+import { apiRequest } from '../api/apiCalls';
 interface AuthProviderInterface {
-  username: string,
+  email: string,
   password: string
 }
 interface AuthContextValueInterface {
@@ -18,19 +19,27 @@ const AuthContext = createContext<AuthContextValueInterface | undefined>(undefin
 export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children }) => {
   const [user, setUser] = useState<AuthProviderInterface | null>(null);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('conex')
-    if (storedUser) setUser(JSON.parse(storedUser))
-  }, [])
 
-  const login = (userData: AuthProviderInterface) => {
-    setUser(userData);
-    localStorage.setItem('conex', JSON.stringify(userData))
+  const login = async (userDataToLogin: AuthProviderInterface) => {
+    setUser(userDataToLogin);
+    const loginData = {
+      email: userDataToLogin.email,
+      password: userDataToLogin.password
+    }
+    
+    try {
+      const response = await apiRequest('login', 'POST', loginData, null);
+      console.log('guardaré en localStorage el token', JSON.stringify(response))
+      localStorage.setItem('token', JSON.stringify(response))
+    } catch (error: any) {
+      console.error('Error al realizar el login:', error.message)
+    }
+    
   }
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('conex');
+    localStorage.removeItem('token');
   }
 
   const contextValue: AuthContextValueInterface = {

@@ -12,7 +12,6 @@ export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const {login} = useAuth();
-
   const navigate = useNavigate();
 
   const handleChangeEmail = (e: React.FormEvent<HTMLInputElement>) =>{
@@ -27,11 +26,11 @@ export const LoginPage = () => {
     e.preventDefault();
 
     if(email === 'test@test.com' && pass === 'test1234'){
-      const userData = {username: email, password: pass}
+      const userData = {email: email, password: pass}
       login(userData)
       navigate('/home');
     }else{
-      alert('No se inició sesión, usuaario o password incorrectos')
+      alert('No se inició sesión, usuario o password incorrectos')
     }
   }
 

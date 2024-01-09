@@ -1,9 +1,10 @@
 import { handleApiErrors } from "./apiErrors";
 
 
-const API_URL = process.env.REACT_APP_API_URL;
 
-const apiRequest = async (endpoint: string, method: string = 'GET', body: object, token: string) => {
+const API_URL = 'http://localhost:4000';
+
+export const apiRequest = async (endpoint: string, method: string = 'GET', body: object, token: string | null) => {
 
     const headers: Record<string, string> = {
         'Content-Type': 'application/json'
