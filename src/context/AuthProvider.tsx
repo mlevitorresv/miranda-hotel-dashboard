@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
     try {
       const response = await apiRequest('login', 'POST', loginData, null);
       console.log('guardaré en localStorage el token', JSON.stringify(response))
-      localStorage.setItem('token', JSON.stringify(response))
+      localStorage.setItem('token', response.token)
     } catch (error: any) {
       console.error('Error al realizar el login:', error.message)
     }
