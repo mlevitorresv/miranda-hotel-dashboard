@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState, createContext, ReactNode } from 'react'
 import { apiRequest } from '../api/apiCalls';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface AuthProviderInterface {
   email: string,
   password: string
@@ -26,20 +28,50 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
       email: userDataToLogin.email,
       password: userDataToLogin.password
     }
-    
+
     try {
       const response = await apiRequest('login', 'POST', loginData, null);
       console.log('guardaré en localStorage el token', JSON.stringify(response))
       localStorage.setItem('token', response.token)
+      toast.success('Inicio de sesión exitoso', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } catch (error: any) {
       console.error('Error al realizar el login:', error.message)
+      toast.error('Error al iniciar sesión', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
-    
+
   }
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('token');
+    toast.info('Sesión cerrada correctamente', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
 
   const contextValue: AuthContextValueInterface = {

@@ -16,6 +16,7 @@ import { store } from './app/store'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthProvider.jsx'
 import { CreateBooking } from './pages/CreateBooking'
+import { ToastContainer } from 'react-toastify'
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
               ) : null}
             </Routes>
           </Provider>
+          <ToastContainer />
         </AuthProvider>
       </BrowserRouter >
     </>
