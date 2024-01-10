@@ -31,7 +31,6 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
 
     try {
       const response = await apiRequest('login', 'POST', loginData, null);
-      console.log('guardaré en localStorage el token', JSON.stringify(response))
       localStorage.setItem('token', response.token)
       toast.success('Inicio de sesión exitoso', {
         position: "top-center",
