@@ -1,7 +1,3 @@
-import { handleApiErrors } from "./apiErrors";
-
-
-
 const API_URL = 'http://localhost:4000';
 
 export const apiRequest = async (endpoint: string, method: string = 'GET', body: object | null, token: string | null) => {
