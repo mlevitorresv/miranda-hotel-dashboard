@@ -32,6 +32,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
     try {
       const response = await apiRequest('login', 'POST', loginData, null);
       localStorage.setItem('token', response.token)
+
       toast.success('Inicio de sesión exitoso', {
         position: "top-center",
         autoClose: 5000,
@@ -43,6 +44,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
         theme: "colored",
       });
     } catch (error: any) {
+
       console.error('Error al realizar el login:', error.message)
       toast.error('Error al iniciar sesión', {
         position: "top-center",

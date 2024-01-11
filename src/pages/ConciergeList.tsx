@@ -12,7 +12,7 @@ import { SelectStyled } from '../components/table/SelectStyled'
 import { TableGuestStyled } from '../components/table/TableGuestStyled'
 import { Link, NavigateFunction, Navigator, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus, removeUserElement } from '../features/user/userSlice'
+import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus } from '../features/user/userSlice'
 import { getUserListFromAPIThunk } from '../features/user/userThunk'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
@@ -40,6 +40,19 @@ export const ConciergeList = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
   useEffect(() => {
+
+    console.log('userListData', userListData);
+    console.log('userListStatus', userListStatus);
+    console.log('userListActive', userListActive);
+    console.log('userListInactive', userListInactive);
+    console.log('showActiveUser', showActiveUser);
+    console.log('showInactiveUser', showInactiveUser);
+    console.log('selectedSort', selectedSort);
+    console.log('activeMenus', activeMenus);
+    console.log('currentPage', currentPage);
+
+
+
     if (userListStatus === "idle") {
       dispatch(getUserListFromAPIThunk())
     }
@@ -100,7 +113,7 @@ export const ConciergeList = () => {
               {activeMenus[user.id] && (
                 <DropwdownStyled>
                   <p>edit</p>
-                  <p  onClick={() => dispatch(removeUserElement({id: user.id}))}>delete</p>
+                  {/* <p  onClick={() => dispatch(removeUserElement({id: user.id}))}>delete</p> */}
                 </DropwdownStyled>
               )}
             </td>
@@ -146,7 +159,7 @@ export const ConciergeList = () => {
         </div>
       </MenuStyled>
 
-      {spinner ? <p>Loading...</p> :
+      {spinner ? <p>Loading... {userListStatus}</p> :
         <TableGuestStyled className='user'>
           <TheadStyled>
             <tr>

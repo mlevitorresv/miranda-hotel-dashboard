@@ -5,10 +5,11 @@ import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { H1Styled } from '../components/common/H1Styled'
 import { useDispatch } from 'react-redux'
-import { addUserElement } from '../features/user/userSlice'
+// import { addUserElement } from '../features/user/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { UserInterface } from '../interfaces/UserInterface'
+// import { createUserToAPIThunk } from '../features/user/userThunk'
 
 export const CreateUserPage = () => {
 
@@ -46,7 +47,7 @@ export const CreateUserPage = () => {
     useEffect(() => {
         if (Object.keys(formData).length > 0) {
             console.log('Antes de dispatch: ' + JSON.stringify(formData));
-            dispatch(addUserElement(formData));
+            // dispatch(createUserToAPIThunk(formData));
             console.log('Después de dispatch: ' + JSON.stringify(formData));
         }
     }, [formData, dispatch])
