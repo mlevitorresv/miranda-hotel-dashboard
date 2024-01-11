@@ -8,7 +8,7 @@ export const getRoomListFromAPIThunk = createAsyncThunk<RoomInterface[], void, {
     try {
         const token = localStorage.getItem('token');
         const response  = await apiRequest('rooms', 'GET', null, token);
-        const responseData = response.json();
+        const responseData = await response.json();
         return responseData.rooms;
     } catch (error) {
         throw new Error('Error al obtener la lista de habitaciones desde la API')

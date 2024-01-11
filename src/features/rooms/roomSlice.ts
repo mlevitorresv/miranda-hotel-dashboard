@@ -12,17 +12,7 @@ const initialState: RoomSliceInitialStateInterface = {
 export const roomSlice = createSlice({
     name: "room",
     initialState: initialState,
-    reducers:{
-        getRoomById: (state, action): void => {
-            state.data.filter((room) => room.id === action.payload.id)
-        },
-        addRoomElement: (state, action): void => {
-            state.data = [action.payload, ...state.data]
-        },
-        removeRoomElement: (state, action): void => {
-            state.data = state.data.filter((room) => room.id !== action.payload.id)
-        }
-    },
+    reducers:{},
     extraReducers: (builder) => {
         builder.addCase(getRoomListFromAPIThunk.fulfilled, (state, action): void => {
             state.status = "fulfilled"
@@ -38,8 +28,6 @@ export const roomSlice = createSlice({
     }
 })
 
-
-export const { addRoomElement, removeRoomElement } = roomSlice.actions;
 export const getRoomData = (state: RootState): RoomInterface[] => state.room.data;
 export const getRoomStatus = (state: RootState): string => state.room.status;
 export const getRoomError  = (state: RootState): string | undefined => state.room.error;

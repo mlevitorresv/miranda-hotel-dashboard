@@ -15,7 +15,7 @@ import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus, removeRoomElement } from '../features/rooms/roomSlice.js';
+import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus/*, removeRoomElement*/ } from '../features/rooms/roomSlice.js';
 import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
@@ -123,7 +123,7 @@ export const RoomList = () => {
               {activeMenus[room.id] && (
                 <DropwdownStyled>
                   <p>edit</p>
-                  <p onClick={() => dispatch(removeRoomElement({id: room.id}))}>delete</p>
+                  {/* <p onClick={() => dispatch(removeRoomElement({id: room.id}))}>delete</p> */}
                 </DropwdownStyled>
               )}
             </td>

@@ -12,17 +12,7 @@ const initialState: ContactSliceInitialStateInterface = {
 export const contactSlice = createSlice({
     name: "contact",
     initialState: initialState,
-    reducers:{
-        getContactById: (state, action) => {
-            state.data.filter((comment) => comment.id === action.payload.id)
-        },
-        addContactElement: (state, action) => {
-            state.data = [action.payload, ...state.data]
-        },
-        removeContactElement: (state, action) => {
-            state.data = state.data.filter((comment) => comment.id !== action.payload.id)
-        }
-    },
+    reducers:{},
     extraReducers: (builder) => {
         builder.addCase(getContactListFromAPIThunk.fulfilled, (state, action) => {
             state.status = "fulfilled"
@@ -39,7 +29,6 @@ export const contactSlice = createSlice({
 })
 
 
-export const { addContactElement } = contactSlice.actions;
 export const getContactData = (state: RootState): ContactInterface[] => state.contact.data;
 export const getContactStatus = (state: RootState): string => state.contact.status;
 export const getContactError  = (state: RootState): string | undefined => state.contact.error;

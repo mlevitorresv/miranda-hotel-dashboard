@@ -7,7 +7,7 @@ import { H1Styled } from '../components/common/H1Styled'
 import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/amenities/AmenityStyled'
 import { useDispatch } from 'react-redux'
-import { addRoomElement } from '../features/rooms/roomSlice'
+// import { addRoomElement } from '../features/rooms/roomSlice'
 import { useNavigate } from 'react-router-dom'
 import { RoomInterface } from '../interfaces/RoomInterface'
 
@@ -55,7 +55,7 @@ export const CreateRoomPage = () => {
     useEffect(() => {
         if (Object.keys(formData).length > 0) {
             console.log('Antes de dispatch: ' + JSON.stringify(formData));
-            dispatch(addRoomElement(formData));
+            // dispatch(addRoomElement(formData));
             console.log('Después de dispatch: ' + JSON.stringify(formData));
         }
     }, [formData, dispatch])

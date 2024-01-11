@@ -12,17 +12,7 @@ const initialState: BookingSliceInitialStateInterface = {
 export const bookingSlice = createSlice({
     name: "booking",
     initialState: initialState,
-    reducers:{
-        getBookingById: (state, action) => {
-            state.data.filter((booking) => booking.id === action.payload.id)
-        },
-        addBookingElement: (state, action) => {
-            state.data = [action.payload, ...state.data]
-        },
-        removeBookingElement: (state, action) => {
-            state.data = state.data.filter((booking) => booking.id !== action.payload.id)
-        }
-    },
+    reducers:{},
     extraReducers: (builder) => {
         builder.addCase(getBookingListFromAPIThunk.fulfilled, (state, action) => {
             state.status = "fulfilled"
@@ -39,7 +29,6 @@ export const bookingSlice = createSlice({
 })
 
 
-export const { addBookingElement, removeBookingElement } = bookingSlice.actions;
 export const getBookingData = (state: RootState): BookingInterface[] => state.booking.data;
 export const getBookingStatus = (state: RootState): string => state.booking.status;
 export const getBookingError  = (state: RootState): string | undefined => state.booking.error;
