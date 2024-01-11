@@ -5,49 +5,49 @@ import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { H1Styled } from '../components/common/H1Styled'
 import { useDispatch } from 'react-redux'
-// import { addUserElement } from '../features/user/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { UserInterface } from '../interfaces/UserInterface'
-// import { createUserToAPIThunk } from '../features/user/userThunk'
+import { createUserToAPIThunk } from '../features/user/userThunk'
+import { AppDispatch } from '../app/store'
 
 export const CreateUserPage = () => {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [formData, setFormData] = useState<UserInterface | {}>({
+    const dispatch: AppDispatch = useDispatch();
+    const [formData, setFormData] = useState<UserInterface>({
         photo: '',
         name: '',
         ocupation: '',
-        description: '',
         email: '',
         phone: '',
         date: '',
         desc: '',
-        active: '',
+        status: '',
         password: '',
+        id: 1,
     });
 
     const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormData((prevData) => ({
-            photo: e.currentTarget.photo.value,
-            name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value,
-            ocupation: e.currentTarget.ocupation.value,
-            description: e.currentTarget.desc.value,
-            email: e.currentTarget.email.value,
-            phone: e.currentTarget.phone.value,
-            date: e.currentTarget.date.value,
-            desc: e.currentTarget.desc.value,
-            active: e.currentTarget.active.value,
-            password: e.currentTarget.password.value,
+            photo: e.currentTarget.photo.value.toString() || '',
+            name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value.toString() || '',
+            ocupation: e.currentTarget.ocupation.value.toString() || '',
+            email: e.currentTarget.email.value.toString() || '',
+            phone: e.currentTarget.phone.value.toString() || '',
+            date: e.currentTarget.date.value.toString() || '',
+            desc: e.currentTarget.desc.value.toString() || '',
+            status: e.currentTarget.active.value.toString() || '',
+            password: e.currentTarget.password.value.toString() || '',
+            id: 1
         }))
     }
 
     useEffect(() => {
         if (Object.keys(formData).length > 0) {
             console.log('Antes de dispatch: ' + JSON.stringify(formData));
-            // dispatch(createUserToAPIThunk(formData));
+            dispatch(createUserToAPIThunk(formData));
             console.log('Después de dispatch: ' + JSON.stringify(formData));
         }
     }, [formData, dispatch])
@@ -56,7 +56,7 @@ export const CreateUserPage = () => {
         <FormStyled onSubmit={handleAddUser}>
             <H1Styled>New User</H1Styled>
             <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
-            <InputStyled type="text" name="name" id="nameInput" />
+            <InputStyled type="text" name="name" id="nameInput" placeholder='name'/>
             <SelectStyled type={'secondary'} name="ocupation">
                 <option value="manager" selected>Manager</option>
                 <option value="reception" >Reception</option>
@@ -66,7 +66,7 @@ export const CreateUserPage = () => {
             <InputStyled type="number" name="phone" id="phoneInput" placeholder='666666666' />
             <InputStyled type="date" name="date" id="dateInput" placeholder='Start Date' />
 
-            <InputStyled type="text" name="desc" id="descInput" />
+            <InputStyled type="text" name="desc" id="descInput" placeholder='descriptions'/>
             <SelectStyled type={'secondary'} name='active'>
                 <option value="active" selected>Active</option>
                 <option value="inactive" >Inactive</option>

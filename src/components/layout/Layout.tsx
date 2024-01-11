@@ -16,11 +16,11 @@ export const Layout = () => {
             case '/home':
                 setTitle('Dashboard');
                 break;
-            
+
             case '/bookings':
                 setTitle('Guest List');
                 break;
-            
+
             case '/rooms':
                 setTitle('Rooms List');
                 break;
@@ -28,17 +28,20 @@ export const Layout = () => {
             case '/users':
                 setTitle('Concierge List');
                 break;
+            case '/contact':
+                setTitle('Comments List')
+                break;
         }
 
 
-    },[location.pathname])
+    }, [location.pathname])
 
 
     return (
         <>
             <Header title={title} />
             <LayoutStyled>
-                <Outlet/>
+                <Outlet />
             </LayoutStyled>
         </>
     )

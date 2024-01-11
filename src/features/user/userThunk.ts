@@ -34,16 +34,16 @@ export const getUserListFromAPIThunk = createAsyncThunk<UserInterface[], void, {
 // })
 
 
-// export const createUserToAPIThunk = createAsyncThunk<UserInterface[], { state: UserInterface, rejectValue: string }>("user/createUserToApi", async (body): Promise<UserInterface[]> => {
-//     try {
-//         const token = localStorage.getItem('token');
-//         const response = await apiRequest('users', 'POST', body, token);
-//         const responseData = response.json();
-//         return responseData.users;
-//     } catch (error) {
-//         throw new Error('Error al crear el usuario')
-//     }
-// })
+export const createUserToAPIThunk = createAsyncThunk("user/createUserToApi", async (body: UserInterface): Promise<UserInterface[]> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await apiRequest('users', 'POST', body, token);
+        const responseData = await response.json();
+        return responseData.users;
+    } catch (error) {
+        throw new Error('Error al crear el usuario')
+    }
+})
 
 
 
@@ -60,13 +60,13 @@ export const getUserListFromAPIThunk = createAsyncThunk<UserInterface[], void, {
 
 
 
-// export const deleteUserToAPIThunk = createAsyncThunk<UserInterface[], void, { state: any, rejectValue: string }>("user/deleteUserToApi", async (id): Promise<UserInterface[]> => {
-//     try {
-//         const token = localStorage.getItem('token');
-//         const response = await apiRequest(`users/${id}`, 'DELETE', null, token);
-//         const responseData = response.json();
-//         return responseData.users;
-//     } catch (error) {
-//         throw new Error('Error al eliminar el usuario')
-//     }
-// })
+export const deleteUserToAPIThunk = createAsyncThunk<UserInterface[], string, { state: any, rejectValue: string }>("user/deleteUserToApi", async (id: any): Promise<UserInterface[]> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await apiRequest(`users/${id}`, 'DELETE', null, token);
+        const responseData = await response.json();
+        return responseData.success;
+    } catch (error) {
+        throw new Error('Error al eliminar el usuario')
+    }
+})

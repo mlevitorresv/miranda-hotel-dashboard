@@ -14,7 +14,7 @@ import { MenuStyled } from '../components/common/MenuStyled'
 import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus, removeBookingElement } from '../features/bookings/bookingsSlice';
+import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus/*, removeBookingElement*/ } from '../features/bookings/bookingsSlice';
 import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
 import { Tfooter } from '../components/table/Tfooter'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
@@ -133,7 +133,7 @@ export const GuestList = () => {
               {activeMenus[booking.id] && (
                 <DropwdownStyled>
                   <p>edit</p>
-                  <p  onClick={() => dispatch(removeBookingElement({id: booking.id}))}>delete</p>
+                  {/* <p  onClick={() => dispatch(removeBookingElement({id: booking.id}))}>delete</p> */}
                 </DropwdownStyled>
               )}
             </td>

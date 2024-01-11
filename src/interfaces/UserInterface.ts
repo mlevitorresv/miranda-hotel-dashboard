@@ -1,12 +1,14 @@
 export interface UserInterface{
-    photo: string,
     id: number,
+    photo: string,
     name: string,
-    date: string,
+    ocupation: string,
     email: string,
     phone: string,
-    description: string,
-    status: string
+    date: string,
+    desc: string,
+    status: string,
+    password: string
 }
 
 

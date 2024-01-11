@@ -13,7 +13,7 @@ import { TableGuestStyled } from '../components/table/TableGuestStyled'
 import { Link, NavigateFunction, Navigator, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus } from '../features/user/userSlice'
-import { getUserListFromAPIThunk } from '../features/user/userThunk'
+import { /*deleteUserToAPIThunk,*/ deleteUserToAPIThunk, getUserListFromAPIThunk } from '../features/user/userThunk'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter'
@@ -40,19 +40,6 @@ export const ConciergeList = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
   useEffect(() => {
-
-    console.log('userListData', userListData);
-    console.log('userListStatus', userListStatus);
-    console.log('userListActive', userListActive);
-    console.log('userListInactive', userListInactive);
-    console.log('showActiveUser', showActiveUser);
-    console.log('showInactiveUser', showInactiveUser);
-    console.log('selectedSort', selectedSort);
-    console.log('activeMenus', activeMenus);
-    console.log('currentPage', currentPage);
-
-
-
     if (userListStatus === "idle") {
       dispatch(getUserListFromAPIThunk())
     }
@@ -93,7 +80,7 @@ export const ConciergeList = () => {
               <GuestDiv data={user.email} />
             </td>
             <td>
-              <GuestDiv data={user.description} />
+              <GuestDiv data={user.desc} />
             </td>
             <td>
               <ConciergeContact data={user.phone} />
@@ -113,7 +100,7 @@ export const ConciergeList = () => {
               {activeMenus[user.id] && (
                 <DropwdownStyled>
                   <p>edit</p>
-                  {/* <p  onClick={() => dispatch(removeUserElement({id: user.id}))}>delete</p> */}
+                  <p  onClick={() => dispatch(deleteUserToAPIThunk(user.id.toString()))}>delete</p>
                 </DropwdownStyled>
               )}
             </td>

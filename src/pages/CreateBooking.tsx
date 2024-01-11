@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { BookingInterface } from '../interfaces/BookingsInterface'
 import { RoomInterface } from '../interfaces/RoomInterface'
 import { useAppSelector } from '../app/store'
-import { addBookingElement } from '../features/bookings/bookingsSlice'
+// import { addBookingElement } from '../features/bookings/bookingsSlice'
 
 
 
@@ -56,7 +56,7 @@ export const CreateBooking = () => {
   useEffect(() => {
     if (Object.keys(formData).length > 0) {
       console.log('Antes de dispatch: ' + JSON.stringify(formData));
-      dispatch(addBookingElement(formData));
+      // dispatch(addBookingElement(formData));
       console.log('Después de dispatch: ' + JSON.stringify(formData));
     }
   }, [formData, dispatch])
