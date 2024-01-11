@@ -17,9 +17,15 @@ export const apiRequest = async (endpoint: string, method: string = 'GET', body:
         }
 
         const response = await fetch(`${API_URL}/${endpoint}`, requestOptions)
+
+        if (!response.ok) 
+            throw new Error(`Error en la solicitud: ${response.status}: ${response.statusText}`);
+
         if(endpoint === 'login')
             return await response.json()
+
         return response;
+
     } catch (error) {
         throw new Error('Network Error')
     }
