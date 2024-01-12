@@ -1,8 +1,8 @@
 
 
 export interface RoomInterface{
+    _id: string | undefined,
     photo: string,
-    id: number,
     type: string,
     bed: string,
     amenities: string,

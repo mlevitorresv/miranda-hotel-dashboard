@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createRoomToAPIThunk, getRoomListFromAPIThunk } from "./roomThunk";
+import { createRoomToAPIThunk, deleteRoomToAPIThunk, getRoomListFromAPIThunk } from "./roomThunk";
 import { RoomInterface, RoomSliceInitialStateInterface} from "../../interfaces/RoomInterface";
 import { RootState } from "../../app/store";
 
@@ -35,6 +35,18 @@ export const roomSlice = createSlice({
             state.error = action.error.message
         })
         .addCase(createRoomToAPIThunk.pending, (state, action): void => {
+            state.status = "pending"
+        })
+
+        .addCase(deleteRoomToAPIThunk.fulfilled, (state, action): void => {
+            state.status = "fulfilled"
+            state.data = state.data.filter(room => room._id != action.payload._id)
+        })
+        .addCase(deleteRoomToAPIThunk.rejected, (state, action): void => {
+            state.status = "rejected"
+            state.error = action.error.message
+        })
+        .addCase(deleteRoomToAPIThunk.pending, (state, action): void => {
             state.status = "pending"
         })
     }

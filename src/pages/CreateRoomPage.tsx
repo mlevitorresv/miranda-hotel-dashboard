@@ -7,55 +7,55 @@ import { H1Styled } from '../components/common/H1Styled'
 import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/amenities/AmenityStyled'
 import { useDispatch } from 'react-redux'
-// import { addRoomElement } from '../features/rooms/roomSlice'
 import { useNavigate } from 'react-router-dom'
 import { RoomInterface } from '../interfaces/RoomInterface'
+import { createRoomToAPIThunk } from '../features/rooms/roomThunk'
 
 export const CreateRoomPage = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<RoomInterface | {}>({
+    const [formData, setFormData] = useState<RoomInterface>({
+        _id: undefined,
         photo: '',
-        roomType: '',
-        number: '',
+        type: '',
+        bed: '',
+        amenities: '',
         description: '',
-        offer: '',
-        price: '',
-        discount: '',
-        cancellation: '',
-        tv: '',
-        service: '',
-        sea: '',
-        spa: '',
-        jacuzzi: ''
+        rate: 0,
+        price: 0,
+        discount: 0,
+        available: true
     });
 
 
     const handleAddRoom = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormData((prevData) => ({
-            photo: e.currentTarget.photo.value,
-            roomType: e.currentTarget.roomType.value,
-            number: e.currentTarget.roomNumber.value,
-            description: e.currentTarget.desc.value,
-            offer: e.currentTarget.offerType.value,
-            price: e.currentTarget.price.value,
-            discount: e.currentTarget.discount.value,
-            cancellation: e.currentTarget.cancellation.value,
-            tv: e.currentTarget.TV.value,
-            service: e.currentTarget.service.value,
-            sea: e.currentTarget.sea.value,
-            spa: e.currentTarget.spa.value,
-            jacuzzi: e.currentTarget.jacuzzi.value
+            _id: undefined,
+            photo: e.currentTarget.photo.value || '',
+            type: e.currentTarget.roomType.value || '',
+            bed: e.currentTarget.roomNumber.value || '',
+            amenities: `
+                TV: ${e.currentTarget.TV.value},
+                Service:  ${e.currentTarget.service.value},
+                Sea:  ${e.currentTarget.sea.value},
+                spa:  ${e.currentTarget.spa.value},
+                jacuzzi:  ${e.currentTarget.jacuzzi.value}
+            ` || '',
+            description: e.currentTarget.desc.value || '',
+            rate: e.currentTarget.rate.value || '',
+            price: e.currentTarget.price.value || '',
+            discount: e.currentTarget.discount.value || '',
+            available: true,
         }))
     }
 
     useEffect(() => {
         if (Object.keys(formData).length > 0) {
             console.log('Antes de dispatch: ' + JSON.stringify(formData));
-            // dispatch(addRoomElement(formData));
+            dispatch<any>(createRoomToAPIThunk(formData));
             console.log('Después de dispatch: ' + JSON.stringify(formData));
         }
     }, [formData, dispatch])
@@ -72,10 +72,7 @@ export const CreateRoomPage = () => {
             </SelectStyled>
             <InputStyled type="number" name="roomNumber" id="roomNumberInput" placeholder='Room number' />
             <InputStyled type="text" name="desc" id="descInput" placeholder='description' />
-            <SelectStyled type={'secondary'} name='offerType' >
-                <option value="noOffer" selected>No offer</option>
-                <option value="Offer">Offer</option>
-            </SelectStyled>
+            <InputStyled type="number" name="rate" id="rate" placeholder='rate' />
             <InputStyled type="number" name="price" id="priceInput" placeholder='price' />
             <InputStyled type="number" name="discount" id="discountInput" placeholder='Discount (%)' />
             <InputStyled type="text" name="cancellation" id="cancellationInput" placeholder='cancellation politics' />

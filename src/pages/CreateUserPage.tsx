@@ -68,8 +68,8 @@ export const CreateUserPage = () => {
 
             <InputStyled type="text" name="desc" id="descInput" placeholder='descriptions'/>
             <SelectStyled type={'secondary'} name='active'>
-                <option value="active" selected>Active</option>
-                <option value="inactive" >Inactive</option>
+                <option value="ACTIVE" selected>Active</option>
+                <option value="INACTIVE" >Inactive</option>
             </SelectStyled>
 
             <InputStyled type="password" name="password" id="passInput" placeholder='password' />

@@ -57,7 +57,7 @@ export interface PopUpPropsInterface{
 
 export interface GuestImageRoomPropsInterface{
     img: string
-    id: number
+    id: string | undefined
     data: string
 }
 

@@ -16,7 +16,7 @@ export const getRoomListFromAPIThunk = createAsyncThunk<RoomInterface[], void, {
 })
 
 
-export const createRoomToAPIThunk = createAsyncThunk("user/createRoomToApi", async (body: RoomInterface): Promise<RoomInterface[]> => {
+export const createRoomToAPIThunk = createAsyncThunk("room/createRoomToApi", async (body: RoomInterface): Promise<RoomInterface[]> => {
     try {
         const token = localStorage.getItem('token');
         const response = await apiRequest('rooms', 'POST', body, token);
@@ -24,5 +24,17 @@ export const createRoomToAPIThunk = createAsyncThunk("user/createRoomToApi", asy
         return responseData.rooms;
     } catch (error) {
         throw new Error('Error al crear la habitación')
+    }
+})
+
+
+export const deleteRoomToAPIThunk = createAsyncThunk<RoomInterface, string, { state: any, rejectValue: string }>("user/deleteUserToApi", async (id: any): Promise<RoomInterface> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await apiRequest(`rooms/${id}`, 'DELETE', null, token);
+        const responseData = await response.json();
+        return responseData.success;
+    } catch (error) {
+        throw new Error('Error al eliminar a habitación')
     }
 })

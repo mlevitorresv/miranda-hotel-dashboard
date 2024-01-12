@@ -16,12 +16,13 @@ import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomStatus/*, removeRoomElement*/ } from '../features/rooms/roomSlice.js';
-import { getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
+import { deleteRoomToAPIThunk, getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
 import { Tfooter } from '../components/table/Tfooter.jsx';
 import { RoomInterface } from '../interfaces/RoomInterface.js';
 import { AppDispatch, RootState, useAppSelector } from '../app/store.js';
+import { FaTrashAlt } from 'react-icons/fa';
 
 export const RoomList = () => {
 
@@ -54,7 +55,7 @@ export const RoomList = () => {
       let sortedList: RoomInterface[] = filteredRoomList.slice();
 
       if (selectedSort === 'number') {
-        sortedList.sort((a: RoomInterface, b: RoomInterface) => a.id - b.id)
+        sortedList.sort()
       }
       else if (selectedSort === 'booked') {
         sortedList.sort((a: RoomInterface, b: RoomInterface) => {
@@ -92,9 +93,9 @@ export const RoomList = () => {
       paginatedList.forEach((room: RoomInterface) => {
         components.push(
 
-          <TrStyled align={'bottom'} key={room.id}>
+          <TrStyled align={'bottom'} key={room._id}>
             <td>
-              <GuestImageRoom img={room.photo} id={room.id} data={room.type} />
+              <GuestImageRoom img={room.photo} id={room._id} data={room.type} />
             </td>
             <td>
               <GuestDiv data={room.bed} />
@@ -111,21 +112,10 @@ export const RoomList = () => {
             <td>
               <RoomStatus status={room.available ? 'Available' : 'Booked'} />
             </td>
-            <td onClick={() => {
-              setActiveMenus((prevMenus) => ({
-                ...prevMenus,
-                [room.id]: !prevMenus[room.id],
-              }));
-            }}>
+            <td>
               <GuestDiv
-                data={<HiDotsVertical />}
-              />
-              {activeMenus[room.id] && (
-                <DropwdownStyled>
-                  <p>edit</p>
-                  {/* <p onClick={() => dispatch(removeRoomElement({id: room.id}))}>delete</p> */}
-                </DropwdownStyled>
-              )}
+                data={<FaTrashAlt onClick={() => dispatch(deleteRoomToAPIThunk(room._id!))}/>}
+              />      
             </td>
           </TrStyled>
 
