@@ -6,14 +6,14 @@ import { GuestImage } from '../components/guest/GuestImage'
 import { TrStyled } from '../components/table/TrStyled'
 import { GuestDiv } from '../components/guest/GuestDiv.jsx'
 import { ConciergeContact } from '../components/concierge/ConciergeContact'
-import { HiDotsVertical } from "react-icons/hi";
+import { FaTrashAlt } from "react-icons/fa";
 import { MenuStyled } from '../components/common/MenuStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { TableGuestStyled } from '../components/table/TableGuestStyled'
 import { Link, NavigateFunction, Navigator, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserActive, getUserData, getUserError, getUserInactive, getUserStatus } from '../features/user/userSlice'
-import { /*deleteUserToAPIThunk,*/ deleteUserToAPIThunk, getUserListFromAPIThunk } from '../features/user/userThunk'
+import { deleteUserToAPIThunk, getUserListFromAPIThunk } from '../features/user/userThunk'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Tfooter } from '../components/table/Tfooter'
@@ -74,7 +74,7 @@ export const ConciergeList = () => {
         components.push(
           <TrStyled>
             <td>
-              <GuestImage img={user.photo} name={user.name} id={'#' + user.id} join={'joined on: ' + user.date} />
+              <GuestImage img={user.photo} name={user.name} id={'#' + user._id} join={'joined on: ' + user.date} />
             </td>
             <td>
               <GuestDiv data={user.email} />
@@ -88,21 +88,10 @@ export const ConciergeList = () => {
             <td>
               <GuestDiv data={user.status} color={user.status === 'INACTIVE' ? '#E23428' : '#5AD07A'} />
             </td>
-            <td onClick={() => {
-              setActiveMenus((prevMenus) => ({
-                ...prevMenus,
-                [user.id]: !prevMenus[user.id],
-              }));
-            }}>
+            <td>
               <GuestDiv
-                data={<HiDotsVertical />}
-              />
-              {activeMenus[user.id] && (
-                <DropwdownStyled>
-                  <p>edit</p>
-                  <p  onClick={() => dispatch(deleteUserToAPIThunk(user.id.toString()))}>delete</p>
-                </DropwdownStyled>
-              )}
+                data={<FaTrashAlt onClick={() => dispatch(deleteUserToAPIThunk(user._id!))}/>}
+              />      
             </td>
           </TrStyled>
         )

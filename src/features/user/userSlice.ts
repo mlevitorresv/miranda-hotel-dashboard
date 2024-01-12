@@ -57,7 +57,7 @@ export const userSlice = createSlice({
 
         .addCase(deleteUserToAPIThunk.fulfilled, (state, action): void => {
             state.status = "fulfilled"
-            // state.data = state.data.filter(user => user.id != action.payload.name)
+            state.data = state.data.filter(user => user.name != action.payload.name)
         })
         .addCase(deleteUserToAPIThunk.rejected, (state, action): void => {
             state.status = "rejected"

@@ -25,7 +25,7 @@ export const CreateUserPage = () => {
         description: '',
         status: '',
         password: '',
-        id: 1,
+        _id: undefined,
     });
 
     const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,7 +40,7 @@ export const CreateUserPage = () => {
             description: e.currentTarget.desc.value.toString() || '',
             status: e.currentTarget.active.value.toString() || '',
             password: e.currentTarget.password.value.toString() || '',
-            id: 1
+            _id: undefined,
         }))
     }
 

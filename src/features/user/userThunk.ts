@@ -60,7 +60,7 @@ export const createUserToAPIThunk = createAsyncThunk("user/createUserToApi", asy
 
 
 
-export const deleteUserToAPIThunk = createAsyncThunk<UserInterface[], string, { state: any, rejectValue: string }>("user/deleteUserToApi", async (id: any): Promise<UserInterface[]> => {
+export const deleteUserToAPIThunk = createAsyncThunk<UserInterface, string, { state: any, rejectValue: string }>("user/deleteUserToApi", async (id: any): Promise<UserInterface> => {
     try {
         const token = localStorage.getItem('token');
         const response = await apiRequest(`users/${id}`, 'DELETE', null, token);

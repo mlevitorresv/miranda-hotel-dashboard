@@ -1,5 +1,5 @@
 export interface UserInterface{
-    id: number,
+    _id: string | undefined
     photo: string,
     name: string,
     ocupation: string,
