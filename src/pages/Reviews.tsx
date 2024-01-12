@@ -58,7 +58,7 @@ export const Reviews = () => {
         components.push(
           <TrStyled>
             <td>
-              <GuestDiv data={'#' + contact.id} />
+              <GuestDiv data={'#' + contact._id} />
             </td>
             <td>
               <GuestDiv data={contact.date + ' ' + contact.dateTime} />

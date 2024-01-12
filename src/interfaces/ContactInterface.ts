@@ -1,7 +1,7 @@
 
 export interface ContactInterface{
+    _id: number,
     photo: string
-    id: number
     name: string
     email: string
     phone: string
