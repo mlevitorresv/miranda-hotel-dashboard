@@ -22,7 +22,7 @@ export const CreateUserPage = () => {
         email: '',
         phone: '',
         date: '',
-        desc: '',
+        description: '',
         status: '',
         password: '',
         id: 1,
@@ -37,7 +37,7 @@ export const CreateUserPage = () => {
             email: e.currentTarget.email.value.toString() || '',
             phone: e.currentTarget.phone.value.toString() || '',
             date: e.currentTarget.date.value.toString() || '',
-            desc: e.currentTarget.desc.value.toString() || '',
+            description: e.currentTarget.desc.value.toString() || '',
             status: e.currentTarget.active.value.toString() || '',
             password: e.currentTarget.password.value.toString() || '',
             id: 1

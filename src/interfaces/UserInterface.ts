@@ -6,7 +6,7 @@ export interface UserInterface{
     email: string,
     phone: string,
     date: string,
-    desc: string,
+    description: string,
     status: string,
     password: string
 }

@@ -80,7 +80,7 @@ export const ConciergeList = () => {
               <GuestDiv data={user.email} />
             </td>
             <td>
-              <GuestDiv data={user.desc} />
+              <GuestDiv data={user.description} />
             </td>
             <td>
               <ConciergeContact data={user.phone} />
