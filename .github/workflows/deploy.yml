@@ -1,4 +1,4 @@
-name: Deployment hotelMirandaDashboard
+name: Deployment hotel-Miranda-Dashboard
 
 on:
   push:
