@@ -41,7 +41,7 @@ export const LoginPage = () => {
               <Link to='/' className='loginForm__image'><img src="/public/logo.png" alt="Hotel Miranda's logo" /></Link>
               <InputStyled type="email" name="emailInput" id="emailInput" placeholder='example@example.com' onChange={handleChangeEmail}/>
               <InputStyled type="password" name="passInput" id="passInput" placeholder='password'  onChange={handleChangePass}/>
-              <ButtonStyled type='submit'>INICIAR SESION</ButtonStyled>
+              <ButtonStyled type='submit'>SIGN IN</ButtonStyled>
           </FormStyled> 
       </FormPageStyled>
     </>
