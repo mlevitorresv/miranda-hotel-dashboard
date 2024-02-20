@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000';
+const API_URL = 'https://hj7tq4f5q6.execute-api.eu-north-1.amazonaws.com/dev';
 
 export const apiRequest = async (endpoint: string, method: string = 'GET', body: object | null, token: string | null) => {
 

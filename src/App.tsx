@@ -23,10 +23,13 @@ function App() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    const savedData = localStorage.getItem('conex');
+    const savedData = localStorage.getItem('token');
     if (savedData) {
-      setData(JSON.parse(savedData));
+      setData(savedData);
     }
+    console.log('data: ', data)
+    console.log('localstorage: ', savedData)
+
   }, []);
 
   return (
