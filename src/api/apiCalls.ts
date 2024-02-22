@@ -1,4 +1,4 @@
-const API_URL = 'https://hj7tq4f5q6.execute-api.eu-north-1.amazonaws.com/dev';
+const API_URL = 'https://hj7tq4f5q6.execute-api.eu-north-1.amazonaws.com/dev/';
 
 export const apiRequest = async (endpoint: string, method: string = 'GET', body: object | null, token: string | null) => {
 
@@ -16,7 +16,7 @@ export const apiRequest = async (endpoint: string, method: string = 'GET', body:
             body: body ? JSON.stringify(body) : null
         }
 
-        const response = await fetch(`${API_URL}/${endpoint}`, requestOptions)
+        const response = await fetch(`${API_URL}${endpoint}`, requestOptions)
 
         if (!response.ok) 
             throw new Error(`Error en la solicitud: ${response.status}: ${response.statusText}`);

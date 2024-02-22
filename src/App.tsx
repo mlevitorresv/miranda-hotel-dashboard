@@ -27,8 +27,6 @@ function App() {
     if (savedData) {
       setData(savedData);
     }
-    console.log('data: ', data)
-    console.log('localstorage: ', savedData)
 
   }, []);
 
