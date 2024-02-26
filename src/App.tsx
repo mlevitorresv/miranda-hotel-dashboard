@@ -14,69 +14,65 @@ import { CreateRoomPage } from './pages/CreateRoomPage'
 import { EditRoomPage } from './pages/EditRoomPage'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
-import { AuthProvider } from './context/AuthProvider.jsx'
+import { AuthProvider, useAuth } from './context/AuthProvider.jsx'
 import { CreateBooking } from './pages/CreateBooking'
 import { ToastContainer } from 'react-toastify'
 
 
 function App() {
+  const { user } = useAuth();
   const [data, setData] = useState('');
-
-  useEffect(() => {
-    const savedData = localStorage.getItem('token');
-    if (savedData) {
-      setData(savedData);
-    }
-
-  }, []);
 
   return (
     <>
       <BrowserRouter>
-        <AuthProvider>
-          <Provider store={store}>
-            <Routes>
-              {/* LOGIN */}
-              <Route path='/' element={<LoginPage />} />
+        <Routes>
+          {/* LOGIN */}
+          <Route path='/' element={<LoginPage />} />
 
-              {data ? (
-                <>
-                  {/* <Header /> */}
-                  <Route element={<Layout />}>
+          {user ? (
+            <>
+              {/* <Header /> */}
+              <Route element={<Layout />}>
+                {/* PRINCIPAL */}
+                <Route path='/home' element={<Dashboard />} />
 
-                    {/* PRINCIPAL */}
-                    <Route path='/home' element={<Dashboard />} />
+                {/* BOOKINGS */}
+                <Route path='/bookings' element={<GuestList />} />
+                <Route path='/bookings/:id' element={<GuestDetails />} />
+                <Route path='/bookings/create' element={<CreateBooking />} />
+                <Route path='/bookings/edit/:id' element={<GuestList />} />
 
-                    {/* BOOKINGS */}
-                    <Route path='/bookings' element={<GuestList />} />
-                    <Route path='/bookings/:id' element={<GuestDetails />} />
-                    <Route path='/bookings/create' element={<CreateBooking />} />
-                    <Route path='/bookings/edit/:id' element={<GuestList />} />
+                {/* ROOMS */}
+                <Route path='/rooms' element={<RoomList />} />
+                <Route path='/rooms/:id' element={<RoomList />} />
+                <Route path='/rooms/create' element={<CreateRoomPage />} />
+                <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
 
-                    {/* ROOMS */}
-                    <Route path='/rooms' element={<RoomList />} />
-                    <Route path='/rooms/:id' element={<RoomList />} />
-                    <Route path='/rooms/create' element={<CreateRoomPage />} />
-                    <Route path='/rooms/edit/:id' element={<EditRoomPage />} />
+                {/* USERS */}
+                <Route path='/users' element={<ConciergeList />} />
+                <Route path='/users/:id' element={<ConciergeList />} />
+                <Route path='/users/create' element={<CreateUserPage />} />
+                <Route path='/users/edit/:id' element={<EditUserPage />} />
 
-                    {/* USERS */}
-                    <Route path='/users' element={<ConciergeList />} />
-                    <Route path='/users/:id' element={<ConciergeList />} />
-                    <Route path='/users/create' element={<CreateUserPage />} />
-                    <Route path='/users/edit/:id' element={<EditUserPage />} />
-
-                    {/* CONTACT */}
-                    <Route path='/contact' element={<Reviews />} />
-                  </Route>
-                </>
-              ) : null}
-            </Routes>
-          </Provider>
-          <ToastContainer />
-        </AuthProvider>
+                {/* CONTACT */}
+                <Route path='/contact' element={<Reviews />} />
+              </Route>
+            </>
+          ) : null}
+        </Routes>
       </BrowserRouter >
+      <ToastContainer />
     </>
   );
 }
 
-export default App;
+const AppWithAuthProvider = () => (
+  <AuthProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </AuthProvider>
+);
+
+export default AppWithAuthProvider;
