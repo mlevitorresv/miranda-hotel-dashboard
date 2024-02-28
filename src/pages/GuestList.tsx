@@ -15,13 +15,14 @@ import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingBooked, getBookingData, getBookingError, getBookingPending, getBookingRefund, getBookingStatus/*, removeBookingElement*/ } from '../features/bookings/bookingsSlice';
-import { getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
+import { deleteBookingToAPIThunk, getBookingListFromAPIThunk } from '../features/bookings/bookingsThunk';
 import { Tfooter } from '../components/table/Tfooter'
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled'
 import { Dispatch } from '@reduxjs/toolkit'
 import { AppDispatch, RootState, useAppSelector } from '../app/store'
 import { BookingInterface } from '../interfaces/BookingsInterface'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
+import { FaTrashAlt } from 'react-icons/fa'
 
 
 
@@ -74,7 +75,7 @@ export const GuestList = () => {
         sortedList.sort((a: BookingInterface, b: BookingInterface) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime())
       }
       else if (selectedSort === 'guest') {
-        sortedList.sort((a: BookingInterface, b: BookingInterface) => a.id - b.id)
+        sortedList.sort()
       }
       else if (selectedSort === 'checkIn') {
         sortedList.sort((a: BookingInterface, b: BookingInterface) => new Date(b.checkInDate).getTime() - new Date(a.checkInDate).getTime())
@@ -92,7 +93,7 @@ export const GuestList = () => {
         components.push(
           <TrStyled>
             <td>
-              <GuestImage img={booking.photo} name={booking.name} id={booking.id} />
+              <GuestImage img={booking.photo} name={booking.name} id={booking._id} />
             </td>
             <td>
               <GuestDiv data={booking.orderDate} />
@@ -121,21 +122,10 @@ export const GuestList = () => {
 
               </div>
             </td>
-            <td onClick={() => {
-              setActiveMenus((prevMenus) => ({
-                ...prevMenus,
-                [booking.id]: !prevMenus[booking.id],
-              }));
-            }}>
+            <td>
               <GuestDiv
-                data={<HiDotsVertical />}
-              />
-              {activeMenus[booking.id] && (
-                <DropwdownStyled>
-                  <p>edit</p>
-                  {/* <p  onClick={() => dispatch(removeBookingElement({id: booking.id}))}>delete</p> */}
-                </DropwdownStyled>
-              )}
+                data={<FaTrashAlt onClick={() => dispatch(deleteBookingToAPIThunk(booking._id!))}/>}
+              />      
             </td>
           </TrStyled>
         )

@@ -1,9 +1,9 @@
 
 
 export interface BookingInterface{
+    _id:string
     photo:string
     name:string
-    id:number
     orderDate:string
     orderTime:string
     checkInDate:string

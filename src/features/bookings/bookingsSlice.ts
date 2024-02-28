@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBookingListFromAPIThunk } from "./bookingsThunk";
+import { deleteBookingToAPIThunk, getBookingListFromAPIThunk } from "./bookingsThunk";
 import { BookingInterface, BookingSliceInitialStateInterface } from "../../interfaces/BookingsInterface";
 import { RootState } from "../../app/store";
 
@@ -23,6 +23,18 @@ export const bookingSlice = createSlice({
             state.error = action.error.message
         })
         .addCase(getBookingListFromAPIThunk.pending, (state, action) => {
+            state.status = "pending"
+        })
+
+        .addCase(deleteBookingToAPIThunk.fulfilled, (state, action): void => {
+            state.status = "fulfilled"
+            state.data = state.data.filter(booking => booking._id != action.payload._id)
+        })
+        .addCase(deleteBookingToAPIThunk.rejected, (state, action): void => {
+            state.status = "rejected"
+            state.error = action.error.message
+        })
+        .addCase(deleteBookingToAPIThunk.pending, (state, action): void => {
             state.status = "pending"
         })
     }
