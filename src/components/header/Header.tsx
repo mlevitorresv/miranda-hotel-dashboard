@@ -17,6 +17,7 @@ import { HeaderPropsInterface } from '../../interfaces/componentsInterface'
 export const Header = (props: HeaderPropsInterface) => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [headerWidth, setHeaderWidth] = useState('100%')
   const { logout } = useAuth();
 
   const handlerMenu = () => {
@@ -29,11 +30,13 @@ export const Header = (props: HeaderPropsInterface) => {
       if (dashboardIcon) dashboardIcon.style.display = 'inline';
       if (arrowIcon) arrowIcon.style.display = 'none';
       if (asideNav) asideNav.style.display = 'none';
+      setHeaderWidth('100%')
       setIsOpenMenu(true);
     } else {
       if (dashboardIcon) dashboardIcon.style.display = 'none';
       if (arrowIcon) arrowIcon.style.display = 'inline';
       if (asideNav) asideNav.style.display = 'flex';
+      setHeaderWidth('calc(100% - 19em)')
       setIsOpenMenu(false);
     }
   };
@@ -50,7 +53,7 @@ export const Header = (props: HeaderPropsInterface) => {
   return (
     <>    
       {!isOpenMenu && <AsideNav id='asideNav' />}
-      <HeaderStyled id='header'>
+      <HeaderStyled id='header' headerWidth={headerWidth}>
         <div>
           <DashboardStyledIcon id='dashboardIcon' onClick={handlerMenu}/>
           <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>

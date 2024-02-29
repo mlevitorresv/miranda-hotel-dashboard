@@ -5,11 +5,13 @@ import styled from "styled-components"
 export const AsideNavStyled = styled.nav`
     padding: 2em;
     width: 15em;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: white;
     position: fixed;
     z-index: 100;
+    box-shadow: 0 10px 10px gray;
 
 
     .icons{
