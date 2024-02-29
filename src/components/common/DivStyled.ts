@@ -17,7 +17,7 @@ export const DivStyled = styled.div`
         height: 75px;
         position: absolute;
         bottom: 10em;
-        left: 4em;
+        left: 5.5em;
         border-radius: 10px;
     }
 
