@@ -8,6 +8,8 @@ export const AsideNavStyled = styled.nav`
     display: flex;
     flex-direction: column;
     background-color: white;
+    position: fixed;
+    z-index: 100;
 
 
     .icons{
