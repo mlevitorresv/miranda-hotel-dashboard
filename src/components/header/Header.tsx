@@ -57,8 +57,8 @@ export const Header = (props: HeaderPropsInterface) => {
         <div>
           <DashboardStyledIcon id='dashboardIcon' onClick={handlerMenu}/>
           <ArrowStyledIcon id='arrowIcon' onClick={handlerMenu}/>
+          <H1Styled>{props.title}</H1Styled>
         </div>
-        <H1Styled>{props.title}</H1Styled>
         <div>
           <HeartStyledIcon />
           <NotificationStyledIcon />
