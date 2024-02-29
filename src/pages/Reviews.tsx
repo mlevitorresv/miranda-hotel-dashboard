@@ -89,7 +89,7 @@ export const Reviews = () => {
   }
 
   return (
-    <div>
+    <>
       <MessageDivStyled bg={'transparent'}>
         <MessagesContainer />
       </MessageDivStyled>
@@ -137,6 +137,6 @@ export const Reviews = () => {
         itemsPerPage={itemsPerPage}
 
       />
-    </div>
+    </>
   )
 }

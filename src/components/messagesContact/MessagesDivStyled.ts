@@ -5,7 +5,7 @@ interface MessageDivStyledPropsInterface{
 }
 
 export const MessageDivStyled = styled.div<MessageDivStyledPropsInterface>`
-    padding: 1em 2em;
+    padding: 1em 2em 2em;
     background-color: ${props => props.bg ? props.bg : 'white'};
     box-shadow: ${props => props.bg ? 'none' : '0px 4px 4px #00000005'};
     width: 80%;
