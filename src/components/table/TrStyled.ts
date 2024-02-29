@@ -9,4 +9,7 @@ export const TrStyled = styled.tr<TrStyledPropsInterface>`
     height: 4em;
     vertical-align: ${props => props.align ? props.align : 'top'};
     border: 1px solid black;
+    &:hover{
+        cursor: pointer;
+    }
 `
