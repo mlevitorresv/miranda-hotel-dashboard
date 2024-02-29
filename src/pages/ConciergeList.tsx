@@ -90,7 +90,7 @@ export const ConciergeList = () => {
             </td>
             <td>
               <GuestDiv
-                data={<FaTrashAlt onClick={() => dispatch(deleteUserToAPIThunk(user._id!))}/>}
+                data={<FaTrashAlt onClick={() => handleDeleteUser(user._id!)}/>}
               />      
             </td>
           </TrStyled>
@@ -102,6 +102,16 @@ export const ConciergeList = () => {
 
   }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort, activeMenus, currentPage])
 
+
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      await dispatch(deleteUserToAPIThunk(userId));
+      setSpinner(true);
+      await dispatch(getUserListFromAPIThunk());
+    } catch (error) {
+      console.error('Error al eliminar la habitación:', error);
+    }
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)

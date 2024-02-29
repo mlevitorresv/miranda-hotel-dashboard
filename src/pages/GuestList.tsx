@@ -124,7 +124,7 @@ export const GuestList = () => {
             </td>
             <td>
               <GuestDiv
-                data={<FaTrashAlt onClick={() => dispatch(deleteBookingToAPIThunk(booking._id!))}/>}
+                data={<FaTrashAlt onClick={() => handleDeleteBooking(booking._id!)}/>}
               />      
             </td>
           </TrStyled>
@@ -136,6 +136,16 @@ export const GuestList = () => {
 
   }, [dispatch, bookingListData, bookingListStatus, showBookingsBooked, showBookingsPending, showBookingsRefund, selectedSort, activeMenus, currentPage])
 
+
+  const handleDeleteBooking = async (bookingId: string) => {
+    try {
+      await dispatch(deleteBookingToAPIThunk(bookingId));
+      setSpinner(true);
+      await dispatch(getBookingListFromAPIThunk());
+    } catch (error) {
+      console.error('Error al eliminar la habitación:', error);
+    }
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
