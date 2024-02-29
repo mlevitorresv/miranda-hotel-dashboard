@@ -12,4 +12,5 @@ export const HeaderStyled = styled.header<HeaderStyledPropsInterface>`
     display: flex;
     justify-content: space-between;
     padding: 1em 0em;
+    margin-bottom: 2em;
 `
