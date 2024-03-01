@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RoomInterface } from '../interfaces/RoomInterface'
 import { createRoomToAPIThunk } from '../features/rooms/roomThunk'
+import { FormUserStyled } from '../components/form/FormElementStyled'
 
 export const CreateRoomPage = () => {
 
@@ -61,16 +62,16 @@ export const CreateRoomPage = () => {
     }, [formData, dispatch])
 
     return (
-        <FormLoginStyled onSubmit={handleAddRoom}>
-            <H1Styled>New Room</H1Styled>
-            <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
+        <FormUserStyled onSubmit={handleAddRoom}>
+            <H1Styled className='title'>New Room</H1Styled>
+            <InputStyled type="text" name="photo" id="photoInput" placeholder='Photo URL' />
+            <InputStyled type="number" name="roomNumber" id="roomNumberInput" placeholder='Room number' />
             <SelectStyled type={'secondary'} name='roomType' >
                 <option value="singleBed" selected>Single Bed</option>
                 <option value="doubleBed">Double Bed</option>
                 <option value="doubleSuper" >Double Super</option>
                 <option value="suite" >Suite</option>
             </SelectStyled>
-            <InputStyled type="number" name="roomNumber" id="roomNumberInput" placeholder='Room number' />
             <InputStyled type="text" name="desc" id="descInput" placeholder='description' />
             <InputStyled type="number" name="rate" id="rate" placeholder='rate' />
             <InputStyled type="number" name="price" id="priceInput" placeholder='price' />
@@ -94,7 +95,7 @@ export const CreateRoomPage = () => {
                     <input type="checkbox" name="jacuzzi" id="jacuzziInput" /> <label htmlFor="jacuzziInput">Jacuzzi</label>
                 </AmenityStyled>
             </AmenitiesContainerStyled>
-            <ButtonStyled type='submit'>CREATE ROOM</ButtonStyled>
-        </FormLoginStyled>
+            <ButtonStyled type='submit' center={true}>CREATE ROOM</ButtonStyled>
+        </FormUserStyled>
     )
 }
