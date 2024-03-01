@@ -49,11 +49,7 @@ export const CreateUserPage = () => {
     }
 
     useEffect(() => {
-        if (Object.keys(formData).length > 0) {
-            console.log('Antes de dispatch: ' + JSON.stringify(formData));
             dispatch(createUserToAPIThunk(formData));
-            console.log('Después de dispatch: ' + JSON.stringify(formData));
-        }
     }, [formData, dispatch])
 
     return (
