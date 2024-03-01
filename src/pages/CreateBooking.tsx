@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FormStyled } from '../components/form/FormStyled'
+import { FormLoginStyled } from '../components/form/FormLoginStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
@@ -62,7 +62,7 @@ export const CreateBooking = () => {
   }, [formData, dispatch])
 
   return (
-    <FormStyled onSubmit={handleAddBooking}>
+    <FormLoginStyled onSubmit={handleAddBooking}>
       <H1Styled>New Booking</H1Styled>
       <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
       <InputStyled type="text" name="nameBooking" id="nameInput" placeholder='Name' />
@@ -75,6 +75,6 @@ export const CreateBooking = () => {
         ))}
       </SelectStyled>
       <ButtonStyled type='submit'>CREATE BOOKING</ButtonStyled>
-    </FormStyled>
+    </FormLoginStyled>
   )
 }

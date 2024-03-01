@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FormStyled } from '../components/form/FormStyled'
+import { FormLoginStyled } from '../components/form/FormLoginStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
@@ -53,7 +53,7 @@ export const CreateUserPage = () => {
     }, [formData, dispatch])
 
     return (
-        <FormStyled onSubmit={handleAddUser}>
+        <FormLoginStyled onSubmit={handleAddUser}>
             <H1Styled>New User</H1Styled>
             <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
             <InputStyled type="text" name="name" id="nameInput" placeholder='name'/>
@@ -74,6 +74,6 @@ export const CreateUserPage = () => {
 
             <InputStyled type="password" name="password" id="passInput" placeholder='password' />
             <ButtonStyled type='submit'>CREATE USER</ButtonStyled>
-        </FormStyled>
+        </FormLoginStyled>
     )
 }

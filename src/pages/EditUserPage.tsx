@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormStyled } from '../components/form/FormStyled'
+import { FormLoginStyled } from '../components/form/FormLoginStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
@@ -10,7 +10,7 @@ export const EditUserPage = (props: UserInterface) => {
 
 
   return (
-          <FormStyled>
+          <FormLoginStyled>
                 <H1Styled>Edit User</H1Styled>
                 <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
                 <InputStyled type="text" name="nameInput" id="nameInput" placeholder={props.name}/>
@@ -30,6 +30,6 @@ export const EditUserPage = (props: UserInterface) => {
 
                 <InputStyled type="password" name="passInput" id="passInput" placeholder='password'/>
                 <ButtonStyled type='submit'>EDIT USER</ButtonStyled>
-          </FormStyled>
+          </FormLoginStyled>
   )
 }

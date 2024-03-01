@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const FormStyled = styled.form`
+export const FormLoginStyled = styled.form`
     width: 30em;
     display: flex;
     flex-direction: column;

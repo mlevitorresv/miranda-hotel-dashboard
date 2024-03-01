@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FormStyled } from '../components/form/FormStyled'
+import { FormLoginStyled } from '../components/form/FormLoginStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { InputStyled } from '../components/common/InputStyled'
 import { SelectStyled } from '../components/table/SelectStyled'
@@ -61,7 +61,7 @@ export const CreateRoomPage = () => {
     }, [formData, dispatch])
 
     return (
-        <FormStyled onSubmit={handleAddRoom}>
+        <FormLoginStyled onSubmit={handleAddRoom}>
             <H1Styled>New Room</H1Styled>
             <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
             <SelectStyled type={'secondary'} name='roomType' >
@@ -95,6 +95,6 @@ export const CreateRoomPage = () => {
                 </AmenityStyled>
             </AmenitiesContainerStyled>
             <ButtonStyled type='submit'>CREATE ROOM</ButtonStyled>
-        </FormStyled>
+        </FormLoginStyled>
     )
 }
