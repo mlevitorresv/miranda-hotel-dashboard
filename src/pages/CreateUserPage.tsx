@@ -10,6 +10,10 @@ import { useEffect } from 'react'
 import { UserInterface } from '../interfaces/UserInterface'
 import { createUserToAPIThunk } from '../features/user/userThunk'
 import { AppDispatch } from '../app/store'
+import { FormUserStyled } from '../components/form/FormUserStyled'
+import { PageFormStyled } from '../components/form/PageFormStyled'
+import { TextAreaStyled } from '../components/common/TextAreaStyled'
+import { LabelStyled } from '../components/common/LabelStyled'
 
 export const CreateUserPage = () => {
 
@@ -53,27 +57,30 @@ export const CreateUserPage = () => {
     }, [formData, dispatch])
 
     return (
-        <FormLoginStyled onSubmit={handleAddUser}>
-            <H1Styled>New User</H1Styled>
-            <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
-            <InputStyled type="text" name="name" id="nameInput" placeholder='name'/>
-            <SelectStyled type={'secondary'} name="ocupation">
-                <option value="manager" selected>Manager</option>
-                <option value="reception" >Reception</option>
-                <option value="service" >Room Service</option>
-            </SelectStyled>
-            <InputStyled type="email" name="email" id="emailInput" placeholder='example@example.com' />
-            <InputStyled type="number" name="phone" id="phoneInput" placeholder='666666666' />
-            <InputStyled type="date" name="date" id="dateInput" placeholder='Start Date' />
+        <>
+            <FormUserStyled onSubmit={handleAddUser}>
+                <H1Styled className='title'>New User</H1Styled>
+                <InputStyled type="text" name="photo" id="photoInput" placeholder='Photo URL' />
+                <InputStyled type="text" name="name" id="nameInput" placeholder='Full Name' />
+                <InputStyled type="email" name="email" id="emailInput" placeholder='Email: example@example.com' />
+                <InputStyled type="password" name="password" id="passInput" placeholder='password' />
+                <InputStyled type="number" name="phone" id="phoneInput" placeholder='Phone Number' />
+                <InputStyled type="date" name="date" id="dateInput" placeholder='Start Date' />
 
-            <InputStyled type="text" name="desc" id="descInput" placeholder='descriptions'/>
-            <SelectStyled type={'secondary'} name='active'>
-                <option value="ACTIVE" selected>Active</option>
-                <option value="INACTIVE" >Inactive</option>
-            </SelectStyled>
+                <SelectStyled type={'secondary'} name="ocupation">
+                    <option value="manager" selected>Manager</option>
+                    <option value="reception" >Reception</option>
+                    <option value="service" >Room Service</option>
+                </SelectStyled>
+                <SelectStyled type={'secondary'} name='active'>
+                    <option value="ACTIVE" selected>Active</option>
+                    <option value="INACTIVE" >Inactive</option>
+                </SelectStyled>
 
-            <InputStyled type="password" name="password" id="passInput" placeholder='password' />
-            <ButtonStyled type='submit'>CREATE USER</ButtonStyled>
-        </FormLoginStyled>
+                <TextAreaStyled name="desc" id="descInput" placeholder='description' rows={5}/>
+
+                <ButtonStyled type='submit' center={true}>CREATE USER</ButtonStyled>
+            </FormUserStyled>
+        </>
     )
 }

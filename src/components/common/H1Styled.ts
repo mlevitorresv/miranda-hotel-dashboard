@@ -6,4 +6,5 @@ export const H1Styled = styled.h1`
     font-family: 'poppins';
     display: inline;
     margin: 0 auto;
+    grid-column: span 2;
 `
