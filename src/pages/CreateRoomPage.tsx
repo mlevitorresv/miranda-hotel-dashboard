@@ -51,15 +51,8 @@ export const CreateRoomPage = () => {
             discount: e.currentTarget.discount.value || '',
             available: true,
         }))
+        dispatch<any>(createRoomToAPIThunk(formData));
     }
-
-    useEffect(() => {
-        if (Object.keys(formData).length > 0) {
-            console.log('Antes de dispatch: ' + JSON.stringify(formData));
-            dispatch<any>(createRoomToAPIThunk(formData));
-            console.log('Después de dispatch: ' + JSON.stringify(formData));
-        }
-    }, [formData, dispatch])
 
     return (
         <FormUserStyled onSubmit={handleAddRoom}>

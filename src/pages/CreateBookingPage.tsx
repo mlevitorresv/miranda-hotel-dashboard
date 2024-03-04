@@ -58,10 +58,6 @@ export const CreateBooking = () => {
     dispatch<any>(createBookingToAPIThunk(formData));
   }
 
-  useEffect(() => {
-    console.log('available Rooms',availableRooms)
-  }, [dispatch])
-
   return (
     <FormUserStyled onSubmit={handleAddBooking}>
       <H1Styled className='title'>New Booking</H1Styled>

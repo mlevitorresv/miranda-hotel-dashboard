@@ -46,11 +46,8 @@ export const CreateUserPage = () => {
             password: e.currentTarget.password.value.toString() || '',
             _id: undefined,
         }))
+        dispatch(createUserToAPIThunk(formData));
     }
-
-    useEffect(() => {
-            dispatch(createUserToAPIThunk(formData));
-    }, [formData, dispatch])
 
     return (
         <>
