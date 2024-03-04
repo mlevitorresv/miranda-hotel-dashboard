@@ -5,12 +5,12 @@ import { ListElementStyled } from '../components/common/ListElementStyled.js';
 import { SearchBarStyled } from '../components/table/SearchBarStyled.js';
 import { TheadStyled } from '../components/table/TheadStyled.js';
 import { TrStyled } from '../components/table/TrStyled.js';
-import { GuestDiv } from '../components/guest/GuestDiv';
+import { GuestDiv } from '../components/guest/GuestDiv.js';
 import { MenuStyled } from '../components/common/MenuStyled.js';
 import { HiDotsVertical } from "react-icons/hi";
-import { GuestImageRoom } from '../components/room/GuestImageRoom';
-import { RoomRate } from '../components/room/RoomRate';
-import { RoomStatus } from '../components/room/RoomStatus';
+import { GuestImageRoom } from '../components/room/GuestImageRoom.js';
+import { RoomRate } from '../components/room/RoomRate.js';
+import { RoomStatus } from '../components/room/RoomStatus.js';
 import { SelectStyled } from '../components/table/SelectStyled.js';
 import { TableGuestStyled } from '../components/table/TableGuestStyled.js';
 import { ButtonStyled } from '../components/common/ButtonStyled.js'
@@ -19,7 +19,7 @@ import { getAvailableRooms, getBookedRooms, getRoomData, getRoomError, getRoomSt
 import { deleteRoomToAPIThunk, getRoomListFromAPIThunk } from '../features/rooms/roomThunk.js';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { DropwdownStyled } from '../components/dropdown/DropwdownStyled.js';
-import { Tfooter } from '../components/table/Tfooter.jsx';
+import { Tfooter } from '../components/table/Tfooter.js';
 import { RoomInterface } from '../interfaces/RoomInterface.js';
 import { AppDispatch, RootState, useAppSelector } from '../app/store.js';
 import { FaTrashAlt } from 'react-icons/fa';

@@ -4,7 +4,7 @@ import { ListElementStyled } from '../components/common/ListElementStyled'
 import { TheadStyled } from '../components/table/TheadStyled'
 import { GuestImage } from '../components/guest/GuestImage'
 import { TrStyled } from '../components/table/TrStyled'
-import { GuestDiv } from '../components/guest/GuestDiv.jsx'
+import { GuestDiv } from '../components/guest/GuestDiv.js'
 import { ConciergeContact } from '../components/concierge/ConciergeContact'
 import { FaTrashAlt } from "react-icons/fa";
 import { MenuStyled } from '../components/common/MenuStyled'
