@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { BookingInterface } from '../interfaces/BookingsInterface'
 import { RoomInterface } from '../interfaces/RoomInterface'
 import { useAppSelector } from '../app/store'
+import { createBookingToAPIThunk } from '../features/bookings/bookingsThunk'
+import { FormUserStyled } from '../components/form/FormElementStyled'
 // import { addBookingElement } from '../features/bookings/bookingsSlice'
 
 
@@ -21,7 +23,8 @@ export const CreateBooking = () => {
 
 
   const availableRooms = useAppSelector<RoomInterface[]>(getAvailableRooms);
-  const [formData, setFormData] = useState<BookingInterface | {}>({
+  const [formData, setFormData] = useState<BookingInterface>({
+    _id: undefined,
     photo: '',
     name: '',
     orderDate: '',
@@ -39,10 +42,11 @@ export const CreateBooking = () => {
   const handleAddBooking = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormData((prevData) => ({
+      _id: undefined,
       photo: e.currentTarget.photo.value,
       name: e.currentTarget.nameBooking.value,
-      orderDate: new Date(),
-      orderTime: new Date().getTime(),
+      orderDate: new Date().toString(),
+      orderTime: new Date().getTime().toString(),
       checkInDate: e.currentTarget.checkIn.value,
       checkInTime: '12AM',
       checkOut: e.currentTarget.checkOut.value,
@@ -51,30 +55,27 @@ export const CreateBooking = () => {
       room: e.currentTarget.room.value,
       status: 'booked'
     }))
+    dispatch<any>(createBookingToAPIThunk(formData));
   }
 
   useEffect(() => {
-    if (Object.keys(formData).length > 0) {
-      console.log('Antes de dispatch: ' + JSON.stringify(formData));
-      // dispatch(addBookingElement(formData));
-      console.log('Después de dispatch: ' + JSON.stringify(formData));
-    }
-  }, [formData, dispatch])
+    console.log('available Rooms',availableRooms)
+  }, [dispatch])
 
   return (
-    <FormLoginStyled onSubmit={handleAddBooking}>
-      <H1Styled>New Booking</H1Styled>
-      <InputStyled type="text" name="photo" id="photoInput" placeholder='url' />
-      <InputStyled type="text" name="nameBooking" id="nameInput" placeholder='Name' />
-      <InputStyled type="date" name="checkIn" id="checkInDate" placeholder='checkIn' />
-      <InputStyled type="date" name="checkOut" id="checkOutDate" placeholder='checkOut' />
+    <FormUserStyled onSubmit={handleAddBooking}>
+      <H1Styled className='title'>New Booking</H1Styled>
+      <InputStyled type="text" name="photo" id="photoInput" placeholder='Photo URL' />
+      <InputStyled type="text" name="nameBooking" id="nameInput" placeholder='Guest name' />
+      <InputStyled type="date" name="checkIn" id="checkInDate" placeholder='checkIn date' />
+      <InputStyled type="date" name="checkOut" id="checkOutDate" placeholder='checkOut date' />
       <InputStyled type="text" name="notes" id="notesInput" placeholder='notes' />
-      <SelectStyled>
+      <SelectStyled type='secondary'>
         {availableRooms && availableRooms.map((room: RoomInterface) => (
-          <option key={room.id} value={room.id}>{room.id}</option>
+          <option key={room._id} value={room._id}>{room._id}</option>
         ))}
       </SelectStyled>
-      <ButtonStyled type='submit'>CREATE BOOKING</ButtonStyled>
-    </FormLoginStyled>
+      <ButtonStyled type='submit' center={true}>CREATE BOOKING</ButtonStyled>
+    </FormUserStyled>
   )
 }

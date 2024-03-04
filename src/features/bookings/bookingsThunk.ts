@@ -15,8 +15,18 @@ export const getBookingListFromAPIThunk = createAsyncThunk<BookingInterface[], v
     }
 })
 
+export const createBookingToAPIThunk = createAsyncThunk("booking/createBookingToApi", async (body: BookingInterface): Promise<BookingInterface[]> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await apiRequest('bookings', 'POST', body, token);
+        const responseData = await response.json();
+        return responseData.bookings;
+    } catch (error) {
+        throw new Error('Error al crear la reserva')
+    }
+})
 
-export const deleteBookingToAPIThunk = createAsyncThunk<BookingInterface, string, { state: any, rejectValue: string }>("user/deleteBookingToApi", async (id: any): Promise<BookingInterface> => {
+export const deleteBookingToAPIThunk = createAsyncThunk<BookingInterface, string, { state: any, rejectValue: string }>("booking/deleteBookingToApi", async (id: any): Promise<BookingInterface> => {
     try {
         const token = localStorage.getItem('token');
         const response = await apiRequest(`bookings/${id}`, 'DELETE', null, token);
