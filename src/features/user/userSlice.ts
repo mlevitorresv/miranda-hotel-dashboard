@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { /*createUserToAPIThunk, deleteUserToAPIThunk, getUserFromAPIThunk,*/ createUserToAPIThunk, deleteUserToAPIThunk, getUserListFromAPIThunk } from "./userThunk";
+import { /*createUserToAPIThunk, deleteUserToAPIThunk, getUserFromAPIThunk,*/ createUserToAPIThunk, deleteUserToAPIThunk, getUserFromAPIThunk, getUserListFromAPIThunk } from "./userThunk";
 import { UserInterface, UserSliceInitialStateInterface } from '../../interfaces/UserInterface'
 import { RootState } from "../../app/store";
 
@@ -28,19 +28,17 @@ export const userSlice = createSlice({
             state.status = "pending"
         })
 
-
-        // .addCase(getUserFromAPIThunk.fulfilled, (state, action): void => {
-        //     state.status = "fulfilled"
-        //     state.data = action.payload
-        // })
-        // .addCase(getUserFromAPIThunk.rejected, (state, action): void => {
-        //     state.status = "rejected"
-        //     state.error = action.error.message
-        // })
-        // .addCase(getUserFromAPIThunk.pending, (state, action): void => {
-        //     state.status = "pending"
-        // })
-
+        .addCase(getUserFromAPIThunk.fulfilled, (state, action): void => {
+            state.status = "fulfilled"
+            state.data = action.payload
+        })
+        .addCase(getUserFromAPIThunk.rejected, (state, action): void => {
+            state.status = "rejected"
+            state.error = action.error.message
+        })
+        .addCase(getUserFromAPIThunk.pending, (state, action): void => {
+            state.status = "pending"
+        })
 
         .addCase(createUserToAPIThunk.fulfilled, (state, action): void => {
             state.status = "fulfilled"

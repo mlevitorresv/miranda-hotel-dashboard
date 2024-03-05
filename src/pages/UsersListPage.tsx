@@ -72,7 +72,7 @@ export const ConciergeList = () => {
       const paginatedList = sortedList.slice(startIndex, endIndex);
       paginatedList.forEach((user: UserInterface) => {
         components.push(
-          <TrStyled>
+          <TrStyled onClick={() => navigate(`/users/${user._id}`)}>
             <td>
               <GuestImage img={user.photo} name={user.name} id={'#' + user._id} join={'joined on: ' + user.date} />
             </td>

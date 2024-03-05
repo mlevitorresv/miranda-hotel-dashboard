@@ -9,7 +9,6 @@ import { Reviews } from './pages/ReviewsPage'
 import { Layout } from './components/layout/Layout'
 import { useEffect, useReducer, useState } from 'react'
 import { CreateUserPage } from './pages/CreateUserPage'
-import { EditUserPage } from './pages/EditUserPage'
 import { CreateRoomPage } from './pages/CreateRoomPage'
 import { EditRoomPage } from './pages/EditRoomPage'
 import { store } from './app/store'
@@ -17,6 +16,7 @@ import { Provider } from 'react-redux'
 import { AuthProvider, useAuth } from './context/AuthProvider.jsx'
 import { CreateBooking } from './pages/CreateBookingPage'
 import { ToastContainer } from 'react-toastify'
+import { UpdateUserPage } from './pages/UpdateUserPage'
 
 
 function App() {
@@ -51,9 +51,8 @@ function App() {
 
                 {/* USERS */}
                 <Route path='/users' element={<ConciergeList />} />
-                <Route path='/users/:id' element={<ConciergeList />} />
+                <Route path='/users/:id' element={<UpdateUserPage />} />
                 <Route path='/users/create' element={<CreateUserPage />} />
-                <Route path='/users/edit/:id' element={<EditUserPage />} />
 
                 {/* CONTACT */}
                 <Route path='/contact' element={<Reviews />} />

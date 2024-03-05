@@ -4,7 +4,7 @@ import { RoomInterface } from "../../interfaces/RoomInterface";
 import { apiRequest } from "../../api/apiCalls";
 
 
-export const getRoomListFromAPIThunk = createAsyncThunk<RoomInterface[], void, { state: any, rejectValue: string }>("room/getRoomFromApi", async (): Promise<RoomInterface[]> => {
+export const getRoomListFromAPIThunk = createAsyncThunk<RoomInterface[], void, { state: any, rejectValue: string }>("room/getRoomListFromApi", async (): Promise<RoomInterface[]> => {
     try {
         const token = localStorage.getItem('token');
         const response  = await apiRequest('rooms', 'GET', null, token);
@@ -12,6 +12,17 @@ export const getRoomListFromAPIThunk = createAsyncThunk<RoomInterface[], void, {
         return responseData.rooms;
     } catch (error) {
         throw new Error('Error al obtener la lista de habitaciones desde la API')
+    }
+})
+
+export const getRoomFromAPIThunk = createAsyncThunk<RoomInterface[], string, { state: any, rejectValue: string }>("room/getRoomFromAPI", async(id: string): Promise<RoomInterface[]> => {
+    try{
+        const token = localStorage.getItem('token');
+        const response = await apiRequest('rooms/id', 'GET', null, token);
+        const responseData = await response.json();
+        return responseData.room;
+    }catch(error){
+        throw new Error('Error al obtener la habitación desde la API')
     }
 })
 
