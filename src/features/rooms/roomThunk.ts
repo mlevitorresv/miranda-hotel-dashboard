@@ -15,7 +15,7 @@ export const getRoomListFromAPIThunk = createAsyncThunk<RoomInterface[], void, {
     }
 })
 
-export const getRoomFromAPIThunk = createAsyncThunk<RoomInterface[], string, { state: any, rejectValue: string }>("room/getRoomFromAPI", async(id: string): Promise<RoomInterface[]> => {
+export const getRoomFromAPIThunk = createAsyncThunk<RoomInterface[], string | undefined, { state: any, rejectValue: string }>("room/getRoomFromAPI", async(id): Promise<RoomInterface[]> => {
     try{
         const token = localStorage.getItem('token');
         const response = await apiRequest('rooms/id', 'GET', null, token);
