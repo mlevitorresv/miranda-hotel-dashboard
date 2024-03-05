@@ -93,7 +93,7 @@ export const RoomList = () => {
       paginatedList.forEach((room: RoomInterface) => {
         components.push(
 
-          <TrStyled key={room._id}>
+          <TrStyled key={room._id} onClick={() => navigate(`/rooms/${room._id}`)}>
             <td>
               <GuestImageRoom img={room.photo} id={room._id} data={room.type} />
             </td>
