@@ -14,6 +14,7 @@ import { FormUserStyled } from '../components/form/FormElementStyled'
 import { PageFormStyled } from '../components/form/PageFormStyled'
 import { TextAreaStyled } from '../components/common/TextAreaStyled'
 import { LabelStyled } from '../components/common/LabelStyled'
+import { toast } from 'react-toastify'
 
 export const CreateUserPage = () => {
 
@@ -46,7 +47,17 @@ export const CreateUserPage = () => {
             password: e.currentTarget.password.value.toString() || '',
             _id: undefined,
         }))
-        dispatch(createUserToAPIThunk(formData));
+        toast.info('No dejo crear usuarios por la seguridad de la app :\\', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        })
+        navigate('/users')
     }
 
     return (
@@ -70,7 +81,7 @@ export const CreateUserPage = () => {
                     <option value="INACTIVE" >Inactive</option>
                 </SelectStyled>
 
-                <TextAreaStyled name="desc" id="descInput" placeholder='description' rows={5}/>
+                <TextAreaStyled name="desc" id="descInput" placeholder='description' rows={5} />
 
                 <ButtonStyled type='submit' center={true}>CREATE USER</ButtonStyled>
             </FormUserStyled>

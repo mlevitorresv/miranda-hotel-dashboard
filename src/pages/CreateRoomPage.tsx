@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { RoomInterface } from '../interfaces/RoomInterface'
 import { createRoomToAPIThunk } from '../features/rooms/roomThunk'
 import { FormUserStyled } from '../components/form/FormElementStyled'
+import { toast } from 'react-toastify'
 
 export const CreateRoomPage = () => {
 
@@ -51,7 +52,17 @@ export const CreateRoomPage = () => {
             discount: e.currentTarget.discount.value || '',
             available: true,
         }))
-        dispatch<any>(createRoomToAPIThunk(formData));
+        toast.info('No dejo crear habitaciones por la seguridad de la app :\\', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        })
+        navigate('/rooms')
     }
 
     return (

@@ -12,6 +12,7 @@ import { RoomInterface } from '../interfaces/RoomInterface'
 import { useAppSelector } from '../app/store'
 import { createBookingToAPIThunk } from '../features/bookings/bookingsThunk'
 import { FormUserStyled } from '../components/form/FormElementStyled'
+import { toast } from 'react-toastify'
 // import { addBookingElement } from '../features/bookings/bookingsSlice'
 
 
@@ -55,7 +56,17 @@ export const CreateBooking = () => {
       room: e.currentTarget.room.value,
       status: 'booked'
     }))
-    dispatch<any>(createBookingToAPIThunk(formData));
+    toast.info('No dejo crear reservas por la seguridad de la app :\\', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })
+    navigate('/bookings')
   }
 
   return (
