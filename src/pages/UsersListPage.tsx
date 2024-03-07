@@ -91,7 +91,7 @@ export const ConciergeList = () => {
             </td>
             <td>
               <GuestDiv
-                data={<FaTrashAlt onClick={() => handleDeleteUser(user._id!)}/>}
+                data={<FaTrashAlt onClick={(e) => handleDeleteUser(user._id!, e)}/>}
               />      
             </td>
           </TrStyled>
@@ -104,8 +104,9 @@ export const ConciergeList = () => {
   }, [dispatch, userListData, userListStatus, showActiveUser, showInactiveUser, selectedSort, activeMenus, currentPage])
 
 
-  const handleDeleteUser = async (userId: string) => {
+  const handleDeleteUser = async (userId: string, e: React.MouseEvent<SVGElement, MouseEvent>) => {
     try {
+      e.stopPropagation();
       await dispatch(deleteUserToAPIThunk(userId));
       setSpinner(true);
       await dispatch(getUserListFromAPIThunk());
