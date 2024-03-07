@@ -23,6 +23,7 @@ import { AppDispatch, RootState, useAppSelector } from '../app/store'
 import { BookingInterface } from '../interfaces/BookingsInterface'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { FaTrashAlt } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
 
 
@@ -142,6 +143,16 @@ export const GuestList = () => {
       await dispatch(deleteBookingToAPIThunk(bookingId));
       setSpinner(true);
       await dispatch(getBookingListFromAPIThunk());
+      toast.info('Reserva eliminada', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     } catch (error) {
       console.error('Error al eliminar la habitación:', error);
     }

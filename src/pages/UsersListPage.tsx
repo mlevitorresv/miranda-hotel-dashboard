@@ -20,6 +20,7 @@ import { Tfooter } from '../components/table/Tfooter'
 import { UserInterface } from '../interfaces/UserInterface'
 import { Dispatch } from '@reduxjs/toolkit'
 import { AppDispatch, RootState, useAppSelector } from '../app/store'
+import { toast } from 'react-toastify'
 
 export const ConciergeList = () => {
 
@@ -108,6 +109,16 @@ export const ConciergeList = () => {
       await dispatch(deleteUserToAPIThunk(userId));
       setSpinner(true);
       await dispatch(getUserListFromAPIThunk());
+      toast.info('Usuario eliminado', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     } catch (error) {
       console.error('Error al eliminar la habitación:', error);
     }

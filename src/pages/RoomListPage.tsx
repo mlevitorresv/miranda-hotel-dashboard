@@ -23,6 +23,7 @@ import { Tfooter } from '../components/table/Tfooter.js';
 import { RoomInterface } from '../interfaces/RoomInterface.js';
 import { AppDispatch, RootState, useAppSelector } from '../app/store.js';
 import { FaTrashAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 export const RoomList = () => {
 
@@ -131,6 +132,16 @@ export const RoomList = () => {
       await dispatch(deleteRoomToAPIThunk(roomId));
       setSpinner(true);
       await dispatch(getRoomListFromAPIThunk());
+      toast.info('Habitación eliminada', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     } catch (error) {
       console.error('Error al eliminar la habitación:', error);
     }
