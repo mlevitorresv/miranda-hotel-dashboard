@@ -13,6 +13,7 @@ import { getRoomFromAPIThunk } from '../features/rooms/roomThunk'
 import { useDispatch } from 'react-redux'
 import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/amenities/AmenityStyled'
+import { toast } from 'react-toastify'
 
 export const UpdateRoomPage = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -38,19 +39,34 @@ export const UpdateRoomPage = () => {
     });
 
     useEffect(() => {
-        if(roomStatus === "idle"){
+        if (roomStatus === "idle") {
             dispatch(getRoomFromAPIThunk(id))
-        } else if(roomStatus === "pending"){
+        } else if (roomStatus === "pending") {
             setSpinner(true)
-        } else if (roomStatus === "fulfilled"){
+        } else if (roomStatus === "fulfilled") {
             setRoom(roomData[0])
             setSpinner(false)
             console.log('ID: ', id)
         }
     }, [dispatch, roomStatus, id])
 
+    const handleUpdateRoom = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        toast.info('No dejo actualizar los datos por la seguridad de la app :\\', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        })
+        navigate('/rooms')
+    }
+
     return (
-        <FormUserStyled>
+        <FormUserStyled onSubmit={handleUpdateRoom}>
             <H1Styled className='title'>New Room</H1Styled>
             <InputStyled type="text" name="photo" id="photoInput" value={room.photo} />
             <InputStyled type="number" name="roomNumber" id="roomNumberInput" value={room.bed} />
@@ -60,10 +76,10 @@ export const UpdateRoomPage = () => {
                 <option value="doubleSuper" >Double Super</option>
                 <option value="suite" >Suite</option>
             </SelectStyled>
-            <InputStyled type="text" name="desc" id="descInput" value={room.description}/>
-            <InputStyled type="number" name="rate" id="rate" value={room.rate}/>
-            <InputStyled type="number" name="price" id="priceInput" value={room.price}/>
-            <InputStyled type="number" name="discount" id="discountInput" value={room.discount}/>
+            <InputStyled type="text" name="desc" id="descInput" value={room.description} />
+            <InputStyled type="number" name="rate" id="rate" value={room.rate} />
+            <InputStyled type="number" name="price" id="priceInput" value={room.price} />
+            <InputStyled type="number" name="discount" id="discountInput" value={room.discount} />
             <H1Styled>Amenities</H1Styled>
             <AmenitiesContainerStyled>
                 <AmenityStyled>

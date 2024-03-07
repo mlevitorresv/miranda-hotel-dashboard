@@ -9,10 +9,10 @@ export const getUserListFromAPIThunk = createAsyncThunk<UserInterface[], void, {
     try {
         const token = localStorage.getItem('token');
         const response = await apiRequest('users', 'GET', null, token);
-        console.log('Response:', response);
+        // console.log('Response:', response);
 
         const responseData = await response.json();
-        console.log('Response Data:', responseData);
+        // console.log('Response Data:', responseData);
 
 
         return responseData.users;
@@ -24,9 +24,11 @@ export const getUserListFromAPIThunk = createAsyncThunk<UserInterface[], void, {
 
 export const getUserFromAPIThunk = createAsyncThunk<UserInterface[], string | undefined, { state: any, rejectValue: string }>("user/getUserFromApi", async (id): Promise<UserInterface[]> => {
     try {
+        console.log('dentro del thunk')
         const token = localStorage.getItem('token');
         const response = await apiRequest(`users/${id}`, 'GET', null, token);
         const responseData = await response.json();
+        console.log('responseData:', responseData)
         return responseData.user;
     } catch (error) {
         throw new Error('Error al obtener el usuario desde la API')

@@ -11,10 +11,11 @@ import { UserInterface } from '../interfaces/UserInterface'
 import { getUserData, getUserError, getUserStatus } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
 import { getUserFromAPIThunk } from '../features/user/userThunk'
+import { toast } from 'react-toastify'
 
 export const UpdateUserPage = () => {
 
-  const dispatch: AppDispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate()
     const params = useParams()
     const id = params.id
@@ -23,7 +24,7 @@ export const UpdateUserPage = () => {
     const userError = useAppSelector<string | undefined>(getUserError);
     const userStatus = useAppSelector<string>(getUserStatus);
     const [spinner, setSpinner] = useState<boolean>(true)
-    const [user, setUser] = useState<UserInterface>({
+    const [userDetails, setUserDetails] = useState<UserInterface>({
         _id: '',
         photo: '',
         name: '',
@@ -34,46 +35,61 @@ export const UpdateUserPage = () => {
         ocupation: '',
         status: '',
         description: ''
-      });
+    });
 
     useEffect(() => {
-        if(userStatus === "idle"){
+        if (userStatus === "idle") {
+            console.log(id)
             dispatch(getUserFromAPIThunk(id))
-        } else if(userStatus === "pending"){
+        } else if (userStatus === "pending") {
             setSpinner(true)
-        } else if (userStatus === "fulfilled"){
-            setUser(userData[0])
+        } else if (userStatus === "fulfilled") {
+            setUserDetails(userData[0])
             setSpinner(false)
-            console.log('ID: ', id)
         }
     }, [dispatch, userStatus, id])
 
+    const handleUpdateUser = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        toast.info('No dejo actualizar los datos por la seguridad de la app :\\', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        })
+        navigate('/users')
+    }
+
     return (
         <>
-            <FormUserStyled>
-                <H1Styled className='title'>Edit: {user.name}</H1Styled>
-                <InputStyled type="text" name="photo" id="photoInput" value={user.photo} />
-                <InputStyled type="text" name="name" id="nameInput" value={user.name} />
-                <InputStyled type="email" name="email" id="emailInput" value={user.email} />
-                <InputStyled type="password" name="password" id="passInput" value={user.password} />
-                <InputStyled type="number" name="phone" id="phoneInput" value={user.phone} />
-                <InputStyled type="date" name="date" id="dateInput" value={user.date} />
+            <FormUserStyled onSubmit={handleUpdateUser}>
+                <H1Styled className='title'>Edit: {userDetails.name}</H1Styled>
+                <InputStyled type="text" name="photo" id="photoInput" value={userDetails.photo} />
+                <InputStyled type="text" name="name" id="nameInput" value={userDetails.name} />
+                <InputStyled type="email" name="email" id="emailInput" value={userDetails.email} />
+                <InputStyled type="password" name="password" id="passInput" placeholder='password' />
+                <InputStyled type="number" name="phone" id="phoneInput" value={userDetails.phone} />
+                <InputStyled type="date" name="date" id="dateInput" value={userDetails.date} />
 
-                <SelectStyled type={'secondary'} name="ocupation" value={user.ocupation}>
+                <SelectStyled type={'secondary'} name="ocupation" value={userDetails.ocupation}>
                     <option value="manager" selected>Manager</option>
                     <option value="reception" >Reception</option>
                     <option value="service" >Room Service</option>
                 </SelectStyled>
-                <SelectStyled type={'secondary'} name='active' value={user.status}>
+                <SelectStyled type={'secondary'} name='active' value={userDetails.status}>
                     <option value="ACTIVE" selected>Active</option>
                     <option value="INACTIVE" >Inactive</option>
                 </SelectStyled>
 
-                <TextAreaStyled name="desc" id="descInput" value={user.description} rows={5} />
+                <TextAreaStyled name="desc" id="descInput" value={userDetails.description} rows={5} />
 
                 <ButtonStyled type='submit' center={true}>UPDATE USER</ButtonStyled>
                 <ButtonStyled center={true} onClick={() => navigate('/users')}>Return to user's list</ButtonStyled>
-                
+
             </FormUserStyled>
         </>
     )
