@@ -7,13 +7,14 @@ import { TextAreaStyled } from '../components/common/TextAreaStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { useNavigate, useParams } from 'react-router-dom'
 import { RoomInterface } from '../interfaces/RoomInterface'
-import { AppDispatch, useAppSelector } from '../app/store'
-import { getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice'
+import { AppDispatch, RootState, useAppSelector } from '../app/store'
+import { getRoomById, getRoomData, getRoomError, getRoomStatus } from '../features/rooms/roomSlice'
 import { getRoomFromAPIThunk } from '../features/rooms/roomThunk'
 import { useDispatch } from 'react-redux'
 import { AmenitiesContainerStyled } from '../components/amenities/AmenitiesContainerStyled'
 import { AmenityStyled } from '../components/amenities/AmenityStyled'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
 export const UpdateRoomPage = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -21,7 +22,11 @@ export const UpdateRoomPage = () => {
     const params = useParams()
     const id = params.id
 
-    const roomData = useAppSelector<RoomInterface[]>(getRoomData);
+    let roomData: RoomInterface | undefined;
+    const state = useSelector((state: RootState) => state);
+    if(id) {
+        roomData = getRoomById(state, id);
+    }
     const roomError = useAppSelector<string | undefined>(getRoomError);
     const roomStatus = useAppSelector<string>(getRoomStatus);
     const [spinner, setSpinner] = useState<boolean>(true)
@@ -43,10 +48,9 @@ export const UpdateRoomPage = () => {
             dispatch(getRoomFromAPIThunk(id))
         } else if (roomStatus === "pending") {
             setSpinner(true)
-        } else if (roomStatus === "fulfilled") {
-            setRoom(roomData[0])
+        } else if (roomStatus === "fulfilled" && roomData) {
+            setRoom(roomData)
             setSpinner(false)
-            console.log('ID: ', id)
         }
     }, [dispatch, roomStatus, id])
 

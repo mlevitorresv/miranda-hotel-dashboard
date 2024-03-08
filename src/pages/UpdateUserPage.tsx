@@ -44,7 +44,6 @@ export const UpdateUserPage = () => {
 
     useEffect(() => {
         if (userStatus === "idle") {
-            console.log(id)
             dispatch(getUserFromAPIThunk(id))
         } else if (userStatus === "pending") {
             setSpinner(true)
