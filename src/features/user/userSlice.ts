@@ -87,6 +87,7 @@ export const userSlice = createSlice({
 
 
 export const getUserData = (state: RootState): UserInterface[] => state.user.data;
+export const getUserById = (state: RootState, id: String): UserInterface | undefined=> state.user.data.find((user) => user._id === id);
 export const getUserStatus = (state: RootState): string => state.user.status;
 export const getUserError  = (state: RootState): string | undefined => state.user.error;
 export const getUserActive = (state: RootState): UserInterface[] => state.user.data.filter((user) => user.status === 'ACTIVE')

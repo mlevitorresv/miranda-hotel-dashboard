@@ -6,12 +6,13 @@ import { SelectStyled } from '../components/table/SelectStyled'
 import { TextAreaStyled } from '../components/common/TextAreaStyled'
 import { ButtonStyled } from '../components/common/ButtonStyled'
 import { useNavigate, useParams } from 'react-router-dom'
-import { AppDispatch, useAppSelector } from '../app/store'
+import { AppDispatch, RootState, useAppSelector } from '../app/store'
 import { UserInterface } from '../interfaces/UserInterface'
-import { getUserData, getUserError, getUserStatus } from '../features/user/userSlice'
+import { getUserById, getUserData, getUserError, getUserStatus } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
 import { getUserFromAPIThunk } from '../features/user/userThunk'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
 export const UpdateUserPage = () => {
 
@@ -20,7 +21,11 @@ export const UpdateUserPage = () => {
     const params = useParams()
     const id = params.id
 
-    const userData = useAppSelector<UserInterface[]>(getUserData);
+    let userData: UserInterface | undefined;
+    const state = useSelector((state: RootState) => state);
+    if(id) {
+        userData = getUserById(state, id);
+    }
     const userError = useAppSelector<string | undefined>(getUserError);
     const userStatus = useAppSelector<string>(getUserStatus);
     const [spinner, setSpinner] = useState<boolean>(true)
@@ -43,8 +48,8 @@ export const UpdateUserPage = () => {
             dispatch(getUserFromAPIThunk(id))
         } else if (userStatus === "pending") {
             setSpinner(true)
-        } else if (userStatus === "fulfilled") {
-            setUserDetails(userData[0])
+        } else if (userStatus === "fulfilled" && userData) {
+            setUserDetails(userData)
             setSpinner(false)
         }
     }, [dispatch, userStatus, id])
