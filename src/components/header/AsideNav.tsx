@@ -14,7 +14,7 @@ import { AsideNavPropsInterface } from '../../interfaces/componentsInterface';
 export const AsideNav = (props: AsideNavPropsInterface) => {
   return (
     <AsideNavStyled>
-        <img src="../../../public/logoDashboard.png" alt="hotel miranda's logo" />
+        <img src="public/logoDashboard.png" alt="hotel miranda's logo" />
         <div className='icons'>
             <NavLinkStyled to="/home">
                 <LuLayoutDashboard />
