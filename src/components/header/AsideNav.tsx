@@ -14,7 +14,7 @@ import { AsideNavPropsInterface } from '../../interfaces/componentsInterface';
 export const AsideNav = (props: AsideNavPropsInterface) => {
   return (
     <AsideNavStyled>
-        <img src="public/logoDashboard.png" alt="hotel miranda's logo" />
+        <img src="/public/logoDashboard.png" alt="hotel miranda's logo" />
         <div className='icons'>
             <NavLinkStyled to="/home">
                 <LuLayoutDashboard />
@@ -38,7 +38,7 @@ export const AsideNav = (props: AsideNavPropsInterface) => {
             </NavLinkStyled>
         </div>
         <DivStyled>
-            <img src="public/levi.jpeg" alt="user photo" />
+            <img src="/public/levi.jpeg" alt="user photo" />
             <p className='name'>Manuel Leví</p>
             <p className='email'>levitorres66@gmail.com</p>
             <ButtonStyled>Edit</ButtonStyled>
